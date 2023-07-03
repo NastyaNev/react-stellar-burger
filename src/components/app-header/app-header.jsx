@@ -9,10 +9,14 @@ import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 function AppHeader() {
   return (
     <header className={styles.header}>
-        <HeaderLink icon={<BurgerIcon type="primary" />} linkText="Конструктор" />
-        <HeaderLink icon={<ListIcon type="primary" />} linkText="Лента заказов" />
-        <Logo />
-        <HeaderLink icon={<ProfileIcon type="primary" />} linkText="Личный кабинет" />
+        <div className={styles.two_links_container}>
+          <HeaderLink icon={<BurgerIcon type="primary" />} linkText="Конструктор" link="" />
+          <HeaderLink className='ml-2 text_color_inactive' icon={<ListIcon type="secondary" />} linkText="Лента заказов" link="" />
+        </div>
+        <div className={styles.logo}>
+          <Logo />
+        </div>
+        <HeaderLink className='text_color_inactive' icon={<ProfileIcon type="secondary" />} linkText="Личный кабинет" link="" />
     </header>
   )
 }

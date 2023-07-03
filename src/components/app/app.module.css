@@ -5,3 +5,8 @@
   background-color: #131316;
   color: #f2f2f3;
 }
+
+.page {
+  width: calc(100vw - 100vw/3);;
+  margin: 0 auto 0 auto;
+}

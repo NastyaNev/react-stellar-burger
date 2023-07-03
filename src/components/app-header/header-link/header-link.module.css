@@ -1,8 +1,21 @@
-.header-link {
-    height: 24px;
+.header_link {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    min-width: 178px;
+    height: 56px;
+    border-radius: 40px;
+    align-items: center;
+    justify-content: center;
+
+    outline: violet dashed 1px;
 }
 
 .text {
-    color: white;
-    text-decoration: none;
+    
+}
+
+.link_content {
+    display: flex;
+    align-items: center;
 }

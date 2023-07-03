@@ -2,10 +2,13 @@ import React from 'react'
 import styles from "./header-link.module.css"
 
 function HeaderLink(props) {
-  const { linkText, icon } = props;
+  const { linkText, icon, link, className } = props;
   return (
-    <a className={styles.header_link} href="">
-      <span className={styles.text}>{icon}{linkText}</span>
+    <a className={['mt-4 mb-4', styles.header_link, className].join(" ")} href={link} target='_blank'>
+      <div className={['ml-5 mr-5', styles.link_content].join(" ")}>
+        {icon}
+        <span className={['text text_type_main-default ml-2', styles.text].join(" ")}>{linkText}</span>
+      </div>
     </a>
   )
 }

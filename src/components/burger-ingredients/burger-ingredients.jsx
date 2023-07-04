@@ -1,15 +1,15 @@
 import React from 'react'
 import styles from './burger-ingredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import Ingredient from './ingredient/ingredient';
+import IngredientSection from './ingredient-section/ingredient-section';
 
 function BurgerIngredients(props) {
     const { title } = props;
     const [current, setCurrent] = React.useState('one');
     return (
-        <div className={['mt-10 mb-5', styles.burger_ingredients].join(" ")}>
+        <li className={['mt-10 mb-5', styles.burger_ingredients].join(" ")}>
             <h2 className={['text text_type_main-large', styles.title].join(" ")}>{title}</h2>
-            <div className="mb -10" style={{ display: 'flex' }}>
+            <div className="mt-5 mb-10" style={{ display: 'flex' }}>
                 <Tab value="one" active={current === 'one'} onClick={setCurrent}>
                     Булки
                 </Tab>
@@ -21,27 +21,11 @@ function BurgerIngredients(props) {
                 </Tab>
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")}>
-                <li><Ingredient ingredName='Булки'/></li>
-                <li><Ingredient ingredName='Соусы'/></li>
-                <li><Ingredient ingredName='Начинки'/></li>
-
-                <li><Ingredient ingredName='Булки'/></li>
-                <li><Ingredient ingredName='Соусы'/></li>
-                <li><Ingredient ingredName='Начинки'/></li>
-
-                <li><Ingredient ingredName='Булки'/></li>
-                <li><Ingredient ingredName='Соусы'/></li>
-                <li><Ingredient ingredName='Начинки'/></li>
-
-                <li><Ingredient ingredName='Булки'/></li>
-                <li><Ingredient ingredName='Соусы'/></li>
-                <li><Ingredient ingredName='Начинки'/></li>
-
-                <li><Ingredient ingredName='Булки'/></li>
-                <li><Ingredient ingredName='Соусы'/></li>
-                <li><Ingredient ingredName='чинки'/></li>
+                <IngredientSection ingredName='Булки'/>
+                <IngredientSection ingredName='Соусы'/>
+                <IngredientSection ingredName='Начинки'/>
             </ul>
-        </div>
+        </li>
     )
 }
 

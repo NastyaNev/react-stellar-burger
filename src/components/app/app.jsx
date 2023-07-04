@@ -11,21 +11,17 @@ function App() {
   }, []);
 
   return (
-      <body className={styles.app}>
-        <div className={styles.page}>
-          <AppHeader />
-          <main>
-            <ul className={styles.sections}>
-              <li>
-                <BurgerIngredients title="Соберите бургер" />
-              </li>
-              <li>
-                <BurgerConstructor />
-              </li>
-            </ul>
-          </main>
-        </div>
-      </body >
+    <body className={styles.app}>
+      <div className={styles.page}>
+        <AppHeader />
+        <main>
+          <ul className={styles.sections}>
+            <BurgerIngredients title="Соберите бургер" />
+            <BurgerConstructor />
+          </ul>
+        </main>
+      </div>
+    </body >
   );
 }
 

@@ -1,7 +1,0 @@
-.menu {
-    display: flex;
-}
-
-.ingredient:first-child {
-    margin-top: 0;
-}

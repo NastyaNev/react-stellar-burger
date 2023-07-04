@@ -1,22 +1,31 @@
 import styles from "./app.module.css";
+import { useEffect } from 'react';
 import { data } from "../../utils/data";
 import AppHeader from "../app-header/app-header"
+import BurgerConstructor from "../burger-constructor/burger-constructor";
+import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 
 function App() {
+  useEffect(() => {
+    document.title = 'Stellar Burgers';
+  }, []);
+
   return (
-    <>
-      {/* <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Stellar Burgers</title>
-      </head> */}
       <body className={styles.app}>
         <div className={styles.page}>
           <AppHeader />
+          <main>
+            <ul className={styles.sections}>
+              <li>
+                <BurgerIngredients title="Соберите бургер" />
+              </li>
+              <li>
+                <BurgerConstructor />
+              </li>
+            </ul>
+          </main>
         </div>
-      </body>
-    </>
+      </body >
   );
 }
 

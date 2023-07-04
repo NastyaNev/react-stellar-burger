@@ -7,15 +7,18 @@
     border-radius: 40px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     outline: violet dashed 1px;
-}
-
-.text {
-    
 }
 
 .link_content {
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 1500px) {
+    .span {
+        font-size: 12px;
+    }
 }

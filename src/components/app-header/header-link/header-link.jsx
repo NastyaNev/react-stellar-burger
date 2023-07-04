@@ -7,7 +7,7 @@ function HeaderLink(props) {
     <a className={['mt-4 mb-4', styles.header_link, className].join(" ")} href={link} target='_blank'>
       <div className={['ml-5 mr-5', styles.link_content].join(" ")}>
         {icon}
-        <span className={['text text_type_main-default ml-2', styles.text].join(" ")}>{linkText}</span>
+        <span className={['text text_type_main-default ml-2', styles.span].join(" ")}>{linkText}</span>
       </div>
     </a>
   )

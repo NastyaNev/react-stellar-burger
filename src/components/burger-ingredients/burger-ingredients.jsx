@@ -21,9 +21,9 @@ function BurgerIngredients(props) {
                 </Tab>
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")}>
-                <IngredientSection ingredName='Булки'/>
-                <IngredientSection ingredName='Соусы'/>
-                <IngredientSection ingredName='Начинки'/>
+                <IngredientSection ingredName='Булки' type='bun' />
+                <IngredientSection ingredName='Соусы' type='sauce' />
+                <IngredientSection ingredName='Начинки' type='main' />
             </ul>
         </li>
     )

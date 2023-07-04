@@ -6,6 +6,8 @@
 
 .ingredient_name {
     text-align: center;
+    text-align: center;
+    min-height: 50px;
 }
 
 .span_container {

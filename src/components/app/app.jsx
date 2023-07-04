@@ -16,8 +16,8 @@ function App() {
         <AppHeader />
         <main>
           <ul className={styles.sections}>
-            <BurgerIngredients title="Соберите бургер" />
-            <BurgerConstructor />
+            <BurgerIngredients className={styles.section} title="Соберите бургер" />
+            <BurgerConstructor className={styles.section} />
           </ul>
         </main>
       </div>

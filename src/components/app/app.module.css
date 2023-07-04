@@ -19,6 +19,10 @@
   list-style: none;
 }
 
+.section {
+  width: 600px;
+}
+
 @media (max-width: 1279px) {
   .page {
     width: calc(100vw - 100vw/10);

@@ -6,6 +6,7 @@ import IngredientSection from './ingredient-section/ingredient-section';
 function BurgerIngredients(props) {
     const { title } = props;
     const [current, setCurrent] = React.useState('one');
+    
     return (
         <li className={['mt-10 mb-5', styles.burger_ingredients].join(" ")}>
             <h2 className={['text text_type_main-large', styles.title].join(" ")}>{title}</h2>

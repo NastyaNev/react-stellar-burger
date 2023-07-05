@@ -2,6 +2,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    cursor: pointer;
+    color: #F2F2F3;
+    position: relative;
 }
 
 .ingredient_name {

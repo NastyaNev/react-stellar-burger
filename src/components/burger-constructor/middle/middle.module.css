@@ -1,9 +1,9 @@
 .middle {
     display: flex;
     flex-direction: column;
-    max-height: 594px;
+    max-height: 464px;
     overflow-y: scroll;
-    gap: 10px;
+    gap: 16px;
     padding: 0;
 }
 

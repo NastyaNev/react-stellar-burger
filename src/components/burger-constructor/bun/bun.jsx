@@ -3,7 +3,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import { data } from '../../../utils/data';
 
 function Bun(props) {
-    const { type, className, part } = props;
+    const { type, className, part, note } = props;
     const ingredients = data;
     const found = ingredients.find(item => {
         return item.type === type;
@@ -15,9 +15,10 @@ function Bun(props) {
                 <ConstructorElement
                     type={part}
                     isLocked={true}
-                    text={found.name}
+                    text={[found.name, note].join(" ")}
                     price={found.price}
                     thumbnail={found.image}
+                    key={found._id}
                 />)
             }
         </li>

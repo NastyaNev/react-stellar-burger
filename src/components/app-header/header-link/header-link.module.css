@@ -8,8 +8,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
-    outline: violet dashed 1px;
 }
 
 .link_content {

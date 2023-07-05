@@ -1,11 +1,13 @@
 import React from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
 
 function Ingredient({ ingredient }) {
 
     return (
         <li className={styles.card}>
+            <Counter count={1} size="default" extraClass="m-1" />
             <img src={ingredient.image} />
             <div className={["mt-2", styles.span_container].join(" ")}>
                 <span className="text text_type_digits-default mr-2">{ingredient.price}</span>

@@ -16,12 +16,11 @@
     align-items: center;
 }
 
-.icon_container {
+.sum_container svg {
     width: 36px;
     height: 36px;
 }
 
-.CurrencyIcon {
-    width: 36px;
-    height: 36px;
+.price_container button {
+    cursor: pointer;
 }

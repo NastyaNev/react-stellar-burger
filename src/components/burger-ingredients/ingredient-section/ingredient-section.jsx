@@ -10,16 +10,14 @@ function IngredientSection(props) {
     return item.type === type;
   })
 
-  console.log(filtered)
-
   return (
     <li className={['mt-10', styles.ingredient_section].join(" ")}>
       <h3 className='text text_type_main-medium'>{ingredName}</h3>
-      <section className={['mt-6 ml-4', styles.menu].join(" ")}>
+      <ul className={['mt-6 ml-4', styles.menu].join(" ")}>
         {filtered.map(item => (
           <Ingredient key={item._id} ingredient={item} />
         ))}
-      </section>
+      </ul>
     </li>
   )
 }

@@ -4,11 +4,11 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientSection from './ingredient-section/ingredient-section';
 
 function BurgerIngredients(props) {
-    const { title } = props;
+    const { title, className } = props;
     const [current, setCurrent] = React.useState('one');
     
     return (
-        <li className={['mt-10 mb-5', styles.burger_ingredients].join(" ")}>
+        <li className={['mt-10', styles.burger_ingredients, className].join(" ")}>
             <h2 className={['text text_type_main-large', styles.title].join(" ")}>{title}</h2>
             <div className="mt-5 mb-10" style={{ display: 'flex' }}>
                 <Tab value="one" active={current === 'one'} onClick={setCurrent}>

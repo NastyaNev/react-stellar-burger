@@ -1,0 +1,20 @@
+import React from 'react'
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
+import styles from './item-container.module.css'
+
+function ItemContainer(props) {
+    const { constructorElement, icon } = props;
+
+    return (
+        <li className={styles.item_container}>
+            {icon}
+            <ConstructorElement
+                text={constructorElement.name}
+                price={constructorElement.price}
+                thumbnail={constructorElement.image}
+            />
+        </li>
+    )
+}
+
+export default ItemContainer

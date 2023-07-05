@@ -5,10 +5,12 @@ import { data } from '../../../utils/data';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function Middle(props) {
-    const { type, className } = props;
+    const { typeList, className } = props;
     const ingredients = data;
+    const types = typeList;
+
     const filtered = ingredients.filter(item => {
-        return item.type === type;
+        return types.includes(item.type);
     })
 
     return (

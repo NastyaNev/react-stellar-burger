@@ -9,6 +9,7 @@
 .page {
   width: calc(100vw - 100vw/3);
   margin: 0 auto 0 auto;
+  max-width: 1280px;
 }
 
 .sections {
@@ -16,15 +17,22 @@
   justify-content: center;
   margin: 0;
   padding: 0;
+  height: 824px;
   list-style: none;
 }
 
 .section {
-  width: 600px;
+  max-width: 600px;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1919px) {
   .page {
     width: calc(100vw - 100vw/10);
+  }
+}
+
+@media (max-width: 1379px) {
+  .page {
+    width: calc(100vw - 100vw/500);
   }
 }

@@ -6,7 +6,7 @@ function ItemContainer(props) {
     const { constructorElement, icon } = props;
 
     return (
-        <li className={styles.item_container}>
+        <li className={['mr-1', styles.item_container].join(' ')}>
             {icon}
             <ConstructorElement
                 text={constructorElement.name}

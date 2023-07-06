@@ -2,12 +2,10 @@
     margin-left: 0;
 }
 
-.title {}
-
 .ingredients_list {
     margin: 0;
     padding: 0;
     list-style: none;
-    max-height: 756px;
+    max-height: 628px;
     overflow-y: scroll;
 }

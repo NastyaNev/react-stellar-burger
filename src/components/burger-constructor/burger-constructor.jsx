@@ -9,7 +9,7 @@ function BurgerConstructor(props) {
   const { className } = props;
   return (
     <li className={['ml-10', styles.burger_constructor, className].join(" ")}>
-      <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <Bun className='ml-8' type="bun" part="top" note="(верх)" />
         <Middle className='custom-scroll' typeList={["main", "sauce"]} />
         <Bun className='ml-8' type="bun" part="bottom" note="(низ)" />

@@ -9,7 +9,7 @@ function BurgerIngredients(props) {
     
     return (
         <li className={['mt-10', styles.burger_ingredients, className].join(" ")}>
-            <h2 className={['text text_type_main-large', styles.title].join(" ")}>{title}</h2>
+            <h2 className='text text_type_main-large'>{title}</h2>
             <div className="mt-5 mb-10" style={{ display: 'flex' }}>
                 <Tab value="one" active={current === 'one'} onClick={setCurrent}>
                     Булки

@@ -10,7 +10,7 @@ function Bun(props) {
     })
 
     return (
-        <li className={className}>
+        <li className={['mr-4', className].join(' ')}>
             {found && (
                 <ConstructorElement
                     type={part}

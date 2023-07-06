@@ -1,23 +1,31 @@
 import styles from "./app.module.css";
-import { useEffect } from 'react';
 import { data } from "../../utils/data";
 import AppHeader from "../app-header/app-header"
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
+import Modal from "../modal/modal";
+import Overlay from "../overlay/overlay";
+import Main from "../main/main";
+import { useState } from "react";
+import OrderDitails from "../modal/order-ditails/order-ditails";
+import IngredientDitails from "../modal/ingredient-dilails/ingredient-dilails";
 
 function App() {
   const root = document.getElementById('root');
   root.classList.add(styles.app);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className={styles.page}>
       <AppHeader />
-      <main>
-        <ul className={styles.sections}>
-          <BurgerIngredients className={styles.section} title="Соберите бургер" />
-          <BurgerConstructor className={styles.section} />
-        </ul>
-      </main>
+      <Main setIsModalOpen={setIsModalOpen} />
+      {isModalOpen && (
+        <>
+          <Modal setIsModalOpen={setIsModalOpen} >
+            <IngredientDitails />
+          </Modal>
+          <Overlay setIsModalOpen={setIsModalOpen} />
+        </>
+      )}
     </div>
   );
 }

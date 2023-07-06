@@ -1,0 +1,29 @@
+.data_ditails {
+    
+}
+
+.image {
+    
+
+    outline: 1px dashed violet;
+}
+
+.contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 520px;
+    margin: auto;
+}
+
+.compound {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.compound_item  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

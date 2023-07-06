@@ -4,11 +4,11 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientSection from './ingredient-section/ingredient-section';
 
 function BurgerIngredients(props) {
-    const { title, className } = props;
+    const { title, className, setIsModalOpen } = props;
     const [current, setCurrent] = React.useState('one');
     
     return (
-        <li className={['mt-10', styles.burger_ingredients, className].join(" ")}>
+        <li className={['mt-10', styles.burger_ingredients, className].join(" ")} >
             <h2 className='text text_type_main-large'>{title}</h2>
             <div className="mt-5 mb-10" style={{ display: 'flex' }}>
                 <Tab value="one" active={current === 'one'} onClick={setCurrent}>
@@ -21,10 +21,10 @@ function BurgerIngredients(props) {
                     Начинки
                 </Tab>
             </div>
-            <ul className={['custom-scroll', styles.ingredients_list].join(" ")}>
-                <IngredientSection ingredName='Булки' type='bun' />
-                <IngredientSection ingredName='Соусы' type='sauce' />
-                <IngredientSection ingredName='Начинки' type='main' />
+            <ul className={['custom-scroll', styles.ingredients_list].join(" ")} > 
+                <IngredientSection ingredName='Булки' type='bun' setIsModalOpen={setIsModalOpen}/>
+                <IngredientSection ingredName='Соусы' type='sauce' setIsModalOpen={setIsModalOpen}/>
+                <IngredientSection ingredName='Начинки' type='main' setIsModalOpen={setIsModalOpen}/>
             </ul>
         </li>
     )

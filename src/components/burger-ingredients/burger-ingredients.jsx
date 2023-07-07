@@ -5,7 +5,7 @@ import IngredientSection from './ingredient-section/ingredient-section';
 import PropTypes from 'prop-types'
 
 function BurgerIngredients(props) {
-    const { title, className, setIsModalOpen, setContentModal } = props;
+    const { title, className, setIsModalOpen, setContentModal, array} = props;
     const [current, setCurrent] = useState('one');
     
     return (
@@ -23,15 +23,16 @@ function BurgerIngredients(props) {
                 </Tab>
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")} > 
-                <IngredientSection ingredName='Булки' type='bun' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal}/>
-                <IngredientSection ingredName='Соусы' type='sauce' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal}/>
-                <IngredientSection ingredName='Начинки' type='main' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal}/>
+                <IngredientSection ingredName='Булки' type='bun' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal} array={array} />
+                <IngredientSection ingredName='Соусы' type='sauce' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal} array={array} />
+                <IngredientSection ingredName='Начинки' type='main' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal} array={array} />
             </ul>
         </li>
     )
 }
 
 BurgerIngredients.propTypes = {
+    array: PropTypes.array,
     title: PropTypes.string,
     className: PropTypes.string,
     setIsModalOpen: PropTypes.func,

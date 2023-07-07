@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
-import { getArray } from '../../api/api'
 import PropTypes from 'prop-types'
 
 function IngredientSection(props) {
-  const { ingredName, type, setIsModalOpen, setContentModal } = props;
-  const [ingArray, setIngArray] = useState([]);
+  const { ingredName, type, setIsModalOpen, setContentModal, array } = props;
 
-  useEffect(() => {
-    getArray()
-      .then((res) => {setIngArray(res)})
-      .catch(err => {
-        console.log(err);
-      })
-  }, [])
-
-  if (ingArray.length === 0) {
-    return null
-  }
-
-  const filtered = ingArray.data.filter(item => {
+  const filtered = array.filter(item => {
     return item.type === type;
   })
 
@@ -37,6 +23,7 @@ function IngredientSection(props) {
 }
 
 IngredientSection.propTypes = {
+  array: PropTypes.array,
   ingredName: PropTypes.string,
   type: PropTypes.string,
   setIsModalOpen: PropTypes.func,

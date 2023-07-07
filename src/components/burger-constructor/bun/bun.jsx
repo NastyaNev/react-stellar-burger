@@ -1,25 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
-import { getArray } from '../../api/api'
 import PropTypes from 'prop-types'
 
 function Bun(props) {
     const { type, className, part, note, array } = props;
-    const [ingArray, setIngArray] = useState([]);
 
-    useEffect(() => {
-        getArray()
-            .then((res) => { setIngArray(res) })
-            .catch(err => {
-                console.log(err);
-            })
-    }, [])
-
-    if (ingArray.length === 0) {
-        return null
-    }
-
-    const found = ingArray.data.find(item => {
+    const found = array.find(item => {
         return item.type === type;
     })
 
@@ -40,6 +26,7 @@ function Bun(props) {
 }
 
 Bun.propTypes = {
+    array: PropTypes.array,
     type: PropTypes.string,
     className: PropTypes.string,
     part: PropTypes.string,

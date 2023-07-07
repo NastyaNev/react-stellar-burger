@@ -12,6 +12,19 @@
   max-width: 1280px;
 }
 
+.sections {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 824px;
+    list-style: none;
+  }
+  
+  .section {
+    max-width: 600px;
+  }
+
 @media (max-width: 1919px) {
   .page {
     width: calc(100vw - 100vw/10);

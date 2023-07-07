@@ -8,7 +8,7 @@ import OrderDitails from '../modal/order-ditails/order-ditails';
 import PropTypes from 'prop-types'
 
 function BurgerConstructor(props) {
-  const { className, setIsModalOpen, setContentModal } = props;
+  const { className, setIsModalOpen, setContentModal, array } = props;
 
   const onClickOrderButton = () => {
     setIsModalOpen(true);
@@ -18,9 +18,9 @@ function BurgerConstructor(props) {
   return (
     <li className={['ml-10', styles.burger_constructor, className].join(" ")}>
       <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <Bun className='ml-8' type="bun" part="top" note="(верх)" />
-        <Middle className='custom-scroll' typeList={["main", "sauce"]} />
-        <Bun className='ml-8' type="bun" part="bottom" note="(низ)" />
+        <Bun className='ml-8' type="bun" part="top" note="(верх)" array={array} />
+        <Middle className='custom-scroll' typeList={["main", "sauce"]} array={array} />
+        <Bun className='ml-8' type="bun" part="bottom" note="(низ)" array={array} />
       </ul>
       <section className={["mt-10 mr-4", styles.sum_container].join(" ")}>
         <div className={['mr-10', styles.price_container].join(" ")}>
@@ -36,6 +36,7 @@ function BurgerConstructor(props) {
 }
 
 BurgerConstructor.propTypes = {
+  array: PropTypes.array,
   setIsModalOpen: PropTypes.func,
   className: PropTypes.string,
   setContentModal: PropTypes.func

@@ -7,7 +7,7 @@ import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dila
 function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
     const onClickIngredient = () => {
         setIsModalOpen(true);
-        setContentModal(<IngredientDitails />);
+        setContentModal(<IngredientDitails ingredient={ingredient} />);
       }
 
     return (

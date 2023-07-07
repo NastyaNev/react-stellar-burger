@@ -5,8 +5,6 @@ import Modal from "../modal/modal";
 import Overlay from "../overlay/overlay";
 import Main from "../main/main";
 import { useState } from "react";
-import OrderDitails from "../modal/order-ditails/order-ditails";
-import IngredientDitails from "../modal/ingredient-dilails/ingredient-dilails";
 
 function App() {
   const root = document.getElementById('root');

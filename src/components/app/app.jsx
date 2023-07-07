@@ -13,15 +13,16 @@ function App() {
   root.classList.add(styles.app);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [contentModal, setContentModal] = useState("");
 
   return (
     <div className={styles.page}>
       <AppHeader />
-      <Main setIsModalOpen={setIsModalOpen} />
+      <Main setIsModalOpen={setIsModalOpen} setContentModal={setContentModal} />
       {isModalOpen && (
         <>
           <Modal setIsModalOpen={setIsModalOpen} >
-            <IngredientDitails />
+            {contentModal}
           </Modal>
           <Overlay setIsModalOpen={setIsModalOpen} />
         </>

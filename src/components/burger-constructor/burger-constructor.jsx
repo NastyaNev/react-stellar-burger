@@ -4,12 +4,14 @@ import Middle from './middle/middle';
 import Bun from './bun/bun';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import OrderDitails from '../modal/order-ditails/order-ditails';
 
 function BurgerConstructor(props) {
-  const { className, setIsModalOpen } = props;
+  const { className, setIsModalOpen, setContentModal } = props;
 
   const onClickOrderButton = () => {
-    setIsModalOpen(true)
+    setIsModalOpen(true);
+    setContentModal(<OrderDitails />);
   }
 
   return (

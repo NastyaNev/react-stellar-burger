@@ -7,6 +7,7 @@ const modalRoot = document.getElementById('react_modal');
 
 function Modal(props) {
     const { setIsModalOpen } = props;
+    
     const onClickCloseButton = () => {
         setIsModalOpen(false)
     }
@@ -24,12 +25,11 @@ function Modal(props) {
     }, [])
 
     return ReactDOM.createPortal(
-        (
             <div className={styles.modal}>
                 <button className={['mt-15 mr-10', styles.button_close].join(' ')}><img src={iconClose} alt='закрыть' onClick={onClickCloseButton} /></button>
                 {props.children}
             </div>
-        ), modalRoot
+        , modalRoot
     )
 }
 

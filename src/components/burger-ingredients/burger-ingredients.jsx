@@ -4,7 +4,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientSection from './ingredient-section/ingredient-section';
 
 function BurgerIngredients(props) {
-    const { title, className, setIsModalOpen } = props;
+    const { title, className, setIsModalOpen, setContentModal } = props;
     const [current, setCurrent] = React.useState('one');
     
     return (
@@ -22,9 +22,9 @@ function BurgerIngredients(props) {
                 </Tab>
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")} > 
-                <IngredientSection ingredName='Булки' type='bun' setIsModalOpen={setIsModalOpen}/>
-                <IngredientSection ingredName='Соусы' type='sauce' setIsModalOpen={setIsModalOpen}/>
-                <IngredientSection ingredName='Начинки' type='main' setIsModalOpen={setIsModalOpen}/>
+                <IngredientSection ingredName='Булки' type='bun' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal}/>
+                <IngredientSection ingredName='Соусы' type='sauce' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal}/>
+                <IngredientSection ingredName='Начинки' type='main' setIsModalOpen={setIsModalOpen} setContentModal={setContentModal}/>
             </ul>
         </li>
     )

@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
+import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dilails'
 
-function Ingredient({ ingredient, setIsModalOpen }) {
-
+function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
     const onClickIngredient = () => {
-        setIsModalOpen(true)
+        setIsModalOpen(true);
+        setContentModal(<IngredientDitails />);
       }
 
     return (

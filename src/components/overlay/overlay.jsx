@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './overlay.module.css'
 import ReactDOM from 'react-dom'
 
@@ -10,9 +9,8 @@ function Overlay({ setIsModalOpen }) {
     }
 
     return ReactDOM.createPortal(
-        (
-            <div className={styles.overlay} onClick={onClickOverlay}></div>
-        ), modalRoot
+        <div className={styles.overlay} onClick={onClickOverlay}></div>
+        , modalRoot
     )
 }
 

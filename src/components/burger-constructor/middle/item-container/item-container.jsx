@@ -11,7 +11,7 @@ function ItemContainer(props) {
             <ConstructorElement
                 text={constructorElement.name}
                 price={constructorElement.price}
-                thumbnail={constructorElement.image}
+                thumbnail={constructorElement.image_mobile}
             />
         </li>
     )

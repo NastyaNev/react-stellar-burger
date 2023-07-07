@@ -17,7 +17,7 @@ function Bun(props) {
                     isLocked={true}
                     text={[found.name, note].join(" ")}
                     price={found.price}
-                    thumbnail={found.image}
+                    thumbnail={found.image_mobile}
                     key={found._id}
                 />)
             }

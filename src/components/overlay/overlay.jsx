@@ -1,6 +1,8 @@
 import styles from './overlay.module.css'
 import ReactDOM from 'react-dom'
 
+import PropTypes from 'prop-types'
+
 const modalRoot = document.getElementById('react_modal');
 
 function Overlay({ setIsModalOpen }) {
@@ -13,5 +15,9 @@ function Overlay({ setIsModalOpen }) {
         , modalRoot
     )
 }
+
+Overlay.propTypes = {
+    setIsModalOpen: PropTypes.func
+};
 
 export default Overlay

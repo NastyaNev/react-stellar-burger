@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './burger-ingredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientSection from './ingredient-section/ingredient-section';
+import PropTypes from 'prop-types'
 
 function BurgerIngredients(props) {
     const { title, className, setIsModalOpen, setContentModal } = props;
-    const [current, setCurrent] = React.useState('one');
+    const [current, setCurrent] = useState('one');
     
     return (
         <li className={['mt-10', styles.burger_ingredients, className].join(" ")} >
@@ -29,5 +30,12 @@ function BurgerIngredients(props) {
         </li>
     )
 }
+
+BurgerIngredients.propTypes = {
+    title: PropTypes.string,
+    className: PropTypes.string,
+    setIsModalOpen: PropTypes.func,
+    setContentModal: PropTypes.func
+  };
 
 export default BurgerIngredients

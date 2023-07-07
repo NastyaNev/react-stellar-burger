@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styles from './middle.module.css'
 import ItemContainer from './item-container/item-container'
-import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { getArray } from '../../api/api';
+import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { getArray } from '../../api/api'
+import PropTypes from 'prop-types'
 
 function Middle(props) {
     const { typeList, className } = props;
@@ -11,15 +12,15 @@ function Middle(props) {
     const [ingArray, setIngArray] = useState([]);
 
     useEffect(() => {
-      getArray()
-        .then((res) => {setIngArray(res)})
-        .catch(err => {
-          console.log(err);
-        })
+        getArray()
+            .then((res) => { setIngArray(res) })
+            .catch(err => {
+                console.log(err);
+            })
     }, [])
-  
+
     if (ingArray.length === 0) {
-      return null
+        return null
     }
 
     const filtered = ingArray.data.filter(item => {
@@ -36,5 +37,11 @@ function Middle(props) {
         </li>
     )
 }
+
+Middle.propTypes = {
+    typeList: PropTypes.array,
+    className: PropTypes.string
+};
+
 
 export default Middle

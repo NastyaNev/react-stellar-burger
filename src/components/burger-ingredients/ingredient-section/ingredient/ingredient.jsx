@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
 import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dilails'
+import PropTypes from 'prop-types'
 
 function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
     const onClickIngredient = () => {
@@ -22,5 +23,11 @@ function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
         </li>
     )
 }
+
+Ingredient.propTypes = {
+    ingredient: PropTypes.object,
+    setIsModalOpen: PropTypes.func,
+    setContentModal: PropTypes.func
+};
 
 export default Ingredient

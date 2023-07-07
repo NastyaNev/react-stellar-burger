@@ -2,6 +2,7 @@ import React from 'react'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients'
 import BurgerConstructor from '../burger-constructor/burger-constructor'
 import styles from './main.module.css'
+import PropTypes from 'prop-types'
 
 function Main(props) {
     const { setIsModalOpen, setContentModal } = props;
@@ -15,5 +16,10 @@ function Main(props) {
         </main>
     )
 }
+
+Main.propTypes = {
+    setIsModalOpen: PropTypes.func,
+    setContentModal: PropTypes.func
+};
 
 export default Main

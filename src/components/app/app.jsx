@@ -1,5 +1,4 @@
 import styles from "./app.module.css";
-import { data } from "../../utils/data";
 import AppHeader from "../app-header/app-header"
 import Modal from "../modal/modal";
 import Overlay from "../overlay/overlay";

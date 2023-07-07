@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from "./header-link.module.css"
+import PropTypes from 'prop-types'
 
 function HeaderLink(props) {
   const { linkText, icon, link, className } = props;
@@ -12,5 +13,11 @@ function HeaderLink(props) {
     </a>
   )
 }
+
+HeaderLink.propTypes = {
+  linkText: PropTypes.string,
+  icon: PropTypes.object,
+  className: PropTypes.string,
+};
 
 export default HeaderLink

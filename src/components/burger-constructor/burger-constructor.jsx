@@ -5,6 +5,7 @@ import Bun from './bun/bun';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderDitails from '../modal/order-ditails/order-ditails';
+import PropTypes from 'prop-types'
 
 function BurgerConstructor(props) {
   const { className, setIsModalOpen, setContentModal } = props;
@@ -33,5 +34,11 @@ function BurgerConstructor(props) {
     </li>
   )
 }
+
+BurgerConstructor.propTypes = {
+  setIsModalOpen: PropTypes.func,
+  className: PropTypes.string,
+  setContentModal: PropTypes.func
+};
 
 export default BurgerConstructor

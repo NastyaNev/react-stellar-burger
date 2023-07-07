@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
-import { getArray } from '../../api/api';
+import { getArray } from '../../api/api'
+import PropTypes from 'prop-types'
 
 function IngredientSection(props) {
   const { ingredName, type, setIsModalOpen, setContentModal } = props;
@@ -34,5 +35,12 @@ function IngredientSection(props) {
     </li>
   )
 }
+
+IngredientSection.propTypes = {
+  ingredName: PropTypes.string,
+  type: PropTypes.string,
+  setIsModalOpen: PropTypes.func,
+  setContentModal: PropTypes.func
+};
 
 export default IngredientSection

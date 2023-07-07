@@ -1,3 +1,7 @@
+.title_modal {
+    line-height: 64px;
+}
+
 .contain {
     display: flex;
     flex-direction: column;

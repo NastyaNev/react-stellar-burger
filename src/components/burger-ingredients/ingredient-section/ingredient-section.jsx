@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./ingredient-section.module.css"
-import { data } from "../../../utils/data"
 import Ingredient from './ingredient/ingredient'
 
 function IngredientSection(props) {
   const { ingredName, type, setIsModalOpen, setContentModal } = props;
-  const ingredients = data;
-  const filtered = ingredients.filter(item => {
+  const [ingArray, setIngArray] = useState([]);
+
+  useEffect(() => {
+    const getArray = async () => {
+      const res = await fetch('https://norma.nomoreparties.space/api/ingredients ')
+      const arr = await res.json()
+      setIngArray(arr)
+    }
+    getArray();
+  }, [])
+
+
+
+  if (ingArray.length === 0) {
+    return null
+  }
+
+  console.log(ingArray)
+
+  const filtered = ingArray.data.filter(item => {
     return item.type === type;
   })
 

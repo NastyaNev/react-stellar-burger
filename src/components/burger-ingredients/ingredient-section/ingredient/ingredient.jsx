@@ -8,7 +8,7 @@ function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
     const onClickIngredient = () => {
         setIsModalOpen(true);
         setContentModal(<IngredientDitails ingredient={ingredient} />);
-      }
+    }
 
     return (
         <li className={styles.card} onClick={onClickIngredient}>

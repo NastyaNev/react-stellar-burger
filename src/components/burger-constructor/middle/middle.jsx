@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './middle.module.css'
 import ItemContainer from './item-container/item-container'
-import { data } from '../../../utils/data';
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { getArray } from '../../api/api';
 
 function Middle(props) {
     const { typeList, className } = props;
-    const ingredients = data;
     const types = typeList;
 
-    const filtered = ingredients.filter(item => {
+    const [ingArray, setIngArray] = useState([]);
+
+    useEffect(() => {
+      getArray()
+        .then((res) => {setIngArray(res)})
+        .catch(err => {
+          console.log(err);
+        })
+    }, [])
+  
+    if (ingArray.length === 0) {
+      return null
+    }
+
+    const filtered = ingArray.data.filter(item => {
         return types.includes(item.type);
     })
 

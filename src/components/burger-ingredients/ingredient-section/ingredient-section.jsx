@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
+import { getArray } from '../../api/api';
 
 function IngredientSection(props) {
   const { ingredName, type, setIsModalOpen, setContentModal } = props;
   const [ingArray, setIngArray] = useState([]);
 
   useEffect(() => {
-    const getArray = async () => {
-      const res = await fetch('https://norma.nomoreparties.space/api/ingredients ')
-      const arr = await res.json()
-      setIngArray(arr)
-    }
-    getArray();
+    getArray()
+      .then((res) => {setIngArray(res)})
+      .catch(err => {
+        console.log(err);
+      })
   }, [])
-
-
 
   if (ingArray.length === 0) {
     return null
   }
-
-  console.log(ingArray)
 
   const filtered = ingArray.data.filter(item => {
     return item.type === type;

@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
-import { data } from '../../../utils/data';
+import { getArray } from '../../api/api';
 
 function Bun(props) {
     const { type, className, part, note } = props;
-    const ingredients = data;
-    const found = ingredients.find(item => {
+    const [ingArray, setIngArray] = useState([]);
+
+    useEffect(() => {
+      getArray()
+        .then((res) => {setIngArray(res)})
+        .catch(err => {
+          console.log(err);
+        })
+    }, [])
+  
+    if (ingArray.length === 0) {
+      return null
+    }
+
+    const found = ingArray.data.find(item => {
         return item.type === type;
     })
 

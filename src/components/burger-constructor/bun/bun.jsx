@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import { getArray } from '../../api/api'
 import PropTypes from 'prop-types'
-import { ingredientPropType } from '../../../utils/prop-types'
 
 function Bun(props) {
-    const { type, className, part, note } = props;
+    const { type, className, part, note, array } = props;
     const [ingArray, setIngArray] = useState([]);
 
     useEffect(() => {

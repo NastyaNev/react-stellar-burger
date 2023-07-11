@@ -4,6 +4,7 @@ import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
 import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dilails'
 import PropTypes from 'prop-types'
+import { ingredientPropType } from '../../../../utils/prop-types'
 
 function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
     const onClickIngredient = () => {
@@ -25,7 +26,7 @@ function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
 }
 
 Ingredient.propTypes = {
-    ingredient: PropTypes.object,
+    ingredient: ingredientPropType,
     setIsModalOpen: PropTypes.func,
     setContentModal: PropTypes.func
 };

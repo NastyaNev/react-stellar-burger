@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import styles from "./app.module.css";
 import AppHeader from "../app-header/app-header"
 import Modal from "../modal/modal";
-import Overlay from "../overlay/overlay";
+import Overlay from "../modal/overlay/overlay";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { getArray } from '../api/api'
 
 function App() {
-  const root = document.getElementById('root');
-  root.classList.add(styles.app);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [contentModal, setContentModal] = useState("");
   const [ingArray, setIngArray] = useState([]);
@@ -43,7 +40,6 @@ function App() {
           <Modal setIsModalOpen={setIsModalOpen} >
             {contentModal}
           </Modal>
-          <Overlay setIsModalOpen={setIsModalOpen} />
         </>
       )}
     </div>

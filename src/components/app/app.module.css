@@ -1,7 +1,30 @@
-.app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background-color: #131316;
-  color: #f2f2f3;
+.page {
+  width: calc(100vw - 100vw/3);
+  margin: 0 auto 0 auto;
+  max-width: 1280px;
+}
+
+.sections {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 824px;
+    list-style: none;
+  }
+  
+  .section {
+    max-width: 600px;
+  }
+
+@media (max-width: 1919px) {
+  .page {
+    width: calc(100vw - 100vw/10);
+  }
+}
+
+@media (max-width: 1379px) {
+  .page {
+    width: calc(100vw - 100vw/500);
+  }
 }

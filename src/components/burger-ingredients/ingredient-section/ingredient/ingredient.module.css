@@ -1,0 +1,19 @@
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    color: #F2F2F3;
+    position: relative;
+}
+
+.ingredient_name {
+    text-align: center;
+    text-align: center;
+    min-height: 50px;
+}
+
+.span_container {
+    display: flex;
+    align-items: center;
+}

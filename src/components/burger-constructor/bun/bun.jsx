@@ -2,9 +2,14 @@ import React from 'react'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import { ingredientPropType } from '../../../utils/prop-types';
+import { store } from '../../..';
 
 function Bun(props) {
-    const { type, className, part, note, array } = props;
+    const { type, className, part, note } = props;
+
+    const array = () => {
+        store.dispatch({ type: 'GET_ARRAY' });
+    };
 
     const found = array.find(item => {
         return item.type === type;

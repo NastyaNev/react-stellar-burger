@@ -3,17 +3,19 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
 import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dilails'
-import PropTypes from 'prop-types'
 import { ingredientPropType } from '../../../../utils/prop-types'
+import { store } from '../../../..'
+import PropTypes from 'prop-types'
 
-function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
-    const onClickIngredient = () => {
-        setIsModalOpen(true);
-        setContentModal(<IngredientDitails ingredient={ingredient} />);
-    }
+function Ingredient({ ingredient }) {
+
+    const handleOpen = () => {
+        store.dispatch({ type: 'MODAL_OPEN' });
+        store.dispatch({ type: 'CHOOSE_MODAL', typeModal: <IngredientDitails ingredient={ingredient} /> });
+    };
 
     return (
-        <li className={styles.card} onClick={onClickIngredient}>
+        <li className={styles.card} onClick={handleOpen}>
             <Counter count={1} size="default" extraClass="m-1" />
             <img src={ingredient.image} alt={ingredient.name} />
             <div className={["mt-2", styles.span_container].join(" ")}>
@@ -27,7 +29,6 @@ function Ingredient({ ingredient, setIsModalOpen, setContentModal }) {
 
 Ingredient.propTypes = {
     ingredient: ingredientPropType,
-    setIsModalOpen: PropTypes.func,
     setContentModal: PropTypes.func
 };
 

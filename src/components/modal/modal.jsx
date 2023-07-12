@@ -3,23 +3,21 @@ import styles from './modal.module.css'
 import ReactDOM from 'react-dom'
 import iconClose from '../../images/icon 24x24.svg'
 import PropTypes from 'prop-types'
-import Overlay from './overlay/overlay'
+import { store } from '../..'
 
 const modalRoot = document.getElementById('react_modal');
 
 function Modal(props) {
-    const { setIsModalOpen } = props;
-
-    const onClickCloseButton = () => {
-        setIsModalOpen(false)
-    }
+    const handleClose = () => {
+        store.dispatch({ type: 'MODAL_CLOSE' });
+    };
 
     useEffect(() => {
         document.addEventListener('keydown', onEsc);
 
         function onEsc(e) {
             if (e.code === "Escape") {
-                setIsModalOpen(false)
+                handleClose()
             }
         }
 
@@ -29,17 +27,17 @@ function Modal(props) {
     return ReactDOM.createPortal(
         <>
             <div className={styles.modal}>
-                <button className={['mt-15 mr-10', styles.button_close].join(' ')}><img src={iconClose} alt='закрыть' onClick={onClickCloseButton} /></button>
+                <button className={['mt-15 mr-10', styles.button_close].join(' ')}><img src={iconClose} alt='закрыть' onClick={handleClose} /></button>
                 {props.children}
             </div>
-            <Overlay setIsModalOpen={setIsModalOpen}></Overlay>
+            <div className={styles.overlay} onClick={handleClose}></div>
         </>
         , modalRoot
     )
 }
 
 Modal.propTypes = {
-    setIsModalOpen: PropTypes.func
+    handleClose: PropTypes.func
 };
 
 export default Modal

@@ -1,0 +1,26 @@
+.burger_constructor {}
+
+.constructor_list {
+    padding: 0;
+    list-style: none;
+}
+
+.sum_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.price_container {
+    display: flex;
+    align-items: center;
+}
+
+.sum_container svg {
+    width: 36px;
+    height: 36px;
+}
+
+.price_container button {
+    cursor: pointer;
+}

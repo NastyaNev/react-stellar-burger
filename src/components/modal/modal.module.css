@@ -1,0 +1,21 @@
+.modal {
+    width: 720px;
+    background-color: #000;
+    color: #F2F2F3;
+    border-radius: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.button_close  {
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

@@ -1,0 +1,38 @@
+.title_modal {
+    line-height: 64px;
+}
+
+.contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 520px;
+    margin: auto;
+}
+
+.name_ingredient {
+    width: 520px;
+    text-align: center;
+}
+
+.compound {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    width: 520px;
+}
+
+.compound_item  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 112px;
+}
+
+.compound_item:first-child {
+    width: 120px;
+}
+
+.quantity_compound_item {
+    margin-top: 8px;
+}

@@ -42,4 +42,4 @@ Modal.propTypes = {
     setIsModalOpen: PropTypes.func
 };
 
-export default Modal
+export default Moda

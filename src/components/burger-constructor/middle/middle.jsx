@@ -3,6 +3,7 @@ import styles from './middle.module.css'
 import ItemContainer from './item-container/item-container'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
+import { ingredientPropType } from '../../../utils/prop-types'
 
 function Middle(props) {
     const { typeList, className, array } = props;
@@ -24,7 +25,7 @@ function Middle(props) {
 }
 
 Middle.propTypes = {
-    array: PropTypes.array,
+    array: PropTypes.arrayOf(ingredientPropType),
     typeList: PropTypes.array,
     className: PropTypes.string
 };

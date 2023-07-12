@@ -6,6 +6,7 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderDitails from '../modal/order-ditails/order-ditails';
 import PropTypes from 'prop-types'
+import { ingredientPropType } from '../../utils/prop-types';
 
 function BurgerConstructor(props) {
   const { className, setIsModalOpen, setContentModal, array } = props;
@@ -36,7 +37,7 @@ function BurgerConstructor(props) {
 }
 
 BurgerConstructor.propTypes = {
-  array: PropTypes.array,
+  array: PropTypes.arrayOf(ingredientPropType),
   setIsModalOpen: PropTypes.func,
   className: PropTypes.string,
   setContentModal: PropTypes.func

@@ -2,6 +2,7 @@ import React from 'react'
 import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
 import PropTypes from 'prop-types'
+import { ingredientPropType } from '../../../utils/prop-types';
 
 function IngredientSection(props) {
   const { ingredName, type, setIsModalOpen, setContentModal, array } = props;
@@ -23,7 +24,7 @@ function IngredientSection(props) {
 }
 
 IngredientSection.propTypes = {
-  array: PropTypes.array,
+  array: PropTypes.arrayOf(ingredientPropType),
   ingredName: PropTypes.string,
   type: PropTypes.string,
   setIsModalOpen: PropTypes.func,

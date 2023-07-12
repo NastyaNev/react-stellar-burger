@@ -3,6 +3,7 @@ import styles from './burger-ingredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientSection from './ingredient-section/ingredient-section';
 import PropTypes from 'prop-types'
+import { ingredientPropType } from '../../utils/prop-types';
 
 function BurgerIngredients(props) {
     const { title, className, setIsModalOpen, setContentModal, array} = props;
@@ -32,7 +33,7 @@ function BurgerIngredients(props) {
 }
 
 BurgerIngredients.propTypes = {
-    array: PropTypes.array,
+    array: PropTypes.arrayOf(ingredientPropType),
     title: PropTypes.string,
     className: PropTypes.string,
     setIsModalOpen: PropTypes.func,

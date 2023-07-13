@@ -3,20 +3,13 @@ import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
 import PropTypes from 'prop-types'
 import { ingredientPropType } from '../../../utils/prop-types';
-import { store } from '../../..';
 
 function IngredientSection(props) {
-  const { ingredName, type } = props;
-
-  const array = () => {
-    store.dispatch({ type: 'GET_ARRAY' });
-};
+  const { ingredName, type, array } = props;
 
   const filtered = array.filter(item => {
     return item.type === type;
   })
-
-  console.log('array', array)
 
   return (
     <li className={['mt-10', styles.ingredient_section].join(" ")}>

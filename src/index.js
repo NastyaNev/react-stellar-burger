@@ -3,31 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/app/app";
 import reportWebVitals from "./reportWebVitals";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-
-const initialState = {
-  isOpen: false,
-  typeModal: '',
-  array: ''
-}
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "MODAL_OPEN":
-      return { ...state, isOpen: true }
-    case "MODAL_CLOSE":
-      return { ...state, isOpen: false }
-    case "CHOOSE_MODAL":
-      return { ...state, typeModal: action.typeModal }
-    case "GET_ARRAY":
-      return { ...state, array: action.array }
-    default:
-      return state
-  }
-}
-
-export const store = createStore(reducer);
+import { store } from "./store";
 
 ReactDOM.render(
   <Provider store={store}>

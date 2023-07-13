@@ -7,12 +7,8 @@ import { ingredientPropType } from '../../../utils/prop-types'
 import { store } from '../../..'
 
 function Middle(props) {
-    const { typeList, className } = props;
+    const { typeList, className, array } = props;
     const types = typeList;
-
-    const array = () => {
-        store.dispatch({ type: 'GET_ARRAY' });
-    };
 
     const filtered = array.filter(item => {
         return types.includes(item.type);

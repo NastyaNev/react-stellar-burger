@@ -5,11 +5,7 @@ import { ingredientPropType } from '../../../utils/prop-types';
 import { store } from '../../..';
 
 function Bun(props) {
-    const { type, className, part, note } = props;
-
-    const array = () => {
-        store.dispatch({ type: 'GET_ARRAY' });
-    };
+    const { type, className, part, note, array } = props;
 
     const found = array.find(item => {
         return item.type === type;

@@ -3,7 +3,7 @@ import styles from './modal.module.css'
 import ReactDOM from 'react-dom'
 import iconClose from '../../images/icon 24x24.svg'
 import PropTypes from 'prop-types'
-import { store } from '../..'
+import { store } from '../../store'
 
 const modalRoot = document.getElementById('react_modal');
 

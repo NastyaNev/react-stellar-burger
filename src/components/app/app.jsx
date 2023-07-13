@@ -8,36 +8,31 @@ import { getArray } from '../api/api'
 import { useSelector } from "react-redux";
 
 function App() {
-  // const [ingArray, setIngArray] = useState([]);
+  const [ingArray, setIngArray] = useState([]);
   const openModal = useSelector((state) => state.isOpen);
   const chooseModal = useSelector((state) => state.typeModal);
-  const getIngArray = useSelector((state) => state.array)
 
   useEffect(() => {
     getArray()
-      .then((res) => {
-        console.log('res', res.data);
-      })
+      .then((res) => { setIngArray(res) })
       .catch(err => {
         console.log(err);
       })
   }, [])
 
-  // console.log('getIngArray', getIngArray)
-
-  if (getIngArray.length === 0) {
+  if (ingArray.length === 0) {
     return null
   }
 
-  // const array = ingArray.data;
+  const array = ingArray.data;
 
   return (
     <div className={styles.page}>
       <AppHeader />
       <main>
         <ul className={styles.sections}>
-          <BurgerIngredients className={styles.section} title="Соберите бургер" />
-          <BurgerConstructor className={styles.section} />
+          <BurgerIngredients className={styles.section} array={array} title="Соберите бургер" />
+          <BurgerConstructor className={styles.section} array={array} />
         </ul>
       </main>
       {openModal && <Modal >

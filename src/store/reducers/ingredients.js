@@ -1,4 +1,4 @@
-import { GET_ARRAY, GET_ARRAY_FAILED, GET_ARRAY_SUCCESS } from "../actions/index"
+import { GET_ARRAY, GET_ARRAY_FAILED, GET_ARRAY_SUCCESS } from "../actions/ingredients"
 
 const initialState = {
     apiRequest: false,
@@ -9,7 +9,7 @@ const initialState = {
 export const arrayReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ARRAY: {
-            return { ...state, apiRequest: true, apiFailed: false }
+            return { ...state, apiRequest: true }
         }
         case GET_ARRAY_SUCCESS: {
             return { ...state, array: action.array, apiRequest: false }

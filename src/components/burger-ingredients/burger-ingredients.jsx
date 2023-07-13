@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { ingredientPropType } from '../../utils/prop-types';
 
 function BurgerIngredients(props) {
-    const { title, className, array } = props;
+    const { title, className } = props;
     const [current, setCurrent] = useState('one');
     
     return (
@@ -24,9 +24,9 @@ function BurgerIngredients(props) {
                 </Tab>
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")} >
-                <IngredientSection ingredName='Булки' type='bun' array={array} />
-                <IngredientSection ingredName='Соусы' type='sauce' array={array} />
-                <IngredientSection ingredName='Начинки' type='main' array={array} />
+                <IngredientSection ingredName='Булки' type='bun' />
+                <IngredientSection ingredName='Соусы' type='sauce' />
+                <IngredientSection ingredName='Начинки' type='main' />
             </ul>
         </li>
     )

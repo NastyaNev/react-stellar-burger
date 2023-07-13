@@ -4,13 +4,19 @@ import ItemContainer from './item-container/item-container'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import { ingredientPropType } from '../../../utils/prop-types'
-import { store } from '../../..'
+import { useDispatch } from 'react-redux'
+import { GET_ARRAY_SUCCESS } from '../../../store/actions/ingredients'
 
 function Middle(props) {
-    const { typeList, className, array } = props;
+    const { typeList, className } = props;
     const types = typeList;
+    const dispatch = useDispatch();
 
-    const filtered = array.filter(item => {
+    const arrayIng = () => {
+        dispatch({ type: GET_ARRAY_SUCCESS });
+    };
+
+    const filtered = arrayIng.filter(item => {
         return types.includes(item.type);
     })
 

@@ -3,11 +3,19 @@ import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
 import PropTypes from 'prop-types'
 import { ingredientPropType } from '../../../utils/prop-types';
+import { useDispatch } from 'react-redux';
+import { GET_ARRAY_SUCCESS } from '../../../store/actions/ingredients';
 
 function IngredientSection(props) {
-  const { ingredName, type, array } = props;
+  const { ingredName, type } = props;
 
-  const filtered = array.filter(item => {
+  const dispatch = useDispatch();
+
+  const arrayIng = () => {
+    dispatch({ type: GET_ARRAY_SUCCESS });
+  };
+
+  const filtered = arrayIng.filter(item => {
     return item.type === type;
   })
 

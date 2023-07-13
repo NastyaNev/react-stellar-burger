@@ -3,11 +3,18 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import PropTypes from 'prop-types'
 import { ingredientPropType } from '../../../utils/prop-types';
 import { store } from '../../..';
+import { useDispatch } from 'react-redux';
+import { GET_ARRAY_SUCCESS } from '../../../store/actions/ingredients';
 
 function Bun(props) {
-    const { type, className, part, note, array } = props;
+    const { type, className, part, note } = props;
+    const dispatch = useDispatch();
 
-    const found = array.find(item => {
+  const arrayIng = () => {
+    dispatch({ type: GET_ARRAY_SUCCESS });
+  };
+
+    const found = arrayIng.find(item => {
         return item.type === type;
     })
 

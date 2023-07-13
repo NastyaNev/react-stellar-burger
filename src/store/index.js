@@ -1,8 +1,7 @@
 import { composeWithDevTools } from "redux-devtools-extension";
 import { modalsReducer } from "./reducers/modalsReducer";
 import { applyMiddleware, createStore } from "@reduxjs/toolkit";
-import { arrayMiddleware } from "./middlewares/arrayMiddleware";
-import { arrayReducer } from "./reducers/arrayReducer";
+import { arrayReducer } from "./reducers/ingredients";
 
-export const store = createStore(modalsReducer);
+// export const store = createStore(modalsReducer, composeWithDevTools());
 // export const state = createStore(arrayReducer, composeWithDevTools(applyMiddleware(arrayMiddleware())));

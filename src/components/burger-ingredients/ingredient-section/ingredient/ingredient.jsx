@@ -5,14 +5,15 @@ import styles from './ingredient.module.css'
 import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dilails'
 import { ingredientPropType } from '../../../../utils/prop-types'
 import PropTypes from 'prop-types'
-import { store } from '../../../../store'
-import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../store/actions'
+import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../store/actions/index'
+import { useDispatch } from 'react-redux'
 
 function Ingredient({ ingredient }) {
+    const dispatch = useDispatch();
 
     const handleOpen = () => {
-        store.dispatch({ type: MODAL_OPEN });
-        store.dispatch({ type: CHOOSE_MODAL, typeModal: <IngredientDitails ingredient={ingredient} /> });
+        dispatch({ type: MODAL_OPEN });
+        dispatch({ type: CHOOSE_MODAL, typeModal: <IngredientDitails ingredient={ingredient} /> });
     };
 
     return (

@@ -3,13 +3,16 @@ import styles from './modal.module.css'
 import ReactDOM from 'react-dom'
 import iconClose from '../../images/icon 24x24.svg'
 import PropTypes from 'prop-types'
-import { store } from '../../store'
+import { MODAL_CLOSE } from '../../store/actions'
+import { useDispatch } from 'react-redux'
 
 const modalRoot = document.getElementById('react_modal');
 
 function Modal(props) {
+    const dispatch = useDispatch();
+
     const handleClose = () => {
-        store.dispatch({ type: 'MODAL_CLOSE' });
+       dispatch({ type: MODAL_CLOSE });
     };
 
     useEffect(() => {

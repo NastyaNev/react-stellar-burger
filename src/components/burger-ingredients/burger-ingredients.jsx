@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styles from './burger-ingredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientSection from './ingredient-section/ingredient-section';
 import PropTypes from 'prop-types'
 
 function BurgerIngredients(props) {
-    const { title, className } = props;
+    const { title, className, elements } = props;
     const [current, setCurrent] = useState('one');
     
     return (
@@ -24,7 +24,7 @@ function BurgerIngredients(props) {
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")} >
                 <IngredientSection ingredName='Булки' type='bun' />
-                <IngredientSection ingredName='Соусы' type='sauce' />
+                <IngredientSection ingredName='Соусы' type='sauce' elements={elements} />
                 <IngredientSection ingredName='Начинки' type='main' />
             </ul>
         </li>

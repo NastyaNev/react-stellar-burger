@@ -3,7 +3,7 @@ import styles from './modal.module.css'
 import ReactDOM from 'react-dom'
 import iconClose from '../../images/icon 24x24.svg'
 import PropTypes from 'prop-types'
-import { MODAL_CLOSE } from '../../store/actions'
+import { MODAL_CLOSE } from '../../store/actions/modals'
 import { useDispatch } from 'react-redux'
 
 const modalRoot = document.getElementById('react_modal');

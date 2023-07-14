@@ -1,4 +1,4 @@
-import { CHOOSE_MODAL, MODAL_CLOSE, MODAL_OPEN } from "../actions"
+import { CHOOSE_MODAL, MODAL_CLOSE, MODAL_OPEN } from "../actions/modals"
 
 const initialState = {
     isOpen: false,

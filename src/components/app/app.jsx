@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./app.module.css";
 import AppHeader from "../app-header/app-header"
 import Modal from "../modal/modal";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import { getArray } from '../api/api'
 import { useSelector } from "react-redux";
+import DndContainer from "../dnd-container/dnd-container";
 
 function App() {
   const openModal = useSelector((state) => state.modalsReducer.isOpen);
@@ -15,10 +13,7 @@ function App() {
     <div className={styles.page}>
       <AppHeader />
       <main>
-        <ul className={styles.sections}>
-          <BurgerIngredients className={styles.section} title="Соберите бургер" />
-          <BurgerConstructor className={styles.section} />
-        </ul>
+        <DndContainer />
       </main>
       {openModal && <Modal >
         {chooseModal}

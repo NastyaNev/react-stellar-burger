@@ -3,6 +3,7 @@ import styles from './ingredient-dilails.module.css'
 import { ingredientPropType } from '../../../utils/prop-types'
 
 function IngredientDitails({ ingredient }) {
+    
     return (
         <div>
             <h3 className={['text text_type_main-large mt-10 ml-10', styles.title_modal].join(' ')}>Детали ингредиента</h3>

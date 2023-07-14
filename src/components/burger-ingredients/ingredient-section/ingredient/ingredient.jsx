@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
 import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dilails'
 import { ingredientPropType } from '../../../../utils/prop-types'
 import PropTypes from 'prop-types'
-import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../store/actions/index'
+import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../store/actions/modals'
 import { useDispatch } from 'react-redux'
+import { useDrag } from "react-dnd";
 
 function Ingredient({ ingredient }) {
     const dispatch = useDispatch();
+    const {_id, name, price, image_mobile } = ingredient;
+    const [{isDrag}, dragRef] = useDrag({
+        type: ingredient.type,
+        item: {_id, name, price, image_mobile},
+        collect: monitor => ({
+            isDrag: monitor.isDragging()
+        })
+    });
 
     const handleOpen = () => {
         dispatch({ type: MODAL_OPEN });
@@ -17,7 +26,8 @@ function Ingredient({ ingredient }) {
     };
 
     return (
-        <li className={styles.card} onClick={handleOpen}>
+        !isDrag && 
+        <li className={styles.card} onClick={handleOpen} ref={dragRef} >
             <Counter count={1} size="default" extraClass="m-1" />
             <img src={ingredient.image} alt={ingredient.name} />
             <div className={["mt-2", styles.span_container].join(" ")}>

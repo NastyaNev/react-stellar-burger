@@ -14,16 +14,16 @@ function IngredientSection(props) {
     dispatch(getItems());
   }, [])
 
-  const filtered = array.filter(item => {
-    return item.type === type;
+  const filtered = array.filter(array => {
+    return array.type === type;
   })
 
   return (
     <li className={['mt-10', styles.ingredient_section].join(" ")}>
       <h3 className='text text_type_main-medium'>{ingredName}</h3>
       <ul className={['mt-6 ml-4', styles.menu].join(" ")}>
-        {filtered.map(item => (
-          <Ingredient key={item._id} ingredient={item} />
+        {filtered.map(item => ( 
+          
         ))}
       </ul>
     </li>

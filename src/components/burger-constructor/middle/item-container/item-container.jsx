@@ -3,15 +3,15 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import styles from './item-container.module.css'
 
 function ItemContainer(props) {
-    const { constructorElement, icon } = props;
+    const { ingredient, icon } = props;
 
     return (
         <li className={['mr-1', styles.item_container].join(' ')}>
             {icon}
             <ConstructorElement
-                text={constructorElement.name}
-                price={constructorElement.price}
-                thumbnail={constructorElement.image_mobile}
+                text={ingredient.name}
+                price={ingredient.price}
+                thumbnail={ingredient.image_mobile}
             />
         </li>
     )

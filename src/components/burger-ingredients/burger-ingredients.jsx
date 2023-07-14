@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import styles from './burger-ingredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientSection from './ingredient-section/ingredient-section';
 import PropTypes from 'prop-types'
-import { ingredientPropType } from '../../utils/prop-types';
 
 function BurgerIngredients(props) {
     const { title, className } = props;
@@ -33,10 +32,8 @@ function BurgerIngredients(props) {
 }
 
 BurgerIngredients.propTypes = {
-    array: PropTypes.arrayOf(ingredientPropType),
     title: PropTypes.string,
-    className: PropTypes.string,
-    setContentModal: PropTypes.func
+    className: PropTypes.string
 };
 
 export default BurgerIngredients

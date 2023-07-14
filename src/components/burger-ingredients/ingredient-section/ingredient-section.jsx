@@ -1,21 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
 import PropTypes from 'prop-types'
-import { ingredientPropType } from '../../../utils/prop-types';
-import { useDispatch } from 'react-redux';
-import { GET_ARRAY_SUCCESS } from '../../../store/actions/ingredients';
+import { useDispatch, useSelector } from 'react-redux';
+import { getItems } from '../../../store/actions/ingredients';
 
 function IngredientSection(props) {
   const { ingredName, type } = props;
-
+  const array = useSelector((state) => state.arrayReducer.array);
   const dispatch = useDispatch();
 
-  const arrayIng = () => {
-    dispatch({ type: GET_ARRAY_SUCCESS });
-  };
+  useEffect(() => {
+    dispatch(getItems());
+  }, [])
 
-  const filtered = arrayIng.filter(item => {
+  const filtered = array.filter(item => {
     return item.type === type;
   })
 
@@ -29,13 +28,19 @@ function IngredientSection(props) {
       </ul>
     </li>
   )
+
+  // if (apiFailed) {
+  //   return <p>Произошла ошибка при получении данных</p>
+  // } else if (apiRequest) {
+  //   return <p>Загрузка...</p>
+  // } else {
+  //   return <>{array}</>;
+  // }
 }
 
 IngredientSection.propTypes = {
-  array: PropTypes.arrayOf(ingredientPropType),
   ingredName: PropTypes.string,
-  type: PropTypes.string,
-  setContentModal: PropTypes.func
+  type: PropTypes.string
 };
 
 export default IngredientSection

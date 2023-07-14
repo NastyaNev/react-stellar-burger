@@ -1,22 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './middle.module.css'
 import ItemContainer from './item-container/item-container'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
-import { ingredientPropType } from '../../../utils/prop-types'
-import { useDispatch } from 'react-redux'
-import { GET_ARRAY_SUCCESS } from '../../../store/actions/ingredients'
+import { useDispatch, useSelector } from 'react-redux'
+import { getItems } from '../../../store/actions/ingredients'
 
 function Middle(props) {
     const { typeList, className } = props;
     const types = typeList;
     const dispatch = useDispatch();
+    const { apiRequest, apiFailed, array } = useSelector((state) => state.arrayReducer);
 
-    const arrayIng = () => {
-        dispatch({ type: GET_ARRAY_SUCCESS });
-    };
+    useEffect(() => {
+        dispatch(getItems());
+    }, [])
 
-    const filtered = arrayIng.filter(item => {
+    const filtered = array.filter(item => {
         return types.includes(item.type);
     })
 
@@ -29,10 +29,17 @@ function Middle(props) {
             </ul>
         </li>
     )
+
+    if (apiFailed) {
+        return <p>Произошла ошибка при получении данных</p>
+    } else if (apiRequest) {
+        return <p>Загрузка...</p>
+    } else {
+        return <>{array}</>;
+    }
 }
 
 Middle.propTypes = {
-    array: PropTypes.arrayOf(ingredientPropType),
     typeList: PropTypes.array,
     className: PropTypes.string
 };

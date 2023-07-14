@@ -8,23 +8,8 @@ import { getArray } from '../api/api'
 import { useSelector } from "react-redux";
 
 function App() {
-  // const [ingArray, setIngArray] = useState([]);
   const openModal = useSelector((state) => state.modalsReducer.isOpen);
   const chooseModal = useSelector((state) => state.modalsReducer.typeModal);
-
-  // useEffect(() => {
-  //   getArray()
-  //     .then((res) => { setIngArray(res) })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  // }, [])
-
-  // if (ingArray.length === 0) {
-  //   return null
-  // }
-
-  // const array = ingArray.data;
 
   return (
     <div className={styles.page}>

@@ -8,13 +8,14 @@ import PropTypes from 'prop-types'
 import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../store/actions/modals'
 import { useDispatch } from 'react-redux'
 import { useDrag } from "react-dnd";
+import { DELETE_ITEM } from '../../../../store/actions/ingredients'
 
 function Ingredient({ ingredient }) {
     const dispatch = useDispatch();
-    const {_id, name, price, image_mobile } = ingredient;
-    const [{isDrag}, dragRef] = useDrag({
+    const { _id, name, price, image_mobile } = ingredient;
+    const [{ isDrag }, dragRef] = useDrag({
         type: ingredient.type,
-        item: {_id, name, price, image_mobile},
+        item: { _id, name, price, image_mobile },
         collect: monitor => ({
             isDrag: monitor.isDragging()
         })
@@ -26,7 +27,7 @@ function Ingredient({ ingredient }) {
     };
 
     return (
-        !isDrag && 
+        !isDrag &&
         <li className={styles.card} onClick={handleOpen} ref={dragRef} >
             <Counter count={1} size="default" extraClass="m-1" />
             <img src={ingredient.image} alt={ingredient.name} />

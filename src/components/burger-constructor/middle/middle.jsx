@@ -1,51 +1,39 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from './middle.module.css'
 import ItemContainer from './item-container/item-container'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { getItems } from '../../../store/actions/ingredients'
+import { DELETE_ITEM } from '../../../store/actions/ingredients'
 import { useDrop } from "react-dnd";
+import { GET_MOOVED_ITEMS } from '../../../store/actions/constructor'
 
 function Middle(props) {
-    const { className, draggedElements, onDropHandler } = props;
-    // const types = typeList;
-    // const dispatch = useDispatch();
-    // const { apiRequest, apiFailed, array } = useSelector((state) => state.arrayReducer);
-
-    // useEffect(() => {
-    //     dispatch(getItems());
-    // }, [])
-
-    // const filtered = array.filter(item => {
-    //     return types.includes(item.type);
-    // })
-    
+    const { className } = props;
+    const mooved = useSelector((state) => state.constructorReducer.mooved);
+    const dispatch = useDispatch();
 
     const [{isHover}, dropTarget] = useDrop({
-        accept: "sauce",
+        accept: ["main", "sauce"],
         drop(ingredient) {
-            onDropHandler(ingredient);
-            console.log("ingredient", ingredient);
+            dispatch({ type: GET_MOOVED_ITEMS, ingredient });
+            dispatch({ type: DELETE_ITEM, _id: ingredient._id });
         },
         collect: monitor => ({
             isHover: monitor.isOver(),
         })
     });
-    
-    const borderColor = isHover ? 'lightgreen' : 'transparent';
+
+    const borderColor = isHover ? styles.onHover : 'transparent';
 
     return (
-        <li style={{borderColor}} ref={dropTarget}>
+        <div style={{borderColor}} ref={dropTarget}>
             <ul className={[styles.middle, className].join(" ")}  >
-                {/* {filtered.map(item => (
-                    <ItemContainer key={item._id} constructorElement={item} icon={<DragIcon type="primary" />} />
-                ))} */}
-                {draggedElements.map(item => (
+                {mooved.map(item => (
                     <ItemContainer key={item._id} ingredient={item} icon={<DragIcon type="primary" />} />
                 ))}
             </ul>
-        </li>
+        </div>
     )
 
     // if (apiFailed) {

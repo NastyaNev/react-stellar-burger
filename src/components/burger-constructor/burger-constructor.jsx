@@ -10,7 +10,7 @@ import { CHOOSE_MODAL, MODAL_OPEN } from '../../store/actions/modals';
 import { useDispatch } from 'react-redux';
 
 function BurgerConstructor(props) {
-  const { className, onDropHandler, draggedElements } = props;
+  const { className } = props;
   const dispatch = useDispatch();
   
   const handleOpen = () => {
@@ -22,9 +22,7 @@ function BurgerConstructor(props) {
     <li className={['ml-10', styles.burger_constructor, className].join(" ")} >
       <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}  >
         <Bun className='ml-8' type="bun" part="top" note="(верх)"  />
-        <Middle className='custom-scroll'
-        // typeList={["main", "sauce"]}
-        onDropHandler={onDropHandler}  draggedElements={draggedElements} />
+        <Middle className='custom-scroll' />
         <Bun className='ml-8' type="bun" part="bottom" note="(низ)" />
       </ul>
       <section className={["mt-10 mr-4", styles.sum_container].join(" ")}>

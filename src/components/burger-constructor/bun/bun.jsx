@@ -7,7 +7,7 @@ import { getItems } from '../../../store/actions/ingredients'
 function Bun(props) {
     const { type, className, part, note } = props;
     const dispatch = useDispatch();
-    const { apiRequest, apiFailed, array } = useSelector((state) => state.arrayReducer);
+    const { apiRequest, apiFailed, array } = useSelector((state) => state.ingredientsReducer);
 
     useEffect(() => {
         dispatch(getItems());

@@ -1,0 +1,1 @@
+export const GET_MOOVED_ITEMS = 'GET_MOOVED_ITEMS';

@@ -9,14 +9,11 @@ import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../store/actions/modals'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDrag } from "react-dnd";
 import { SET_COUNT } from '../../../../store/actions/ingredients'
+import { GET_INGRED_INFO } from '../../../../store/actions/ingredient'
 
 function Ingredient({ ingredient }) {
-    const countVisible = useSelector(state => {
-        // if (ingredient._id === [0]._id) {
-        //     console.log("they're equal")
-        // }
-        return state.ingredientsReducer.isVisible
-    });
+    const countVisible = useSelector(state => state.ingredientsReducer.isVisible);
+    // const ing = useSelector(state => state.ingredReducer.ingredient);
     const dispatch = useDispatch();
     const { _id, name, price, image_mobile } = ingredient;
     const [{ isDrag }, dragRef] = useDrag({
@@ -30,9 +27,8 @@ function Ingredient({ ingredient }) {
     const handleOpen = () => {
         dispatch({ type: MODAL_OPEN });
         dispatch({ type: CHOOSE_MODAL, typeModal: <IngredientDitails ingredient={ingredient} /> });
+        dispatch({ type: GET_INGRED_INFO, ingredient });
     };
-
-    // const count = () => { array.filter(ingredient => ingredient._id) }
 
     return (
         !isDrag &&

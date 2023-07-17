@@ -17,7 +17,7 @@ function Middle(props) {
         accept: ["main", "sauce"],
         drop(ingredient) {
             dispatch({ type: GET_MOOVED_ITEMS, ingredient });
-            dispatch({ type: SET_COUNT, _id: ingredient._id, ingredient });
+            dispatch({ type: SET_COUNT, _id: ingredient._id });
         },
         collect: monitor => ({
             isHover: monitor.isOver(),
@@ -30,7 +30,7 @@ function Middle(props) {
         <div style={{borderColor}} ref={dropTarget}>
             <ul className={[styles.middle, className].join(" ")}  >
                 {mooved.map(item => (
-                    <ItemContainer key={item._id} ingredient={item} icon={<DragIcon type="primary" />} />
+                    <ItemContainer key={item._id} icon={<DragIcon type="primary" />} />
                 ))}
             </ul>
         </div>

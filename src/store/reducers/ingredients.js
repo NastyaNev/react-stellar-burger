@@ -19,7 +19,7 @@ export const ingredientsReducer = (state = initialState, action) => {
             return { ...state, apiRequest: false, apiFailed: true }
         }
         case SET_COUNT: {
-            return {...state, array: state.array, ...state.array.filter(item => item._id === action._id), isVisible: true};
+            return {...state, isVisible: true };
         }
         case DOWN_COUNT: {
             return { ...state, array: state.array, ...state.array.filter(item => item._id === action._id), isVisible: false };

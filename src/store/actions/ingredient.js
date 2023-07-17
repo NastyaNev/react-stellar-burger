@@ -1,0 +1,1 @@
+export const GET_INGRED_INFO = 'GET_INGRED_INFO';

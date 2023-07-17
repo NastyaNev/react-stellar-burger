@@ -6,17 +6,6 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 function DndContainer() {
-    // const [draggedElements, setDraggedElements] = useState([]);
-
-    // const handleDrop = (item) => {
-
-    //     setDraggedElements([
-    //         ...draggedElements,
-    //         item
-    //     ]);
-
-    // };
-
     return (
         <DndProvider backend={HTML5Backend}>
             <ul className={styles.sections}>

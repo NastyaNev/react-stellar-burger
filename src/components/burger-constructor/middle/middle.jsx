@@ -4,9 +4,9 @@ import ItemContainer from './item-container/item-container'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { DELETE_ITEM } from '../../../store/actions/ingredients'
+import { SET_COUNT } from '../../../store/actions/ingredients'
 import { useDrop } from "react-dnd";
-import { GET_MOOVED_ITEMS } from '../../../store/actions/constructor'
+import { DELETE_CONST_ITEM, GET_MOOVED_ITEMS } from '../../../store/actions/constructor'
 
 function Middle(props) {
     const { className } = props;
@@ -17,7 +17,7 @@ function Middle(props) {
         accept: ["main", "sauce"],
         drop(ingredient) {
             dispatch({ type: GET_MOOVED_ITEMS, ingredient });
-            dispatch({ type: DELETE_ITEM, _id: ingredient._id });
+            dispatch({ type: SET_COUNT, _id: ingredient._id, ingredient });
         },
         collect: monitor => ({
             isHover: monitor.isOver(),

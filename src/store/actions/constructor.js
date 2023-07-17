@@ -1,1 +1,2 @@
 export const GET_MOOVED_ITEMS = 'GET_MOOVED_ITEMS';
+export const DELETE_CONST_ITEM = 'DELETE_CONST_ITEM';

@@ -6,11 +6,17 @@ import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dila
 import { ingredientPropType } from '../../../../utils/prop-types'
 import PropTypes from 'prop-types'
 import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../store/actions/modals'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useDrag } from "react-dnd";
-import { DELETE_ITEM } from '../../../../store/actions/ingredients'
+import { SET_COUNT } from '../../../../store/actions/ingredients'
 
 function Ingredient({ ingredient }) {
+    const countVisible = useSelector(state => {
+        // if (ingredient._id === [0]._id) {
+        //     console.log("they're equal")
+        // }
+        return state.ingredientsReducer.isVisible
+    });
     const dispatch = useDispatch();
     const { _id, name, price, image_mobile } = ingredient;
     const [{ isDrag }, dragRef] = useDrag({
@@ -26,10 +32,12 @@ function Ingredient({ ingredient }) {
         dispatch({ type: CHOOSE_MODAL, typeModal: <IngredientDitails ingredient={ingredient} /> });
     };
 
+    // const count = () => { array.filter(ingredient => ingredient._id) }
+
     return (
         !isDrag &&
         <li className={styles.card} onClick={handleOpen} ref={dragRef} >
-            <Counter count={1} size="default" extraClass="m-1" />
+            {countVisible && <Counter count={1} size="default" extraClass="m-1" />}
             <img src={ingredient.image} alt={ingredient.name} />
             <div className={["mt-2", styles.span_container].join(" ")}>
                 <span className="text text_type_digits-default mr-2">{ingredient.price}</span>

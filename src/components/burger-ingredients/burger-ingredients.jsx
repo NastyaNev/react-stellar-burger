@@ -5,14 +5,14 @@ import IngredientSection from './ingredient-section/ingredient-section';
 import PropTypes from 'prop-types'
 
 function BurgerIngredients(props) {
-    const { title, className, elements } = props;
+    const { title, className } = props;
     const [current, setCurrent] = useState('one');
     
     return (
         <li className={['mt-10', styles.burger_ingredients, className].join(" ")}>
             <h2 className='text text_type_main-large'>{title}</h2>
             <div className="mt-5 mb-10" style={{ display: 'flex' }} >
-                <Tab value="one" active={current === 'one'} onClick={setCurrent}  >
+                <Tab value="one" active={current === 'one'} onClick={setCurrent}>
                     Булки
                 </Tab>
                 <Tab value="two" active={current === 'two'} onClick={setCurrent}>
@@ -24,7 +24,7 @@ function BurgerIngredients(props) {
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")} >
                 <IngredientSection ingredName='Булки' type='bun' />
-                <IngredientSection ingredName='Соусы' type='sauce' elements={elements} />
+                <IngredientSection ingredName='Соусы' type='sauce' />
                 <IngredientSection ingredName='Начинки' type='main' />
             </ul>
         </li>

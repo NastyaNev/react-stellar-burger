@@ -8,13 +8,12 @@ const initialState = {
 export const constructorReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_MOOVED_ITEMS: {
-            debugger
             return {
                 ...state, mooved: [...state.mooved, action.ingredient]
             };
         }
         case DELETE_CONST_ITEM: {
-            return { ...state, mooved: state.mooved.filter(item => item._id !== action._id) };
+            return { ...state, mooved: state.mooved.filter(item => item.id !== action.id) };
         }
         default: {
             return state

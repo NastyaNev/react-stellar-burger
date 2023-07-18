@@ -8,7 +8,6 @@ import { DELETE_ITEM, getItems } from '../../../store/actions/ingredients';
 function IngredientSection(props) {
   const { ingredName, type } = props;
   const array = useSelector((state) => state.ingredientsReducer.array);
-  // const  ingredient = useSelector((state) => state.ingredReducer.array);
   const dispatch = useDispatch();
 
   useEffect(() => {

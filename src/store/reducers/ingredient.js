@@ -1,4 +1,4 @@
-import { GET_INGRED_INFO } from "../actions/ingredient"
+import { DEL_INGRED_INFO, GET_INGRED_INFO } from "../actions/ingredient"
 
 const initialState = {
     ing: ''
@@ -8,8 +8,8 @@ const initialState = {
     switch (action.type) {
       case GET_INGRED_INFO:
         return { ...state, ing: action.ingredient }
-    //   case MODAL_CLOSE:
-    //     return { ...state, isOpen: false }
+      case DEL_INGRED_INFO:
+        return { ...state  }
       default:
         return state
     }

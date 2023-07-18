@@ -11,13 +11,12 @@ import { useDrag } from "react-dnd";
 import { SET_COUNT } from '../../../../store/actions/ingredients'
 import { GET_INGRED_INFO } from '../../../../store/actions/ingredient'
 
-function Ingredient({ ingredient }) {
+function Ingredient({ _id, name, price, image, image_mobile, image_large, calories, proteins, fat, carbohydrates, type }) {
     const countVisible = useSelector(state => state.ingredientsReducer.isVisible);
-    // const ing = useSelector(state => state.ingredReducer.ingredient);
     const dispatch = useDispatch();
-    const { _id, name, price, image_mobile } = ingredient;
+    const ingredient = { _id, name, price, image, image_mobile, image_large, calories, proteins, fat, carbohydrates, type };
     const [{ isDrag }, dragRef] = useDrag({
-        type: ingredient.type,
+        type: 'items',
         item: { _id, name, price, image_mobile },
         collect: monitor => ({
             isDrag: monitor.isDragging()
@@ -26,7 +25,7 @@ function Ingredient({ ingredient }) {
 
     const handleOpen = () => {
         dispatch({ type: MODAL_OPEN });
-        dispatch({ type: CHOOSE_MODAL, typeModal: <IngredientDitails ingredient={ingredient} /> });
+        dispatch({ type: CHOOSE_MODAL, typeModal: <IngredientDitails /> });
         dispatch({ type: GET_INGRED_INFO, ingredient });
     };
 
@@ -34,12 +33,12 @@ function Ingredient({ ingredient }) {
         !isDrag &&
         <li className={styles.card} onClick={handleOpen} ref={dragRef} >
             {countVisible && <Counter count={1} size="default" extraClass="m-1" />}
-            <img src={ingredient.image} alt={ingredient.name} />
+            <img src={image_mobile} alt={name} />
             <div className={["mt-2", styles.span_container].join(" ")}>
-                <span className="text text_type_digits-default mr-2">{ingredient.price}</span>
+                <span className="text text_type_digits-default mr-2">{price}</span>
                 <CurrencyIcon type="primary" />
             </div>
-            <p className={['text text_type_main-small mt-2', styles.ingredient_name].join(" ")}>{ingredient.name}</p>
+            <p className={['text text_type_main-small mt-2', styles.ingredient_name].join(" ")}>{name}</p>
         </li>
     )
 }

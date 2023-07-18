@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import styles from './middle.module.css'
 import ItemContainer from './item-container/item-container'
 import { DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -14,10 +14,10 @@ function Middle(props) {
     const dispatch = useDispatch();
     const rand = Math.floor(Math.random() * 1000000);
 
-    const [{isHover}, dropTarget] = useDrop({
+    const [{ isHover }, dropTarget] = useDrop({
         accept: 'items',
         drop(ingredient) {
-            dispatch({ type: GET_MOOVED_ITEMS, ingredient: {...ingredient, id: ingredient._id + rand } });
+            dispatch({ type: GET_MOOVED_ITEMS, ingredient: { ...ingredient, id: ingredient._id + rand } });
             dispatch({ type: SET_COUNT, _id: ingredient._id });
         },
         collect: monitor => ({
@@ -27,27 +27,34 @@ function Middle(props) {
 
     const borderColor = isHover ? styles.onHover : 'transparent';
 
-    const [items, setItems] = useState(mooved)
+    const [items, setItems] = useState(mooved);
 
-    const moveListItem = useCallback(
-        (dragIndex, hoverIndex) => {
-            const dragItem = items[dragIndex]
-            const hoverItem = items[hoverIndex]
-            setItems(items => {
-                const newListItems = [...items]
-                newListItems[dragIndex] = hoverItem
-                newListItems[hoverIndex] = dragItem
-                return newListItems
-            })
-        },
-        [items]
-    )
+    useEffect(() => {
+        setItems((prevItems) => {
+            let itemIdList = prevItems.map((item) => item.id)
+
+            return [...prevItems, ...mooved.filter((item) => !itemIdList.includes(item.id))]
+        })
+    }, [mooved]);
+
+    console.log('mooved', mooved);
+    console.log('items', items);
+
+    const moveItems = useCallback((dragIndex, hoverIndex) => {
+        console.log("moveItems");
+        setItems((prevItems) => {
+            const clonedItems = [...prevItems];
+            const removedItem = clonedItems.splice(dragIndex, 1)[0];
+            clonedItems.splice(hoverIndex, 0, removedItem);
+            return clonedItems;
+        });
+    }, []);
 
     return (
-        <div style={{borderColor}} ref={dropTarget}>
+        <div style={{ borderColor }} ref={dropTarget}>
             <ul className={[styles.middle, className].join(" ")}  >
-                {mooved.map((item, index) => (
-                    <ItemContainer key={item.id} ingredient={item} index={index} moveListItem={moveListItem} icon={<DragIcon type="primary" />} />
+                {items.map((item, index) => (
+                    <ItemContainer key={item.id} id={item.id} ingredient={item} index={index} moveItems={moveItems} />
                 ))}
             </ul>
         </div>

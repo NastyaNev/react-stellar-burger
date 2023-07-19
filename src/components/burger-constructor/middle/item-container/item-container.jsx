@@ -55,6 +55,7 @@ function ItemContainer(props) {
         };
       }
     });
+
     const opacity = isDragging ? 0 : 1;
 
     drag(drop(ref));

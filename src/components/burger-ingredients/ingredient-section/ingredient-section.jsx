@@ -8,11 +8,6 @@ import { DELETE_ITEM, getItems } from '../../../store/actions/ingredients';
 function IngredientSection(props) {
   const { ingredName, type } = props;
   const array = useSelector((state) => state.ingredientsReducer.array);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getItems());
-  }, [])
 
   const filtered = array.filter(array => {
     return array.type === type;
@@ -22,7 +17,7 @@ function IngredientSection(props) {
     <li className={['mt-10', styles.ingredient_section].join(" ")}>
       <h3 className='text text_type_main-medium'>{ingredName}</h3>
       <ul className={['mt-6 ml-4', styles.menu].join(" ")}>
-        {filtered.map(item => ( 
+        {filtered.map(item => (
           <Ingredient key={item._id} {...item} />
         ))}
       </ul>

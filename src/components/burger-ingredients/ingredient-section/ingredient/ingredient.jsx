@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
@@ -8,19 +8,16 @@ import PropTypes from 'prop-types'
 import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../store/actions/modals'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDrag } from "react-dnd";
-import { SET_COUNT } from '../../../../store/actions/ingredients'
 import { GET_INGRED_INFO } from '../../../../store/actions/ingredient'
 
 function Ingredient({ _id, name, price, image, image_mobile, image_large, calories, proteins, fat, carbohydrates, type }) {
-    const countVisible = useSelector(state => state.ingredientsReducer.isVisible);
+    const countVisible = useSelector(state => {return state.ingredientsReducer.isVisible});
     const dispatch = useDispatch();
     const ingredient = { _id, name, price, image, image_mobile, image_large, calories, proteins, fat, carbohydrates, type };
-    const [{ isDrag }, dragRef] = useDrag({
-        type: 'items',
-        item: { _id, name, price, image_mobile },
-        collect: monitor => ({
-            isDrag: monitor.isDragging()
-        })
+
+    const [, dragRef] = useDrag({
+        type: type,
+        item: { _id, name, price, image_mobile }
     });
 
     const handleOpen = () => {
@@ -29,8 +26,19 @@ function Ingredient({ _id, name, price, image, image_mobile, image_large, calori
         dispatch({ type: GET_INGRED_INFO, ingredient });
     };
 
+    const countSelector = (state) => {
+        const mooved = state.constructorReducer.mooved;
+        const itemIdList = mooved.map((item) => item._id);
+    
+        // console.log("itemIdList", itemIdList)
+        // return prices.reduce(function (previousValue, item) {
+        //   return previousValue + item;
+        // }, 0);
+      };
+    
+      const counter = useSelector(countSelector);
+
     return (
-        !isDrag &&
         <li className={styles.card} onClick={handleOpen} ref={dragRef} >
             {countVisible && <Counter count={1} size="default" extraClass="m-1" />}
             <img src={image_mobile} alt={name} />

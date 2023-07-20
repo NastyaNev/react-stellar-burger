@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux';
-import { DELETE_ITEM, getItems } from '../../../store/actions/ingredients';
+import { useSelector } from 'react-redux';
 
 function IngredientSection(props) {
-  const { ingredName, type } = props;
+  const { ingredName, type, customRef } = props;
   const array = useSelector((state) => state.ingredientsReducer.array);
 
   const filtered = array.filter(array => {
@@ -14,7 +13,7 @@ function IngredientSection(props) {
   })
 
   return (
-    <li className={['mt-10', styles.ingredient_section].join(" ")}>
+    <li className={['mt-10', styles.ingredient_section].join(" ")} ref={customRef} >
       <h3 className='text text_type_main-medium'>{ingredName}</h3>
       <ul className={['mt-6 ml-4', styles.menu].join(" ")}>
         {filtered.map(item => (
@@ -23,19 +22,12 @@ function IngredientSection(props) {
       </ul>
     </li>
   )
-
-  // if (apiFailed) {
-  //   return <p>Произошла ошибка при получении данных</p>
-  // } else if (apiRequest) {
-  //   return <p>Загрузка...</p>
-  // } else {
-  //   return <>{array}</>;
-  // }
 }
 
 IngredientSection.propTypes = {
   ingredName: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  customRef: PropTypes.any // TODO: change any to more strict type
 };
 
 export default IngredientSection

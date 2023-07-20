@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './order-ditails.module.css'
 import done from '../../../images/graphics.svg'
-import { getAnswer } from '../../../store/actions/constructor';
+import { getAnswer } from '../../../services/actions/constructor';
 import { useDispatch, useSelector } from 'react-redux';
 
 function OrderDitails() {

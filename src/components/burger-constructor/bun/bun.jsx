@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { SET_COUNT, getItems } from '../../../store/actions/ingredients'
-import { GET_MOOVED_ITEMS } from '../../../store/actions/constructor'
-import { useDrop } from 'react-dnd'
-import { v4 as uuidv4 } from 'uuid';
 import styles from './bun.module.css'
 
 function Bun(props) {

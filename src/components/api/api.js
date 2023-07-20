@@ -29,7 +29,7 @@ export function setOrder(ingredients) {
         headers: config.headers,
         method: 'POST',
         body: JSON.stringify({
-            "ingredients": ingredients
+            ingredients
         })
     })
         .then(checkResponse)

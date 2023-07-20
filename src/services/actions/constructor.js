@@ -7,12 +7,12 @@ export const GET_ORDER_NUM = 'GET_ORDER_NUM';
 export const GET_ORDER_NUM_FAILED = 'GET_ORDER_NUM_FAILED';
 export const GET_ORDER_NUM_SUCCESS = 'GET_ORDER_NUM_SUCCESS';
 
-export function getAnswer() {
+export function getAnswer(ingredients) {
     return function(dispatch) {
       dispatch({
         type: GET_ORDER_NUM
       });
-      return setOrder().then(res => {
+      return setOrder(ingredients).then(res => {
         if (res && res.success) {
           dispatch({
             type: GET_ORDER_NUM_SUCCESS,

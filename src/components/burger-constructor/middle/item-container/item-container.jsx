@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import { ConstructorElement, DeleteIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './item-container.module.css'
 import { useDispatch } from 'react-redux';
-import { DELETE_CONST_ITEM } from '../../../../store/actions/constructor';
-import { DOWN_COUNT } from '../../../../store/actions/ingredients';
+import { DELETE_CONST_ITEM } from '../../../../services/actions/constructor';
+import { DOWN_COUNT } from '../../../../services/actions/ingredients';
 import { useDrag, useDrop } from 'react-dnd';
 
 function ItemContainer(props) {
@@ -44,7 +44,7 @@ function ItemContainer(props) {
     }
   });
 
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag, preview] = useDrag({
     type: "item",
     item: () => {
       return { id, index };
@@ -58,11 +58,11 @@ function ItemContainer(props) {
 
   const opacity = isDragging ? 0 : 1;
 
-  drag(drop(ref));
+  preview(drop(ref));
 
   return (
-    <li className={['mr-1', styles.item_container].join(' ')} style={{ opacity }} >
-      <div ref={ref}>
+    <li className={['mr-1', styles.item_container].join(' ')} style={{ opacity }} ref={ref} >
+      <div ref={drag}>
         <DragIcon type="primary" />
       </div>
       <ConstructorElement handleClose={handleDelete}

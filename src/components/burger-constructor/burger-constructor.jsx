@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from './burger-constructor.module.css'
 import Middle from './middle/middle';
 import Bun from './bun/bun';
@@ -6,10 +6,9 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderDitails from '../modal/order-ditails/order-ditails';
 import PropTypes from 'prop-types'
-import { CHOOSE_MODAL, MODAL_OPEN } from '../../store/actions/modals';
+import { CHOOSE_MODAL, MODAL_OPEN } from '../../services/actions/modals';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_ORDER_NUM_SUCCESS, getAnswer } from '../../store/actions/constructor';
-import { setOrder } from '../api/api';
+import { getAnswer } from '../../services/actions/constructor';
 
 function BurgerConstructor(props) {
   const { className } = props;
@@ -18,11 +17,8 @@ function BurgerConstructor(props) {
 
   const ingredients = mooved.map((item) => item._id);
 
-  console.log('ingredients', ingredients);
-
   const handleOpen = () => {
-    dispatch(setOrder(ingredients));
-    dispatch(getAnswer()).then(() => {
+    dispatch(getAnswer(ingredients)).then(() => {
       dispatch({ type: MODAL_OPEN });
       dispatch({ type: CHOOSE_MODAL, typeModal: <OrderDitails /> });
     });
@@ -38,7 +34,6 @@ function BurgerConstructor(props) {
 
   const totalPrice = useSelector(totalPriceSelector);
 
-
   return (
     <li className={['ml-10', styles.burger_constructor, className].join(" ")} >
       <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}  >
@@ -51,7 +46,7 @@ function BurgerConstructor(props) {
           <span className='mr-2 text text_type_digits-medium'>{totalPrice}</span>
           <CurrencyIcon type="primary" />
         </div>
-        <Button htmlType="button" type="primary" size="large" onClick={handleOpen} >
+        <Button htmlType="button" type="primary" size="large" onClick={handleOpen} disabled={mooved.length === 0 ? true : false} >
           Оформить заказ
         </Button>
       </section>
@@ -60,7 +55,6 @@ function BurgerConstructor(props) {
 }
 
 BurgerConstructor.propTypes = {
-  setIsModalOpen: PropTypes.func,
   className: PropTypes.string
 };
 

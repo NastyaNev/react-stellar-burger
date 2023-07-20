@@ -3,7 +3,6 @@ import { ConstructorElement, DeleteIcon, DragIcon } from '@ya.praktikum/react-de
 import styles from './item-container.module.css'
 import { useDispatch } from 'react-redux';
 import { DELETE_CONST_ITEM } from '../../../../services/actions/constructor';
-import { DOWN_COUNT } from '../../../../services/actions/ingredients';
 import { useDrag, useDrop } from 'react-dnd';
 
 function ItemContainer(props) {
@@ -12,7 +11,6 @@ function ItemContainer(props) {
 
   const handleDelete = () => {
     dispatch({ type: DELETE_CONST_ITEM, id: ingredient.id });
-    dispatch({ type: DOWN_COUNT, _id: ingredient._id });
   }
 
   const ref = useRef(null);
@@ -39,7 +37,7 @@ function ItemContainer(props) {
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return;
       }
-      moveItems(dragIndex, hoverIndex);
+      moveItems(item.id, id);
       item.index = hoverIndex;
     }
   });

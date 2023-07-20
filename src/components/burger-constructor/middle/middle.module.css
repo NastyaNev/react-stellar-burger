@@ -1,3 +1,8 @@
+.constructor_list {
+  padding: 0;
+  list-style: none;
+}
+
 .middle {
     display: flex;
     flex-direction: column;

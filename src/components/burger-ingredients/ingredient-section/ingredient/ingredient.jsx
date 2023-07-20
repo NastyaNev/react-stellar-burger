@@ -16,7 +16,7 @@ function Ingredient({ _id, name, price, image, image_mobile, image_large, calori
 
     const [, dragRef] = useDrag({
         type: type,
-        item: { _id, name, price, image_mobile }
+        item: { _id, name, price, image_mobile, type }
     });
 
     const handleOpen = () => {
@@ -26,9 +26,17 @@ function Ingredient({ _id, name, price, image, image_mobile, image_large, calori
     };
 
     const countSelector = (state) => {
-        const elemsWithCounter = state.constructorReducer.mooved.filter((item) => item._id === ingredient._id);
+        if (type === 'bun') {
+            const bun = state.constructorReducer.bun;
 
-        return elemsWithCounter.length
+            return bun && bun._id === ingredient._id ? 1 : 0;
+        }
+        else if (['sauce', 'main'].includes(type)) {
+            const elemsWithCounter = state.constructorReducer.mooved.filter((item) => item._id === ingredient._id);
+            return elemsWithCounter.length;
+        }
+
+        return 0;
       };
 
       const counter = useSelector(countSelector);

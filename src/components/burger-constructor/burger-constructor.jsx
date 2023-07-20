@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './burger-constructor.module.css'
 import Middle from './middle/middle';
 import Bun from './bun/bun';

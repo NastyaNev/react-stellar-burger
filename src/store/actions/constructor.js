@@ -14,7 +14,6 @@ export function getAnswer() {
       });
       return setOrder().then(res => {
         if (res && res.success) {
-            console.log('res', res)
           dispatch({
             type: GET_ORDER_NUM_SUCCESS,
             answer: res

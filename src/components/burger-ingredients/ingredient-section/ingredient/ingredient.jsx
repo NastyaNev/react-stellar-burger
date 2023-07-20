@@ -26,21 +26,46 @@ function Ingredient({ _id, name, price, image, image_mobile, image_large, calori
         dispatch({ type: GET_INGRED_INFO, ingredient });
     };
 
+    // const counterElem = (<Counter count={1} size="default" extraClass="m-1" />);
+    // // const  ingredientElem = (<li className={styles.card} onClick={handleOpen} ref={dragRef} >
+    // //     <img src={image_mobile} alt={name} />
+    // //     <div className={["mt-2", styles.span_container].join(" ")}>
+    // //         <span className="text text_type_digits-default mr-2">{price}</span>
+    // //         <CurrencyIcon type="primary" />
+    // //     </div>
+    // //     <p className={['text text_type_main-small mt-2', styles.ingredient_name].join(" ")}>{name}</p>
+    // // </li>);
+    // const targetDiv = [];
+
+    // // targetDiv.push(ingredientElem)
+
+    // if  (countVisible) {
+    //     targetDiv.push(counterElem)
+    // }
+
     const countSelector = (state) => {
         const mooved = state.constructorReducer.mooved;
-        const itemIdList = mooved.map((item) => item._id);
-    
-        // console.log("itemIdList", itemIdList)
-        // return prices.reduce(function (previousValue, item) {
-        //   return previousValue + item;
-        // }, 0);
+        const array = state.ingredientsReducer.array;
+
+        // const arrayIds = array.map((item) => item._id);
+        const moovedIds = mooved.map((item) => item._id);
+
+        const itemsWithCounter = array.filter((item) => moovedIds.includes(item._id));
+
+        // itemsWithCounter.map((item) => item (countVisible === true) )
+
+        console.log('itemsWithCounter', itemsWithCounter);
+
       };
     
       const counter = useSelector(countSelector);
 
     return (
         <li className={styles.card} onClick={handleOpen} ref={dragRef} >
-            {countVisible && <Counter count={1} size="default" extraClass="m-1" />}
+            {countVisible &&
+            <Counter count={1} size="default" extraClass="m-1" />
+            }
+            {/* {counter && <>{targetDiv}</>} */}
             <img src={image_mobile} alt={name} />
             <div className={["mt-2", styles.span_container].join(" ")}>
                 <span className="text text_type_digits-default mr-2">{price}</span>

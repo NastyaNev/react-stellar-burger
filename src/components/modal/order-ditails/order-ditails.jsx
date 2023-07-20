@@ -6,20 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function OrderDitails() {
     const answer = useSelector((state) => state.constructorReducer.answer);
-    const dispatch = useDispatch();
 
-    console.log('answer222', answer)
-    
-    // const [orderNum, setNum] = useState('');
-
-    // useEffect(() => {
-    //     setNum(() => {
-    //         const orderNum = answer.order.number;
-
-    //         return orderNum
-    //     })
-        
-    // }, [answer]);
+    // console.log('answer222', answer)
 
     const orderNum = answer.order.number;
 

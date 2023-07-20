@@ -33,4 +33,7 @@ export function setOrder(ingredients) {
         })
     })
         .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+        })
 }

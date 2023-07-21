@@ -1,43 +1,47 @@
 import React, { useEffect } from 'react'
 import styles from './modal.module.css'
 import ReactDOM from 'react-dom'
-import iconClose from '../../images/icon 24x24.svg'
-import { MODAL_CLOSE } from '../../services/actions/modals'
-import { useDispatch } from 'react-redux'
-import { DEL_INGRED_INFO } from '../../services/actions/ingredient'
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import ModalOverlay from './overlay/overlay'
+import PropTypes from 'prop-types'
 
 const modalRoot = document.getElementById('react_modal');
 
 function Modal(props) {
-    const dispatch = useDispatch();
+    const { setModalState, modalState } = props;
 
     const handleClose = () => {
-       dispatch({ type: MODAL_CLOSE });
-       dispatch({ type: DEL_INGRED_INFO });
+        if (modalState.onClose) { modalState.onClose() }
+        setModalState({ isOpen: false, chooseModal: null, onClose: null });
     };
 
     useEffect(() => {
-        document.addEventListener('keydown', onEsc);
-
         function onEsc(e) {
             if (e.code === "Escape") {
                 handleClose()
             }
         }
 
+        document.addEventListener('keydown', onEsc);
+
         return () => document.removeEventListener('keydown', onEsc);
     }, [])
 
     return ReactDOM.createPortal(
         <>
-            <div className={styles.modal}>
-                <button className={['mt-15 mr-10', styles.button_close].join(' ')}><img src={iconClose} alt='закрыть' onClick={handleClose} /></button>
+            <div className={styles.modal} >
+                <button className={['mt-15 mr-10', styles.button_close].join(' ')}><CloseIcon alt='закрыть' onClick={handleClose} /></button>
                 {props.children}
             </div>
-            <div className={styles.overlay} onClick={handleClose}></div>
+            <ModalOverlay onClick={handleClose} />
         </>
         , modalRoot
     )
 }
+
+Modal.propTypes = {
+    modalState: PropTypes.object,
+    setModalState: PropTypes.func
+};
 
 export default Modal

@@ -10,3 +10,7 @@
     overflow-y: scroll;
     position: relative;
 }
+
+.tabs {
+    display: flex;
+}

@@ -16,12 +16,7 @@ export function getArray() {
     return fetch(`${config.url}/ingredients`, {
         heagers: config.headers
     })
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        });
+        .then(checkResponse);
 }
 
 export function setOrder(ingredients) {
@@ -33,7 +28,4 @@ export function setOrder(ingredients) {
         })
     })
         .then(checkResponse)
-        .catch(err => {
-            console.log(err);
-        })
 }

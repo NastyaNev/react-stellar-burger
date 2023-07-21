@@ -2,14 +2,15 @@ import React from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
-import IngredientDitails from '../../../modal/ingredient-dilails/ingredient-dilails'
-import { CHOOSE_MODAL, MODAL_OPEN } from '../../../../services/actions/modals'
+import IngredientDitails from '../../../modal/ingredient-delails/ingredient-delails'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDrag } from "react-dnd";
-import { GET_INGRED_INFO } from '../../../../services/actions/ingredient'
+import { DEL_INGRED_INFO, GET_INGRED_INFO } from '../../../../services/actions/ingredient'
 import { ingredientPropType } from '../../../../utils/prop-types'
+import PropTypes from 'prop-types'
 
-function Ingredient({ item }) {
+function Ingredient(props) {
+    const { setModalState, item } = props;
     const dispatch = useDispatch();
     const ingredient = item;
 
@@ -19,8 +20,9 @@ function Ingredient({ item }) {
     });
 
     const handleOpen = () => {
-        dispatch({ type: MODAL_OPEN });
-        dispatch({ type: CHOOSE_MODAL, typeModal: <IngredientDitails /> });
+        setModalState({isOpen: true, chooseModal: <IngredientDitails />, onClose: () => {
+            dispatch({ type: DEL_INGRED_INFO });
+        }});
         dispatch({ type: GET_INGRED_INFO, ingredient });
     };
 
@@ -56,7 +58,8 @@ function Ingredient({ item }) {
 }
 
 Ingredient.propTypes = {
-    item: ingredientPropType
+    item: ingredientPropType,
+    setModalState: PropTypes.func
 };
 
 export default Ingredient

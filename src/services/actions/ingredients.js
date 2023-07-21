@@ -20,6 +20,8 @@ export function getItems() {
           type: GET_ARRAY_FAILED
         });
       }
-    });
+    })
+    .catch(err => {
+      console.log(err)});
   };
 }

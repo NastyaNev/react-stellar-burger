@@ -1,6 +1,9 @@
 .constructor_list {
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px
 }
 
 .middle {

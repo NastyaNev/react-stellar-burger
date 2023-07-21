@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useDrop } from "react-dnd";
 import { GET_MOOVED_ITEMS } from '../../../services/actions/constructor'
 import { v4 as uuidv4 } from 'uuid';
-import { REORDER_INGREDS } from '../../../services/actions/order';
+import { REORDER_INGREDS } from '../../../services/actions/constructor';
 
 function Middle() {
     const bun = useSelector((state) => state.constructorReducer.bun);
@@ -25,7 +25,7 @@ function Middle() {
     }, []);
 
     return (
-        <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} ref={dropTarget}>
+        <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} ref={dropTarget}>
             <Bun found={bun} className='ml-8' part="top" note="(верх)" />
             <div>
                 <ul className={[styles.middle, 'custom-scroll'].join(" ")}  >

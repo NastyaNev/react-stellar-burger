@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './order-ditails.module.css'
+import styles from './order-details.module.css'
 import done from '../../../images/graphics.svg'
 import { useSelector } from 'react-redux';
 
-function OrderDitails() {
+function OrderDetails() {
     const answer = useSelector((state) => state.orderReducer.answer);
 
     const orderNum = answer.order.number;
@@ -19,4 +19,4 @@ function OrderDitails() {
     )
 }
 
-export default OrderDitails
+export default OrderDetails

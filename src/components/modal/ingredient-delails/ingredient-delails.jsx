@@ -1,6 +1,8 @@
 import React from 'react'
-import styles from './ingredient-dilails.module.css'
-import { useSelector } from 'react-redux'
+import styles from './ingredient-delails.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { DEL_INGRED_INFO } from '../../../services/actions/ingredient';
+import Modal from '../modal';
 
 function IngredientDitails() {
     const ing = useSelector(state => state.ingredReducer.ing);

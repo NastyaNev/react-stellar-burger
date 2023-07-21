@@ -56,12 +56,12 @@ function ItemContainer(props) {
     }
   });
 
-  const opacity = isDragging ? 0 : 1;
+  const className = `${isDragging ? styles.opacity : ''}`;
 
   preview(drop(ref));
 
   return (
-    <li className={['mr-1', styles.item_container].join(' ')} style={{ opacity }} ref={ref} >
+    <li className={['mr-1', styles.item_container, className].join(' ')} ref={ref} >
       <div ref={drag}>
         <DragIcon type="primary" />
       </div>

@@ -3,15 +3,14 @@ import styles from './burger-constructor.module.css'
 import Middle from './middle/middle';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import OrderDitails from '../modal/order-ditails/order-ditails';
+import OrderDetails from '../modal/order-details/order-details';
 import PropTypes from 'prop-types'
-import { CHOOSE_MODAL, MODAL_OPEN } from '../../services/actions/modals';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnswer } from '../../services/actions/constructor';
 import { totalPriceSelector } from '../../services/selectors/total-price-selector';
 
 function BurgerConstructor(props) {
-  const { className } = props;
+  const { className, setModalState } = props;
   const dispatch = useDispatch();
   const mooved = useSelector((state) => state.constructorReducer.mooved);
   const bun = useSelector((state) => state.constructorReducer.bun);
@@ -23,9 +22,11 @@ function BurgerConstructor(props) {
 
   const handleOpen = () => {
     dispatch(getAnswer(ingredients)).then(() => {
-      dispatch({ type: MODAL_OPEN });
-      dispatch({ type: CHOOSE_MODAL, typeModal: <OrderDitails /> });
-    });
+      setModalState({isOpen: true, chooseModal: <OrderDetails />, onClose: null})
+    })
+      .catch(err => {
+        console.log(err)
+      });
   };
 
   const totalPrice = useSelector(totalPriceSelector);
@@ -47,7 +48,8 @@ function BurgerConstructor(props) {
 }
 
 BurgerConstructor.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  setModalState: PropTypes.func
 };
 
 export default BurgerConstructor

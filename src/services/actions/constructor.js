@@ -3,6 +3,7 @@ import { GET_ORDER_NUM, GET_ORDER_NUM_FAILED, GET_ORDER_NUM_SUCCESS } from "./or
 
 export const GET_MOOVED_ITEMS = 'GET_MOOVED_ITEMS';
 export const DELETE_CONST_ITEM = 'DELETE_CONST_ITEM';
+export const REORDER_INGREDS = 'REORDER_INGREDS';
 
 export function getAnswer(ingredients) {
     return function(dispatch) {
@@ -20,6 +21,8 @@ export function getAnswer(ingredients) {
             type: GET_ORDER_NUM_FAILED
           });
         }
-      });
+      })
+      .catch(err => {
+        console.log(err)});
     };
   }

@@ -5,7 +5,7 @@ import IngredientSection from './ingredient-section/ingredient-section';
 import PropTypes from 'prop-types'
 
 function BurgerIngredients(props) {
-    const { title, className } = props;
+    const { title, className, setModalState } = props;
     const [current, setCurrent] = useState('one');
 
     const containerRef = useRef(null);
@@ -43,7 +43,7 @@ function BurgerIngredients(props) {
     return (
         <li className={['mt-10', styles.burger_ingredients, className].join(" ")}>
             <h2 className='text text_type_main-large'>{title}</h2>
-            <div className="mt-5 mb-10" style={{ display: 'flex' }} >
+            <div className={["mt-5 mb-10", styles.tabs, className].join(" ")}  >
                 <Tab value="one" active={current === 'one'} >
                     Булки
                 </Tab>
@@ -55,9 +55,9 @@ function BurgerIngredients(props) {
                 </Tab>
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")} onScroll={handleScroll} ref={containerRef} >
-                <IngredientSection ingredName='Булки' type='bun' customRef={bunRef} />
-                <IngredientSection ingredName='Соусы' type='sauce' customRef={sauceRef} />
-                <IngredientSection ingredName='Начинки' type='main' data-section id="section3" customRef={mainRef} />
+                <IngredientSection ingredName='Булки' type='bun' customRef={bunRef} setModalState={setModalState} />
+                <IngredientSection ingredName='Соусы' type='sauce' customRef={sauceRef} setModalState={setModalState} />
+                <IngredientSection ingredName='Начинки' type='main' data-section id="section3" customRef={mainRef} setModalState={setModalState} />
             </ul>
         </li>
     )
@@ -65,7 +65,8 @@ function BurgerIngredients(props) {
 
 BurgerIngredients.propTypes = {
     title: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    setModalState: PropTypes.func
 };
 
 export default BurgerIngredients

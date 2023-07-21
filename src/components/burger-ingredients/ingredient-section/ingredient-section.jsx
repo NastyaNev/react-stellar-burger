@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux';
 
 function IngredientSection(props) {
-  const { ingredName, type, customRef } = props;
+  const { ingredName, type, customRef, setModalState } = props;
   const array = useSelector((state) => state.ingredientsReducer.array);
 
   const filtered = array.filter(array => {
@@ -17,7 +17,7 @@ function IngredientSection(props) {
       <h3 className='text text_type_main-medium'>{ingredName}</h3>
       <ul className={['mt-6 ml-4', styles.menu].join(" ")}>
         {filtered.map(item => (
-          <Ingredient key={item._id} item={item} />
+          <Ingredient key={item._id} item={item} setModalState={setModalState} />
         ))}
       </ul>
     </li>
@@ -27,7 +27,8 @@ function IngredientSection(props) {
 IngredientSection.propTypes = {
   ingredName: PropTypes.string,
   type: PropTypes.string,
-  customRef: PropTypes.object
+  customRef: PropTypes.object,
+  setModalState: PropTypes.func
 };
 
 export default IngredientSection

@@ -17,7 +17,7 @@ function IngredientSection(props) {
       <h3 className='text text_type_main-medium'>{ingredName}</h3>
       <ul className={['mt-6 ml-4', styles.menu].join(" ")}>
         {filtered.map(item => (
-          <Ingredient key={item._id} {...item} />
+          <Ingredient key={item._id} item={item} />
         ))}
       </ul>
     </li>
@@ -27,7 +27,7 @@ function IngredientSection(props) {
 IngredientSection.propTypes = {
   ingredName: PropTypes.string,
   type: PropTypes.string,
-  customRef: PropTypes.any // TODO: change any to more strict type
+  customRef: PropTypes.object
 };
 
 export default IngredientSection

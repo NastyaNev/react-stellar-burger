@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import { applyMiddleware, createStore, compose } from "@reduxjs/toolkit";
 import { rootReducer } from './services/reducers';
 import thunk from 'redux-thunk';
-// import { composeWithDevTools } from "redux-devtools-extension";
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

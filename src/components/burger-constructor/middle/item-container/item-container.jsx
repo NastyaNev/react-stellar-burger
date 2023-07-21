@@ -1,9 +1,11 @@
 import React, { useRef } from 'react'
-import { ConstructorElement, DeleteIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './item-container.module.css'
 import { useDispatch } from 'react-redux';
 import { DELETE_CONST_ITEM } from '../../../../services/actions/constructor';
 import { useDrag, useDrop } from 'react-dnd';
+import PropTypes from 'prop-types';
+import { ingredientPropType } from '../../../../utils/prop-types';
 
 function ItemContainer(props) {
   const { ingredient, index, moveItems, id } = props;
@@ -71,5 +73,12 @@ function ItemContainer(props) {
     </li>
   )
 }
+
+ItemContainer.propTypes = {
+  ingredient: ingredientPropType,
+  index: PropTypes.number,
+  moveItems: PropTypes.func,
+  id: PropTypes.string
+};
 
 export default ItemContainer

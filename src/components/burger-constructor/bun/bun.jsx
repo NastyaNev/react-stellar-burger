@@ -7,7 +7,7 @@ function Bun(props) {
     const { className, part, note, found } = props;
 
     return (
-        <li className={['mr-4', className, styles.bun].join(' ')}        >
+        <li className={['mr-4', className, styles.bun].join(' ')} >
             {found &&
                 <ConstructorElement
                     type={part}
@@ -27,7 +27,7 @@ Bun.propTypes = {
     className: PropTypes.string,
     part: PropTypes.string,
     note: PropTypes.string,
-    found: PropTypes.any // TODO: change prop type
+    found: PropTypes.object
 };
 
 export default Bun

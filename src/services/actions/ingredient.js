@@ -1,2 +1,2 @@
 export const GET_INGRED_INFO = 'GET_INGRED_INFO';
-export const DEL_INGRED_INFO = 'GET_INGRED_INFO';
+export const DEL_INGRED_INFO = 'DEL_INGRED_INFO';

@@ -9,12 +9,7 @@
     max-height: 440px;
     min-height: 440px;
     overflow-y: scroll;
-    /* border: 1px red solid; */
     gap: 10px;
     padding: 0;
-}
-
-.onHover {
-  border: solid 50px #3C39EC;
 }
 

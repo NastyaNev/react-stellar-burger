@@ -9,7 +9,7 @@ const initialState = {
       case GET_INGRED_INFO:
         return { ...state, ing: action.ingredient }
       case DEL_INGRED_INFO:
-        return { ...state  }
+        return { ...state, ing: '' }
       default:
         return state
     }

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import styles from './modal.module.css'
 import ReactDOM from 'react-dom'
 import iconClose from '../../images/icon 24x24.svg'
-import PropTypes from 'prop-types'
 import { MODAL_CLOSE } from '../../services/actions/modals'
 import { useDispatch } from 'react-redux'
 import { DEL_INGRED_INFO } from '../../services/actions/ingredient'
@@ -40,9 +39,5 @@ function Modal(props) {
         , modalRoot
     )
 }
-
-Modal.propTypes = {
-    handleClose: PropTypes.func
-};
 
 export default Modal

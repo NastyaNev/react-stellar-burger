@@ -10,11 +10,3 @@
     overflow-y: scroll;
     position: relative;
 }
-
-.test {
-    outline: red solid 5px;
-}
-
-.test1  {
-    display: inline;
-}

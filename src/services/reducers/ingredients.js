@@ -1,4 +1,4 @@
-import { DELETE_MOOVED_ITEM, GET_ARRAY, GET_ARRAY_FAILED, GET_ARRAY_SUCCESS } from "../actions/ingredients"
+import { GET_ARRAY, GET_ARRAY_FAILED, GET_ARRAY_SUCCESS } from "../actions/ingredients"
 
 const initialState = {
     apiRequest: false,
@@ -16,9 +16,6 @@ export const ingredientsReducer = (state = initialState, action) => {
         }
         case GET_ARRAY_FAILED: {
             return { ...state, apiRequest: false, apiFailed: true }
-        }
-        case DELETE_MOOVED_ITEM: {
-            return { ...state, mooved: [...state.mooved].filter(item => item.id !== action.id) };
         }
         default: {
             return state

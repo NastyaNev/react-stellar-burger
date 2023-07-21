@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './order-ditails.module.css'
 import done from '../../../images/graphics.svg'
-import { getAnswer } from '../../../services/actions/constructor';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function OrderDitails() {
-    const answer = useSelector((state) => state.constructorReducer.answer);
-
-    // console.log('answer222', answer)
+    const answer = useSelector((state) => state.orderReducer.answer);
 
     const orderNum = answer.order.number;
-
-    
 
     return (
         <div className={styles.order_ditails}>

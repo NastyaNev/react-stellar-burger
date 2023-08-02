@@ -1,30 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./app.module.css";
-import AppHeader from "../app-header/app-header"
-import Modal from "../modal/modal";
 import { useDispatch } from "react-redux";
-import DndContainer from "../dnd-container/dnd-container";
 import { getItems } from "../../services/actions/ingredients";
+import { Route, Routes } from "react-router";
+import Main from "../../pages/main/main";
+import Orders from "../../pages/orders/orders";
+import Profile from "../../pages/profile/profile";
+import NotFound from "../../pages/not-found/not-found";
+import Layout from "../layout/layout";
+// import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
 
 function App() {
   const dispatch = useDispatch();
 
-  const [modalState, setModalState] = useState({isOpen: false, chooseModal: null, onClose: null});
-  
   useEffect(() => {
-    dispatch(getItems())
+    dispatch(getItems());
+    // dispatch(checkUserAuth())
   }, [])
 
   return (
     <div className={styles.page}>
-      <AppHeader />
-      <main>
-        <DndContainer setModalState={setModalState} />
-      </main>
-      {modalState.isOpen && <Modal setModalState={setModalState} modalState={modalState} >
-        {modalState.chooseModal}
-      </Modal>
-      }
+      <Routes>
+        <Route path='/' element={<Layout />} >
+          <Route path='/' element={<Main />} />
+          <Route path='/orders' element={<Orders />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='*' element={<NotFound />} />
+        </Route>
+      </Routes>
     </div >
   );
 }

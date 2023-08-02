@@ -1,7 +1,16 @@
+.constructor_list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
 .middle {
     display: flex;
     flex-direction: column;
     max-height: 440px;
+    min-height: 440px;
     overflow-y: scroll;
     gap: 10px;
     padding: 0;

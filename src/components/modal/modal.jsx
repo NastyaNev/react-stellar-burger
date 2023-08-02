@@ -1,45 +1,47 @@
 import React, { useEffect } from 'react'
 import styles from './modal.module.css'
 import ReactDOM from 'react-dom'
-import iconClose from '../../images/icon 24x24.svg'
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import ModalOverlay from './overlay/overlay'
 import PropTypes from 'prop-types'
-import Overlay from './overlay/overlay'
 
 const modalRoot = document.getElementById('react_modal');
 
 function Modal(props) {
-    const { setIsModalOpen } = props;
+    const { setModalState, modalState } = props;
 
-    const onClickCloseButton = () => {
-        setIsModalOpen(false)
-    }
+    const handleClose = () => {
+        if (modalState.onClose) { modalState.onClose() }
+        setModalState({ isOpen: false, chooseModal: null, onClose: null });
+    };
 
     useEffect(() => {
-        document.addEventListener('keydown', onEsc);
-
         function onEsc(e) {
             if (e.code === "Escape") {
-                setIsModalOpen(false)
+                handleClose()
             }
         }
+
+        document.addEventListener('keydown', onEsc);
 
         return () => document.removeEventListener('keydown', onEsc);
     }, [])
 
     return ReactDOM.createPortal(
         <>
-            <div className={styles.modal}>
-                <button className={['mt-15 mr-10', styles.button_close].join(' ')}><img src={iconClose} alt='закрыть' onClick={onClickCloseButton} /></button>
+            <div className={styles.modal} >
+                <button className={['mt-15 mr-10', styles.button_close].join(' ')}><CloseIcon alt='закрыть' onClick={handleClose} /></button>
                 {props.children}
             </div>
-            <Overlay setIsModalOpen={setIsModalOpen}></Overlay>
+            <ModalOverlay onClick={handleClose} />
         </>
         , modalRoot
     )
 }
 
 Modal.propTypes = {
-    setIsModalOpen: PropTypes.func
+    modalState: PropTypes.object,
+    setModalState: PropTypes.func
 };
 
 export default Modal

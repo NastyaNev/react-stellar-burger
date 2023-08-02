@@ -1,47 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./app.module.css";
 import AppHeader from "../app-header/app-header"
 import Modal from "../modal/modal";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import { getArray } from '../api/api'
+import { useDispatch } from "react-redux";
+import DndContainer from "../dnd-container/dnd-container";
+import { getItems } from "../../services/actions/ingredients";
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [contentModal, setContentModal] = useState("");
-  const [ingArray, setIngArray] = useState([]);
+  const dispatch = useDispatch();
 
+  const [modalState, setModalState] = useState({isOpen: false, chooseModal: null, onClose: null});
+  
   useEffect(() => {
-    getArray()
-      .then((res) => { setIngArray(res) })
-      .catch(err => {
-        console.log(err);
-      })
+    dispatch(getItems())
   }, [])
-
-  if (ingArray.length === 0) {
-    return null
-  }
-
-  const array = ingArray.data;
 
   return (
     <div className={styles.page}>
       <AppHeader />
       <main>
-        <ul className={styles.sections}>
-          <BurgerIngredients className={styles.section} setIsModalOpen={setIsModalOpen} setContentModal={setContentModal} array={array} title="Соберите бургер" />
-          <BurgerConstructor className={styles.section} setIsModalOpen={setIsModalOpen} setContentModal={setContentModal} array={array} />
-        </ul>
+        <DndContainer setModalState={setModalState} />
       </main>
-      {isModalOpen && (
-        <>
-          <Modal setIsModalOpen={setIsModalOpen} >
-            {contentModal}
-          </Modal>
-        </>
-      )}
-    </div>
+      {modalState.isOpen && <Modal setModalState={setModalState} modalState={modalState} >
+        {modalState.chooseModal}
+      </Modal>
+      }
+    </div >
   );
 }
 

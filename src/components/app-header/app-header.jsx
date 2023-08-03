@@ -12,13 +12,13 @@ function AppHeader() {
     <>
       <header className={styles.header}>
         <div className={styles.two_links_container}>
-          <HeaderLink icon={<BurgerIcon type="primary" />} linkText="Конструктор" link="/" />
-          <HeaderLink className='ml-2' icon={<ListIcon type="secondary" />} linkText="Лента заказов" link="/orders" />
+          <HeaderLink icon={<BurgerIcon />} linkText="Конструктор" link="/" />
+          <HeaderLink className='ml-2' icon={<ListIcon />} linkText="Лента заказов" link="/orders" />
         </div>
         <NavLink className={styles.logo} to="/" >
           <Logo />
         </NavLink>
-        <HeaderLink icon={<ProfileIcon type="secondary" />} linkText="Личный кабинет" link="/profile" />
+        <HeaderLink icon={<ProfileIcon />} linkText="Личный кабинет" link="/profile" />
       </header>
     </>
   )

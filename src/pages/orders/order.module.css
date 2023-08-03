@@ -1,10 +1,10 @@
-.not_found {
+.orders {
     align-items: center;
     display: flex;
     flex-direction: column;
     margin-top: 5%;
 }
 
-.not_found_image {
-    width: 50%;
+.orders_image {
+    width: 30%;
 }

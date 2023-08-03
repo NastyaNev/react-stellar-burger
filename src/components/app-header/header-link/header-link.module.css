@@ -1,7 +1,6 @@
 .header_link {
     display: flex;
     text-decoration: none;
-    /* color: white; */
     min-width: 178px;
     height: 56px;
     border-radius: 40px;

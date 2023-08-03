@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom';
 
 function HeaderLink(props) {
-  const { linkText, icon, link, className, type } = props;
+  const { linkText, icon, link, className } = props;
   const setActiveLinkStyle = ({isActive}) => {
     return isActive ? `mt-4 mb-4 ${styles.header_link} ${(className)} text_color_primary`
     : `mt-4 mb-4 ${styles.header_link} ${(className)} text_color_inactive`;

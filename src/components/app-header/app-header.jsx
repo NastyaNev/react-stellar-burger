@@ -5,20 +5,22 @@ import { Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 function AppHeader() {
-  return (
+  const { pathname } = useLocation();
+
+   return (
     <>
       <header className={styles.header}>
         <div className={styles.two_links_container}>
-          <HeaderLink icon={<BurgerIcon />} linkText="Конструктор" link="/" />
-          <HeaderLink className='ml-2' icon={<ListIcon />} linkText="Лента заказов" link="/orders" />
+          <HeaderLink icon={<BurgerIcon type={pathname === "/" ? "primary" : "secondary"} />} linkText="Конструктор" link="/" />
+          <HeaderLink className='ml-2' icon={<ListIcon type={pathname === "/orders" ? "primary" : "secondary"} />} linkText="Лента заказов" link="/orders" />
         </div>
         <NavLink className={styles.logo} to="/" >
           <Logo />
         </NavLink>
-        <HeaderLink icon={<ProfileIcon />} linkText="Личный кабинет" link="/profile" />
+        <HeaderLink icon={<ProfileIcon type={pathname.startsWith("/profile") ? "primary" : "secondary"} />} linkText="Личный кабинет" link="/profile" />
       </header>
     </>
   )

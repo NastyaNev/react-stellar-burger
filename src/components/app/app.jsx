@@ -8,6 +8,7 @@ import Orders from "../../pages/orders/orders";
 import Profile from "../../pages/profile/profile";
 import NotFound from "../../pages/not-found/not-found";
 import Layout from "../layout/layout";
+import ProfileInfo from "../../pages/profile-info/profile-info";
 // import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
 
 function App() {
@@ -24,7 +25,10 @@ function App() {
         <Route path='/' element={<Layout />} >
           <Route path='/' element={<Main />} />
           <Route path='/orders' element={<Orders />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={<Profile />}>
+            <Route path='/profile' element={<ProfileInfo />} />
+            <Route path='/profile/orders' element={<Orders />} />
+          </Route>
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>

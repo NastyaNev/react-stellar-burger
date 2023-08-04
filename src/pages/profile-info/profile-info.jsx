@@ -1,14 +1,13 @@
-import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
+import { EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import styles from './profile-info.module.css'
-import ProfileInfoInput from './profile-info-input/profile-info-input';
 
 function ProfileInfo() {
     return (
       <div className={styles.profile_info}>
-        <ProfileInfoInput placeholder={'Имя'} />
-        <ProfileInfoInput placeholder={'Логин'} />
-        <ProfileInfoInput placeholder={'Пароль'} />
+        <Input placeholder={'Имя'} value={"jlrf"} icon = 'EditIcon' />
+        <EmailInput placeholder={'Логин'} value={"jlrf"} icon = 'EditIcon' />
+        <PasswordInput value={"jlrf"} icon = 'EditIcon' />
       </div>
     )
   }

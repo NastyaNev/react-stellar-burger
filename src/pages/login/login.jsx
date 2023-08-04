@@ -8,9 +8,9 @@ function Login() {
         <div className={['mt-20', styles.login].join(" ")}>
             <div className={styles.login_form_container}>
                 <h2 className={'text text_type_main-medium'}>Вход</h2>
-                <EmailInput />
-                <PasswordInput />
-                <Button>Войти</Button>
+                <EmailInput value='ddd' />
+                <PasswordInput value='ddd' />
+                <Button htmlType="button" type="primary" size="large">Войти</Button>
             </div>
             <div className={['mt-20', styles.login_paragraph_container].join(" ")}>
                 <p className={['text text_type_main-small text_color_inactive', styles.login_paragraph].join(' ')}>Вы - новый пользователь?</p>

@@ -8,6 +8,7 @@ import { useDrag } from "react-dnd";
 import { DEL_INGRED_INFO, GET_INGRED_INFO } from '../../../../services/actions/ingredient'
 import { ingredientPropType } from '../../../../utils/prop-types'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 function Ingredient(props) {
     const { setModalState, item } = props;
@@ -43,7 +44,7 @@ function Ingredient(props) {
     const counter = useSelector(countSelector);
 
     return (
-        <li className={styles.card} onClick={handleOpen} ref={dragRef} >
+        <Link to={`/ingredients/${item._id}`} className={styles.card} onClick={handleOpen} ref={dragRef}>
             {counter > 0 &&
                 <Counter count={counter} size="default" extraClass="m-1" />
             }
@@ -53,7 +54,7 @@ function Ingredient(props) {
                 <CurrencyIcon type="primary" />
             </div>
             <p className={['text text_type_main-small mt-2', styles.ingredient_name].join(" ")}>{item.name}</p>
-        </li>
+        </Link>
     )
 }
 

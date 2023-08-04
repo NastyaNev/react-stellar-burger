@@ -3,6 +3,7 @@ import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function IngredientSection(props) {
   const { ingredName, type, customRef, setModalState } = props;
@@ -15,11 +16,11 @@ function IngredientSection(props) {
   return (
     <li className={['mt-10', styles.ingredient_section].join(" ")} ref={customRef} >
       <h3 className='text text_type_main-medium'>{ingredName}</h3>
-      <ul className={['mt-6 ml-4', styles.menu].join(" ")}>
+      <div className={['mt-6 ml-4', styles.menu].join(" ")}>
         {filtered.map(item => (
           <Ingredient key={item._id} item={item} setModalState={setModalState} />
         ))}
-      </ul>
+      </div>
     </li>
   )
 }

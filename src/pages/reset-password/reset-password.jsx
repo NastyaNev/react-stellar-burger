@@ -10,7 +10,7 @@ function ResetPassword() {
                 <h2 className={'text text_type_main-medium'}>Восстановление пароля</h2>
                 <PasswordInput placeholder = 'Введите новый пароль' />
                 <Input placeholder = 'Введите код из письма' />
-                <Button>Сохранить</Button>
+                <Button htmlType="button" type="primary" size="large">Сохранить</Button>
             </div>
             <div className={['mt-20', styles.reset_password_paragraph_container].join(" ")}>
                 <p className={['text text_type_main-small text_color_inactive', styles.reset_password_paragraph].join(' ')}>Вспомнили пароль?</p>

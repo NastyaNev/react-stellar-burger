@@ -2,6 +2,13 @@
     line-height: 64px;
 }
 
+.new_title_modal {
+    line-height: 64px;
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+}
+
 .contain {
     display: flex;
     flex-direction: column;

@@ -1,19 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import DndContainer from '../../components/dnd-container/dnd-container'
-import Modal from '../../components/modal/modal';
 
-function Main() {
-  const [modalState, setModalState] = useState({ isOpen: false, chooseModal: null, onClose: null });
-
+function Main({setModalState}) {
   return (
     <>
       <main>
         <DndContainer setModalState={setModalState} />
       </main>
-      {modalState.isOpen && <Modal setModalState={setModalState} modalState={modalState} >
-        {modalState.chooseModal}
-      </Modal>
-      }
     </>
   )
 }

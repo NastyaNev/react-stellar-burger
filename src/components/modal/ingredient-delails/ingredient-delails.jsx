@@ -1,23 +1,36 @@
 import React, { useEffect } from 'react'
 import styles from './ingredient-delails.module.css'
-import { useSelector } from 'react-redux'
-import { DEL_INGRED_INFO } from '../../../services/actions/ingredient';
-import Modal from '../modal';
+import { useSelector, useDispatch } from 'react-redux'
+import { DEL_INGRED_INFO, GET_INGRED_INFO } from '../../../services/actions/ingredient';
 import { useLocation, useParams } from 'react-router-dom';
-import { getItems } from '../../../services/actions/ingredients';
 
-
-function IngredientDitails() {
-    // const ing = useSelector(state => state.ingredReducer.ing);
-    console.log('тут')
-    const ings = useSelector(state => state.ingredientsReducer.array)
+function IngredientDitails() {   
+    const dispatch = useDispatch();
     const { id } = useParams();
-    const ing = ings.find((item)  => item._id === id);
     const { state } = useLocation();
+    const ings = useSelector(state => state.ingredientsReducer.array)
+    const ing = useSelector(state => state.ingredReducer.ing);
+
+    useEffect(() => {
+        if (ings) {
+            const ingredient = ings ? ings.find((item) => item._id === id) : null;
+            dispatch({ type: GET_INGRED_INFO, ingredient });
+        }
+    }, [ings])
+
+    useEffect(() => {
+        return () => {
+            dispatch({ type: DEL_INGRED_INFO });
+        }
+    }, [])
 
     const setClass = () => {
         return state === null ? `text text_type_main-large mt-10 ml-10 ${styles.new_title_modal}`
             : `text text_type_main-large mt-10 ml-10 ${styles.title_modal}`
+    }
+
+    if (ing == null) {
+        return null
     }
 
     return (

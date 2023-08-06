@@ -5,11 +5,11 @@ export const GET_ARRAY_FAILED = 'GET_ARRAY_FAILED';
 export const GET_ARRAY_SUCCESS = 'GET_ARRAY_SUCCESS';
 
 export function getItems() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch({
       type: GET_ARRAY
     });
-    getArray().then(res => {
+    return getArray().then(res => {
       if (res && res.success) {
         dispatch({
           type: GET_ARRAY_SUCCESS,
@@ -21,7 +21,8 @@ export function getItems() {
         });
       }
     })
-    .catch(err => {
-      console.log(err)});
+      .catch(err => {
+        console.log(err)
+      });
   };
 }

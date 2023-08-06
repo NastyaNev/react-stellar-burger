@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./app.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getItems } from "../../services/actions/ingredients";
 import { Route, Routes } from "react-router";
 import Main from "../../pages/main/main";
@@ -14,30 +14,29 @@ import FogotPassword from "../../pages/fogot-password/fogot-password";
 import Register from "../../pages/register/register";
 import ResetPassword from "../../pages/reset-password/reset-password";
 import ProfileEdit from "../../pages/profile/profile-edit/profile-edit";
+import ModalView from "../modal/modal-view";
 import Modal from "../modal/modal";
 import IngredientDitails from "../modal/ingredient-delails/ingredient-delails";
-import ModalOverlay from "../modal/overlay/overlay";
-import { useLocation, useParams } from 'react-router-dom';
-import DndContainer from "../dnd-container/dnd-container";
+import { useLocation, useNavigate } from 'react-router-dom';
 // import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
 
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const background = location.state && location.state.background;
+  const [modalState, setModalState] = useState({ isOpen: false, chooseModal: null, onClose: null });
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('jhjhj')
-    dispatch(getItems());
-    // dispatch(checkUserAuth())
+    dispatch(getItems())
   }, [])
 
   return (
     <div className={styles.page}>
       <Routes location={background || location}>
         <Route path='/' element={<Layout />}>
-          <Route path='/' element={<Main />} />
-          <Route path='/ingredients/:id' element={<IngredientDitails />} />
+          <Route path='/' element={<Main setModalState={setModalState} />} />
+          <Route path='/ingredients/:id' element={!background && <IngredientDitails />} />
           <Route path='orders' element={<Orders />} />
           <Route path='profile' element={<Profile />}>
             <Route path='/profile' element={<ProfileInfo />}>
@@ -54,8 +53,11 @@ function App() {
       </Routes>
       {background && (
         <Routes>
-          <Route path="/ingredients/:id" element={<Modal />} />
+          <Route path="/ingredients/:id" element={<ModalView onClose={() => { navigate("/") }} ><IngredientDitails /></ModalView>} />
         </Routes>
+      )}
+      {modalState.isOpen && (
+        <Modal setModalState={setModalState} modalState={modalState} />
       )}
     </div >
   );

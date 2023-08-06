@@ -1,6 +1,5 @@
 import React from 'react'
-import ProfileInfo from '../../profile-info/profile-info'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile-edit.module.css'
 

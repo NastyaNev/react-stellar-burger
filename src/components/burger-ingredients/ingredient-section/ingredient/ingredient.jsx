@@ -1,41 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
-import IngredientDitails from '../../../modal/ingredient-delails/ingredient-delails'
-import { useDispatch, useSelector } from 'react-redux'
-import { useDrag } from "react-dnd";
-import { DEL_INGRED_INFO, GET_INGRED_INFO } from '../../../../services/actions/ingredient'
+import { useSelector } from 'react-redux'
+import { useDrag } from "react-dnd"
 import { ingredientPropType } from '../../../../utils/prop-types'
 import PropTypes from 'prop-types'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 function Ingredient(props) {
-    const { setModalState, item } = props;
-    const dispatch = useDispatch();
+    const { item } = props;
     const ingredient = item;
-    const { id } = useParams();
     const location = useLocation();
 
     const [, dragRef] = useDrag({
         type: item.type,
         item: item
     });
-
-    const handleOpen = () => {
-        setModalState({
-            isOpen: true, chooseModal: <IngredientDitails />, onClose: () => {
-                dispatch({ type: DEL_INGRED_INFO });
-            }
-        });
-        dispatch({ type: GET_INGRED_INFO, ingredient });
-    };
-
-    useEffect(() => {
-        if (id === item._id) {
-            handleOpen();
-        }
-    }, [id])
 
     const countSelector = (state) => {
         if (item.type === 'bun') {
@@ -55,7 +36,7 @@ function Ingredient(props) {
 
     return (
         <li>
-            <Link to={`/ingredients/${item._id}`} className={styles.card} ref={dragRef} state={{ background: location }} >
+            <Link to={`/ingredients/${item._id}`} state={{ background: location }} className={styles.card} ref={dragRef}  >
                 {counter > 0 &&
                     <Counter count={counter} size="default" extraClass="m-1" />
                 }

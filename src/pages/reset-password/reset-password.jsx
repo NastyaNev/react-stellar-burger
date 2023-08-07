@@ -1,10 +1,14 @@
 import React from 'react'
 import styles from './reset-password.module.css'
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import NotFound from '../not-found/not-found';
 
 function ResetPassword() {
+    const { state } = useLocation();
+
     return (
+        state === null ? <NotFound /> :
         <div className={['mt-20', styles.reset_password].join(" ")}>
             <div className={styles.reset_password_form_container}>
                 <h2 className={'text text_type_main-medium'}>Восстановление пароля</h2>

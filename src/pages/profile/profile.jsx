@@ -8,11 +8,14 @@ function Profile() {
       : `mt-20 text text_type_main-medium ${styles.profile_link} text_color_inactive`;
   }
 
+  const { pathname } = useLocation();
+
+
   return (
     <div className={['ml-9 mt-30', styles.profile].join(" ")}>
       <div className={styles.profile_menu_section}>
         <div className={styles.profile_menu}>
-          <NavLink to='/profile' className={setActiveLinkStyle} end>Профиль</NavLink>
+          <NavLink to={pathname === '/profile/edit' || '/profile'} className={setActiveLinkStyle} end>Профиль</NavLink>
           <NavLink to='/profile/orders' className={setActiveLinkStyle}>История заказов</NavLink>
           <button className={['mt-20 text text_type_main-medium text_color_inactive', styles.profile_button].join(" ")}>Выход</button>
         </div>

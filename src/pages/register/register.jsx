@@ -8,9 +8,9 @@ function Register() {
         <div className={['mt-20', styles.register].join(" ")}>
             <div className={styles.register_form_container}>
                 <h2 className={'text text_type_main-medium'}>Регистрация</h2>
-                <Input placeholder={'Имя'}/>
-                <EmailInput />
-                <PasswordInput />
+                <Input placeholder={'Имя'} value='1' />
+                <EmailInput value='1' />
+                <PasswordInput value='1' />
                 <Button>Зарегистрироваться</Button>
             </div>
             <div className={['mt-20', styles.register_paragraph_container].join(" ")}>

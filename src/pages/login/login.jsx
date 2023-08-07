@@ -1,16 +1,39 @@
 import { Button, EmailInput, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './login.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../../services/actions/user'
 
 function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.userReducer.user);
+
+    const onChangeEmail = (evt) => {
+        setEmail(evt.target.value);
+    };
+    const onChangePassword = (evt) => {
+        setPassword(evt.target.value);
+    };
+
+    const onClick = () => {
+        dispatch(login(email, password))
+    };
+
+    useEffect(() => {
+        if (user) {navigate("/")};
+      }, [user]);
+
     return (
         <div className={['mt-20', styles.login].join(" ")}>
             <div className={styles.login_form_container}>
                 <h2 className={'text text_type_main-medium'}>Вход</h2>
-                <EmailInput value='ddd' />
-                <PasswordInput value='ddd' />
-                <Button htmlType="button" type="primary" size="large">Войти</Button>
+                <EmailInput value={email} onChange={onChangeEmail} />
+                <PasswordInput value={password} onChange={onChangePassword} />
+                <Button htmlType="button" type="primary" size="large" onClick={onClick}>Войти</Button>
             </div>
             <div className={['mt-20', styles.login_paragraph_container].join(" ")}>
                 <p className={['text text_type_main-small text_color_inactive', styles.login_paragraph].join(' ')}>Вы - новый пользователь?</p>

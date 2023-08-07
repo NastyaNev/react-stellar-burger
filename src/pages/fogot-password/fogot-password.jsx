@@ -1,21 +1,15 @@
 import React from 'react'
 import styles from './fogot-password.module.css'
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function FogotPassword() {
-    const navigate = useNavigate();
-
-    const goToReset = () => {
-        navigate('/reset-password')
-    }
-
     return (
         <div className={['mt-20', styles.fogot_password].join(" ")}>
             <div className={styles.fogot_password_form_container}>
                 <h2 className={'text text_type_main-medium'}>Восстановление пароля</h2>
                 <EmailInput placeholder = 'Укажите e-mail' />
-                <Button onClick={goToReset}>Восстановить</Button>
+                <Link state='1' to={'/reset-password'}><Button >Восстановить</Button></Link>
             </div>
             <div className={['mt-20', styles.fogot_password_paragraph_container].join(" ")}>
                 <p className={['text text_type_main-small text_color_inactive', styles.fogot_password_paragraph].join(' ')}>Вспомнили пароль?</p>

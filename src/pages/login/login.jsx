@@ -21,8 +21,6 @@ function Login() {
         dispatch(login(email, password))
     };
 
-    
-
     return (
         <div className={['mt-20', styles.login].join(" ")}>
             <div className={styles.login_form_container}>

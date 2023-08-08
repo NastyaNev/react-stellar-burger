@@ -33,8 +33,8 @@ function Protected ({ onlyUnAuth = false, component }) {
 };
 
 Protected.propTypes = {
-  onlyUnAuth: PropTypes.any,
-  component: PropTypes.any
+  onlyUnAuth: PropTypes.bool,
+  component: PropTypes.object
 };
 
 export const OnlyAuth = (props) => <Protected onlyUnAuth={false} {...props} />;

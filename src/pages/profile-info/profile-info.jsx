@@ -13,8 +13,8 @@ function ProfileInfo() {
     navigate('/profile/edit');
   }
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(na);
+  const [email, setEmail] = useState(em);
   const [password, setPassword] = useState("");
   
   const onChangeName = (evt) => {
@@ -30,9 +30,9 @@ function ProfileInfo() {
   return (
     <>
       <div className={styles.profile_info}>
-        <Input type='text' placeholder={'Имя'} value={name} icon='EditIcon' onChange={onChangeName} onIconClick={goToEdit} />
-        <EmailInput type='email' placeholder={'Логин'} value={email} icon='EditIcon' onChange={onChangeEmail} onIconClick={goToEdit} />
-        <Input type='password' placeholder={'Пароль'} value={password} icon='EditIcon' onChange={onChangePassword} onIconClick={goToEdit} />
+        <Input type='text' placeholder={'Имя'} value={name} icon='EditIcon' onChange={onChangeName} onIconClick={goToEdit} onClick={goToEdit} />
+        <EmailInput type='email' placeholder={'Логин'} value={email} icon='EditIcon' onChange={onChangeEmail} onIconClick={goToEdit} onClick={goToEdit} />
+        <PasswordInput placeholder={'Пароль'} value={password} onChange={onChangePassword} onClick={goToEdit} />
       </div>
       <Outlet />
     </>

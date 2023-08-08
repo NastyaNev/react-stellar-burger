@@ -94,3 +94,16 @@ export const getUser = () => {
         });
     };
 };
+
+export function logout() {
+    return fetch(`${config.url}/auth/logout`, {
+        headers: config.headers,
+        method: 'POST',
+        body: JSON.stringify({
+            token: localStorage.getItem("refreshToken")
+        })
+    })
+        .then(checkResponse)
+}
+
+

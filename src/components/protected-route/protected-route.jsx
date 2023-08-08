@@ -17,23 +17,18 @@ function Protected ({ onlyUnAuth = false, component }) {
   const location = useLocation();
 
   if (!isAuthChecked) {
-    // Запрос еще выполняется
-    return null; // или прелоадер
+    return null;
   }
 
   if (onlyUnAuth && user) {
-    // Пользователь авторизован, но запрос предназначен только для неавторизованных пользователей
-    // Нужно сделать редирект на главную страницу или на тот адрес, что записан в location.state.from
     const { from } = location.state || { from: { pathname: "/" } };
     return <Navigate to={from} />;
   }
 
   if (!onlyUnAuth && !user) {
-    // Сервер не ответил
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
-  // !onlyUnAuth && user
   return component;
 };
 

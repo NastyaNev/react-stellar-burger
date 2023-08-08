@@ -1,21 +1,38 @@
 import { EditIcon, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './profile-info.module.css'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 function ProfileInfo() {
   const navigate = useNavigate();
+  const na = useSelector((state) => state.userReducer.user.name);
+  const em = useSelector((state) => state.userReducer.user.email);
 
   const goToEdit = () => {
     navigate('/profile/edit');
   }
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
+  const onChangeName = (evt) => {
+    setName(evt.target.value);
+};
+  const onChangeEmail = (evt) => {
+      setEmail(evt.target.value);
+  };
+  const onChangePassword = (evt) => {
+      setPassword(evt.target.value);
+  };
+
   return (
     <>
       <div className={styles.profile_info}>
-        <Input placeholder={'Имя'} value='ddd' icon='EditIcon' onIconClick={goToEdit} />
-        <EmailInput placeholder={'Логин'} value='dc' icon='EditIcon' onIconClick={goToEdit} />
-        <Input placeholder={'Пароль'} value='ddd' icon='EditIcon' onIconClick={goToEdit} />
+        <Input type='text' placeholder={'Имя'} value={name} icon='EditIcon' onChange={onChangeName} onIconClick={goToEdit} />
+        <EmailInput type='email' placeholder={'Логин'} value={email} icon='EditIcon' onChange={onChangeEmail} onIconClick={goToEdit} />
+        <Input type='password' placeholder={'Пароль'} value={password} icon='EditIcon' onChange={onChangePassword} onIconClick={goToEdit} />
       </div>
       <Outlet />
     </>

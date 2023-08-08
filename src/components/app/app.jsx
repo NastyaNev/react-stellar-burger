@@ -18,7 +18,8 @@ import ModalView from "../modal/modal-view";
 import Modal from "../modal/modal";
 import IngredientDitails from "../modal/ingredient-delails/ingredient-delails";
 import { useLocation, useNavigate } from 'react-router-dom';
-// import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
+import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
+import { checkUserAuth } from "../../services/actions/user";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,25 +29,30 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getItems())
+    dispatch(getItems());
+    dispatch(checkUserAuth());
   }, [])
 
   return (
     <div className={styles.page}>
       <Routes location={background || location}>
         <Route path='/' element={<Layout />}>
-          <Route path='/' element={<Main setModalState={setModalState} />} />
-          <Route path='/ingredients/:id' element={!background && <IngredientDitails />} />
-          <Route path='orders' element={<Orders />} />
-          <Route path='profile' element={<Profile />}>
-            <Route path='/profile' element={<ProfileInfo />}>
+          <Route path='/' element={<Main setModalState={setModalState} />} >
+            {modalState.isOpen && (
+              <Route path='/' element={<OnlyAuth component={<Modal setModalState={setModalState} modalState={modalState} />} />} />
+            )}
+          </Route>
+          <Route path='ingredients/:id' element={!background && <IngredientDitails />} />
+          <Route path='orders' element={<OnlyAuth component={<Orders />} />} />
+          <Route path='profile' element={<Profile />} >
+            <Route path='/profile' element={<OnlyAuth component={<ProfileInfo />} />}>
               <Route path='/profile/edit' element={<ProfileEdit />} />
             </Route>
-            <Route path='/profile/orders' element={<Orders />} />
+            <Route path='/profile/orders' element={<OnlyAuth component={<Orders />} />} />
           </Route>
-          <Route path='login' element={<Login />} />
-          <Route path='register' element={<Register />} />
-          <Route path='forgot-password' element={<FogotPassword />} />
+          <Route path='login' element={<OnlyUnAuth component={<Login />} />} />
+          <Route path='register' element={<OnlyUnAuth component={<Register />} />} />
+          <Route path='forgot-password' element={<OnlyUnAuth component={<FogotPassword />} />} />
           <Route path='reset-password' element={<ResetPassword />} />
           <Route path='*' element={<NotFound />} />
         </Route>
@@ -55,9 +61,6 @@ function App() {
         <Routes>
           <Route path="/ingredients/:id" element={<ModalView onClose={() => { navigate("/") }} ><IngredientDitails /></ModalView>} />
         </Routes>
-      )}
-      {modalState.isOpen && (
-        <Modal setModalState={setModalState} modalState={modalState} />
       )}
     </div >
   );

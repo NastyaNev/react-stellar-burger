@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { SET_USER } from "../../services/actions/user";
 
 const config = {
@@ -7,12 +8,12 @@ const config = {
     }
 }
 
-function checkResponse(res) {
+const checkResponse = (res) => {
     if (res.ok) {
-        return res.json();
+      return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
-}
+    return res.json().then((err) => Promise.reject(err));
+};
 
 export function getArray() {
     return fetch(`${config.url}/ingredients`, {
@@ -44,38 +45,39 @@ export function setUser(email, password) {
         .then(checkResponse)
 }
 
-function refreshToken() {
+export function refreshToken() {
     return fetch(`${config.url}/auth/token`, {
-      method: "POST",
-      headers: config.headers,
-      body: JSON.stringify({
-        token: localStorage.getItem("refreshToken")
-      })
-    }).then(checkResponse);
-  };
+        method: "POST",
+        headers: config.headers,
+        body: JSON.stringify({
+            token: localStorage.getItem("refreshToken")
+        })
+    })
+    .then(checkResponse);
+};
 
-  const fetchWithRefresh = async (url, options) => {
+const fetchWithRefresh = async (url, options) => {
     try {
-      const res = await fetch(url, options);
-      return await checkResponse(res);
-    } catch (err) {
-      if (err.message === "jwt expired") {
-        const refreshData = await refreshToken();
-        if (!refreshData.success) {
-          return Promise.reject(refreshData);
-        }
-        localStorage.setItem("accessToken", refreshData.accessToken);
-        localStorage.setItem("refreshToken", refreshData.refreshToken);
-        options.headers.authorization = refreshData.accessToken;
         const res = await fetch(url, options);
         return await checkResponse(res);
-      } else {
-        return Promise.reject(err);
-      }
+    } catch (err) {
+        if (err.message === "jwt expired") {
+            const refreshData = await refreshToken();
+            if (!refreshData.success) {
+                return Promise.reject(refreshData);
+            }
+            localStorage.setItem("accessToken", refreshData.accessToken);
+            localStorage.setItem("refreshToken", refreshData.refreshToken);
+            options.headers.authorization = refreshData.accessToken;
+            const res = await fetch(url, options);
+            return await checkResponse(res);
+        } else {
+            return Promise.reject(err);
+        }
     }
-  };
+};
 
-  export const getUser = () => {
+export const getUser = () => {
     return (dispatch) => {
         return fetchWithRefresh(`${config.url}/auth/user`, {
             method: "GET",
@@ -85,7 +87,7 @@ function refreshToken() {
             }
         }).then((res) => {
             if (res.success) {
-                dispatch({type: SET_USER, user: res.user});
+                dispatch({ type: SET_USER, user: res.user });
             } else {
                 return Promise.reject("Ошибка данных с сервера");
             }

@@ -10,7 +10,6 @@ import NotFound from "../../pages/not-found/not-found";
 import Layout from "../layout/layout";
 import ProfileInfo from "../../pages/profile-info/profile-info";
 import Login from "../../pages/login/login";
-import FogotPassword from "../../pages/fogot-password/fogot-password";
 import Register from "../../pages/register/register";
 import ResetPassword from "../../pages/reset-password/reset-password";
 import ProfileEdit from "../../pages/profile/profile-edit/profile-edit";
@@ -20,6 +19,7 @@ import IngredientDitails from "../modal/ingredient-delails/ingredient-delails";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
 import { checkUserAuth } from "../../services/actions/user";
+import ForgotPassword from "../../pages/forgot-password/forgot-password";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ function App() {
           </Route>
           <Route path='login' element={<OnlyUnAuth component={<Login />} />} />
           <Route path='register' element={<OnlyUnAuth component={<Register />} />} />
-          <Route path='forgot-password' element={<OnlyUnAuth component={<FogotPassword />} />} />
+          <Route path='forgot-password' element={<OnlyUnAuth component={<ForgotPassword />} />} />
           <Route path='reset-password' element={<ResetPassword />} />
           <Route path='*' element={<NotFound />} />
         </Route>

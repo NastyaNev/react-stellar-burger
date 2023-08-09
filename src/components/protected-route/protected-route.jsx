@@ -28,7 +28,6 @@ function Protected ({ onlyUnAuth = false, component }) {
   if (!onlyUnAuth && !user) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
-
   return component;
 };
 

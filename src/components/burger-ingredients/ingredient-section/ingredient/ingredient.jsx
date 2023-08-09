@@ -52,8 +52,7 @@ function Ingredient(props) {
 }
 
 Ingredient.propTypes = {
-    item: ingredientPropType,
-    setModalState: PropTypes.func
+    item: ingredientPropType
 };
 
 export default Ingredient

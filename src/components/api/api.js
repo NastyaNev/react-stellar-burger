@@ -10,7 +10,7 @@ const config = {
 
 const checkResponse = (res) => {
     if (res.ok) {
-      return res.json();
+        return res.json();
     }
     return res.json().then((err) => Promise.reject(err));
 };
@@ -53,7 +53,7 @@ export function refreshToken() {
             token: localStorage.getItem("refreshToken")
         })
     })
-    .then(checkResponse);
+        .then(checkResponse);
 };
 
 const fetchWithRefresh = async (url, options) => {
@@ -101,6 +101,58 @@ export function logout() {
         method: 'POST',
         body: JSON.stringify({
             token: localStorage.getItem("refreshToken")
+        })
+    })
+        .then(checkResponse)
+}
+
+export function register(email, password, name) {
+    return fetch(`${config.url}/auth/register`, {
+        headers: config.headers,
+        method: 'POST',
+        body: JSON.stringify({
+            email: email,
+            password: password,
+            name: name
+        })
+    })
+        .then(checkResponse)
+}
+
+export function editUser(email, password, name) {
+    return fetch(`${config.url}/auth/user`, {
+        headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("accessToken")
+        },
+        method: 'PATCH',
+        body: JSON.stringify({
+            email: email,
+            password: password,
+            name: name
+        })
+    })
+        .then(checkResponse)
+}
+
+export function recoverPassword(email) {
+    return fetch(`${config.url}/password-reset`, {
+        headers: config.headers,
+        method: 'POST',
+        body: JSON.stringify({
+            email: email
+        })
+    })
+        .then(checkResponse)
+}
+
+export function setNewPass(password, token) {
+    return fetch(`${config.url}/password-reset/reset`, {
+        headers: config.headers,
+        method: 'POST',
+        body: JSON.stringify({
+            password: password,
+            token: token
         })
     })
         .then(checkResponse)

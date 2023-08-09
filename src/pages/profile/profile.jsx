@@ -2,6 +2,8 @@ import React from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import styles from './profile.module.css'
 import { logout } from '../../components/api/api';
+import { SET_USER } from '../../services/actions/user';
+import { useDispatch } from 'react-redux';
 
 function Profile() {
   const setActiveLinkStyle = ({ isActive }) => {
@@ -10,17 +12,21 @@ function Profile() {
   }
 
   const { pathname } = useLocation();
-  const navigale = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const signOut = () => {
     return logout().then(res => {
       if (res && res.success) {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
+
+        dispatch({ type: SET_USER, user: null });
+        navigate("/login");
       } else {
         return Promise.reject("Ошибка данных с сервера");
       }
-    }).then(navigale('/'))
+    })
       .catch(err => {
         console.log(err)
       })

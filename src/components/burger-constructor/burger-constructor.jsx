@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnswer } from '../../services/actions/constructor';
 import { totalPriceSelector } from '../../services/selectors/total-price-selector';
-import { Link } from 'react-router-dom';
 
 function BurgerConstructor(props) {
   const { className, setModalState } = props;

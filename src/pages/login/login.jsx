@@ -22,18 +22,6 @@ function Login() {
         dispatch(login(email, password));
     };
 
-    useEffect(() => {
-        function onEnter(e) {
-            if (e.code === "Enter") {
-                onSubmit();
-            }
-        }
-
-        document.addEventListener('keydown', onEnter);
-
-        return () => document.removeEventListener('keydown', onEnter);
-    }, [])
-
     return (
         <form className={['mt-20', styles.login].join(" ")} onSubmit={onSubmit}>
             <fieldset className={styles.login_form_container}>

@@ -1,15 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './ingredient-delails.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { DEL_INGRED_INFO } from '../../../services/actions/ingredient';
-import Modal from '../modal';
+import { useSelector, useDispatch } from 'react-redux'
+import { DEL_INGRED_INFO, GET_INGRED_INFO } from '../../../services/actions/ingredient';
+import { useLocation, useParams } from 'react-router-dom';
 
-function IngredientDitails() {
+function IngredientDitails() {   
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    const { state } = useLocation();
+    const ings = useSelector(state => state.ingredientsReducer.array)
     const ing = useSelector(state => state.ingredReducer.ing);
+
+    useEffect(() => {
+        if (ings) {
+            const ingredient = ings ? ings.find((item) => item._id === id) : null;
+            dispatch({ type: GET_INGRED_INFO, ingredient });
+        }
+    }, [ings])
+
+    useEffect(() => {
+        return () => {
+            dispatch({ type: DEL_INGRED_INFO });
+        }
+    }, [])
+
+    const setClass = () => {
+        return state === null ? `text text_type_main-large mt-10 ml-10 ${styles.new_title_modal}`
+            : `text text_type_main-large mt-10 ml-10 ${styles.title_modal}`
+    }
+
+    if (ing == null) {
+        return null
+    }
 
     return (
         <div>
-            <h3 className={['text text_type_main-large mt-10 ml-10', styles.title_modal].join(' ')}>Детали ингредиента</h3>
+            <h3 className={setClass()}>Детали ингредиента</h3>
             <div className={styles.contain}>
                 <img src={ing.image_large} alt={ing.name} />
                 <p className={['text text_type_main-medium mt-4', styles.name_ingredient].join(' ')}>{ing.name}</p>

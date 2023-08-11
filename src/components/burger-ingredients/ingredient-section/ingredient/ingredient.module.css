@@ -5,6 +5,7 @@
     cursor: pointer;
     color: #F2F2F3;
     position: relative;
+    text-decoration: none;
 }
 
 .ingredient_name {

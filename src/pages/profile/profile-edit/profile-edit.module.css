@@ -1,0 +1,10 @@
+.profile_edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.profile_edit_link {
+    text-decoration: none;
+}

@@ -5,19 +5,24 @@ import { Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { NavLink, useLocation } from 'react-router-dom'
 
 function AppHeader() {
-  return (
-    <header className={styles.header}>
+  const { pathname } = useLocation();
+
+   return (
+    <>
+      <header className={styles.header}>
         <div className={styles.two_links_container}>
-          <HeaderLink icon={<BurgerIcon type="primary" />} linkText="Конструктор" link="" />
-          <HeaderLink className='ml-2 text_color_inactive' icon={<ListIcon type="secondary" />} linkText="Лента заказов" link="" />
+          <HeaderLink icon={<BurgerIcon type={pathname === "/" ? "primary" : "secondary"} />} linkText="Конструктор" link="/" />
+          <HeaderLink className='ml-2' icon={<ListIcon type={pathname === "/orders" ? "primary" : "secondary"} />} linkText="Лента заказов" link="/orders" />
         </div>
-        <div className={styles.logo}>
+        <NavLink className={styles.logo} to="/" >
           <Logo />
-        </div>
-        <HeaderLink className='text_color_inactive' icon={<ProfileIcon type="secondary" />} linkText="Личный кабинет" link="" />
-    </header>
+        </NavLink>
+        <HeaderLink icon={<ProfileIcon type={pathname.startsWith("/profile") ? "primary" : "secondary"} />} linkText="Личный кабинет" link="/profile" />
+      </header>
+    </>
   )
 }
 

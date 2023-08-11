@@ -2,29 +2,21 @@ import React from 'react'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
-import IngredientDitails from '../../../modal/ingredient-delails/ingredient-delails'
-import { useDispatch, useSelector } from 'react-redux'
-import { useDrag } from "react-dnd";
-import { DEL_INGRED_INFO, GET_INGRED_INFO } from '../../../../services/actions/ingredient'
+import { useSelector } from 'react-redux'
+import { useDrag } from "react-dnd"
 import { ingredientPropType } from '../../../../utils/prop-types'
 import PropTypes from 'prop-types'
+import { Link, useLocation } from 'react-router-dom'
 
 function Ingredient(props) {
-    const { setModalState, item } = props;
-    const dispatch = useDispatch();
+    const { item } = props;
     const ingredient = item;
+    const location = useLocation();
 
     const [, dragRef] = useDrag({
         type: item.type,
         item: item
     });
-
-    const handleOpen = () => {
-        setModalState({isOpen: true, chooseModal: <IngredientDitails />, onClose: () => {
-            dispatch({ type: DEL_INGRED_INFO });
-        }});
-        dispatch({ type: GET_INGRED_INFO, ingredient });
-    };
 
     const countSelector = (state) => {
         if (item.type === 'bun') {
@@ -43,23 +35,24 @@ function Ingredient(props) {
     const counter = useSelector(countSelector);
 
     return (
-        <li className={styles.card} onClick={handleOpen} ref={dragRef} >
-            {counter > 0 &&
-                <Counter count={counter} size="default" extraClass="m-1" />
-            }
-            <img src={item.image_mobile} alt={item.name} />
-            <div className={["mt-2", styles.span_container].join(" ")}>
-                <span className="text text_type_digits-default mr-2">{item.price}</span>
-                <CurrencyIcon type="primary" />
-            </div>
-            <p className={['text text_type_main-small mt-2', styles.ingredient_name].join(" ")}>{item.name}</p>
+        <li>
+            <Link to={`/ingredients/${item._id}`} state={{ background: location }} className={styles.card} ref={dragRef}  >
+                {counter > 0 &&
+                    <Counter count={counter} size="default" extraClass="m-1" />
+                }
+                <img src={item.image_mobile} alt={item.name} />
+                <div className={["mt-2", styles.span_container].join(" ")}>
+                    <span className="text text_type_digits-default mr-2">{item.price}</span>
+                    <CurrencyIcon type="primary" />
+                </div>
+                <p className={['text text_type_main-small mt-2', styles.ingredient_name].join(" ")}>{item.name}</p>
+            </Link>
         </li>
     )
 }
 
 Ingredient.propTypes = {
-    item: ingredientPropType,
-    setModalState: PropTypes.func
+    item: ingredientPropType
 };
 
 export default Ingredient

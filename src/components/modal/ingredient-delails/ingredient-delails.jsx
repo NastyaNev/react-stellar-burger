@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react'
 import styles from './ingredient-delails.module.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { DEL_INGRED_INFO, GET_INGRED_INFO } from '../../../services/actions/ingredient';
 import { useLocation, useParams } from 'react-router-dom';
+import { delIngred, getIngred } from '../../../services/reducers/ingredientSlice';
 
 function IngredientDitails() {   
     const dispatch = useDispatch();
     const { id } = useParams();
     const { state } = useLocation();
-    const ings = useSelector(state => state.ingredientsReducer.array)
-    const ing = useSelector(state => state.ingredReducer.ing);
+    const ings = useSelector(state => state.ingredients.array)
+    const ing = useSelector(state => state.ingredient.ing);
 
     useEffect(() => {
         if (ings) {
             const ingredient = ings ? ings.find((item) => item._id === id) : null;
-            dispatch({ type: GET_INGRED_INFO, ingredient });
+            dispatch(getIngred(ingredient));
         }
     }, [ings])
 
     useEffect(() => {
         return () => {
-            dispatch({ type: DEL_INGRED_INFO });
+            dispatch(delIngred());
         }
     }, [])
 

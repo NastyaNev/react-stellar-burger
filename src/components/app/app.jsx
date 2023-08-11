@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./app.module.css";
 import { useDispatch } from "react-redux";
-import { getItems } from "../../services/actions/ingredients";
 import { Route, Routes } from "react-router";
 import Main from "../../pages/main/main";
 import Orders from "../../pages/orders/orders";
@@ -20,6 +19,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
 import { checkUserAuth } from "../../services/actions/user";
 import ForgotPassword from "../../pages/forgot-password/forgot-password";
+import { getItems } from "../../services/actions";
 
 function App() {
   const dispatch = useDispatch();

@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { SET_USER } from "../../services/actions/user";
 
 const config = {

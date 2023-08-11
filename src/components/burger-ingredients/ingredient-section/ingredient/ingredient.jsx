@@ -20,12 +20,12 @@ function Ingredient(props) {
 
     const countSelector = (state) => {
         if (item.type === 'bun') {
-            const bun = state.constructorReducer.bun;
+            const bun = state.constructorBurger.bun;
 
             return bun && bun._id === item._id ? 1 : 0;
         }
         else if (['sauce', 'main'].includes(item.type)) {
-            const elemsWithCounter = state.constructorReducer.mooved.filter((i) => i._id === ingredient._id);
+            const elemsWithCounter = state.constructorBurger.mooved.filter((i) => i._id === ingredient._id);
             return elemsWithCounter.length;
         }
 

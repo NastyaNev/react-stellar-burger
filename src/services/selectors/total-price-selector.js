@@ -1,6 +1,6 @@
 export const totalPriceSelector = (state) => {
-    const mooved = state.constructorReducer.mooved;
-    const bun = state.constructorReducer.bun;
+    const mooved = state.constructorBurger.mooved;
+    const bun = state.constructorBurger.bun;
     const prices = mooved.map((item) => item.price);
     const bunPrice = bun ? bun.price * 2 : 0;
 

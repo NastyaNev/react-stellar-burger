@@ -6,7 +6,9 @@ import { useSelector } from 'react-redux';
 
 function IngredientSection(props) {
   const { ingredName, type, customRef, setModalState } = props;
-  const array = useSelector((state) => state.ingredientsReducer.array);
+  const array = useSelector((state) => state.ingredients.array);
+
+  console.log('array', array)
 
   const filtered = array.filter(array => {
     return array.type === type;

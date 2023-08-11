@@ -4,24 +4,24 @@ import styles from './middle.module.css'
 import ItemContainer from './item-container/item-container'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDrop } from "react-dnd";
-import { GET_MOOVED_ITEMS } from '../../../services/actions/constructor'
 import { v4 as uuidv4 } from 'uuid';
-import { REORDER_INGREDS } from '../../../services/actions/constructor';
+import { getMoovedItems, sortIngreds } from '../../../services/reducers/constructorSlice';
 
 function Middle() {
-    const bun = useSelector((state) => state.constructorReducer.bun);
-    const mooved = useSelector((state) => state.constructorReducer.mooved);
+    const bun = useSelector((state) => state.constructorBurger.bun);
+    const mooved = useSelector((state) => state.constructorBurger.mooved);
     const dispatch = useDispatch();
 
     const [, dropTarget] = useDrop({
         accept: ['sauce', 'main', 'bun'],
         drop(ingredient) {
-            dispatch({ type: GET_MOOVED_ITEMS, ingredient: { ...ingredient, id: uuidv4() } });
+            dispatch(getMoovedItems(ingredient = { ...ingredient, id: uuidv4() }))
         }
     });
 
     const moveItems = useCallback((itemId, targetItemId) => {
-        dispatch({ type: REORDER_INGREDS, itemId, targetItemId })
+        dispatch(sortIngreds(itemId, targetItemId))
+        // , itemId, targetItemId })
     }, []);
 
     return (

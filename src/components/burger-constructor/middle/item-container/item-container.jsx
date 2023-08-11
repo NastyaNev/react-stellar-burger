@@ -2,17 +2,17 @@ import React, { useRef } from 'react'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './item-container.module.css'
 import { useDispatch } from 'react-redux';
-import { DELETE_CONST_ITEM } from '../../../../services/actions/constructor';
 import { useDrag, useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
 import { ingredientPropType } from '../../../../utils/prop-types';
+import { delConstItem } from '../../../../services/reducers/constructorSlice';
 
 function ItemContainer(props) {
   const { ingredient, index, moveItems, id } = props;
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch({ type: DELETE_CONST_ITEM, id: ingredient.id });
+    dispatch(delConstItem(ingredient));
   }
 
   const ref = useRef(null);

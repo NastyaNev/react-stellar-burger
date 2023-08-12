@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './login.module.css'
 import { useDispatch } from 'react-redux'
-import { login } from '../../services/actions/user'
+import { login } from '../../services/actions/actions'
 
 function Login() {
     const [email, setEmail] = useState("");

@@ -2,8 +2,8 @@ import React from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import styles from './profile.module.css'
 import { logout } from '../../components/api/api';
-import { SET_USER } from '../../services/actions/user';
 import { useDispatch } from 'react-redux';
+import { setVisitor } from '../../services/reducers/userSlice';
 
 function Profile() {
   const setActiveLinkStyle = ({ isActive }) => {
@@ -15,13 +15,13 @@ function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const signOut = () => {
+  const signOut = (user) => {
     return logout().then(res => {
       if (res && res.success) {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
 
-        dispatch({ type: SET_USER, user: null });
+        dispatch(setVisitor(user = null));
         navigate("/login");
       } else {
         return Promise.reject("Ошибка данных с сервера");

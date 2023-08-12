@@ -8,8 +8,6 @@ function IngredientSection(props) {
   const { ingredName, type, customRef, setModalState } = props;
   const array = useSelector((state) => state.ingredients.array);
 
-  console.log('array', array)
-
   const filtered = array.filter(array => {
     return array.type === type;
   })

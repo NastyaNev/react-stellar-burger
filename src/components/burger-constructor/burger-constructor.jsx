@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from './burger-constructor.module.css'
 import Middle from './middle/middle';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -7,7 +7,7 @@ import OrderDetails from '../modal/order-details/order-details';
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux';
 import { totalPriceSelector } from '../../services/selectors/total-price-selector';
-import { getAnswer } from '../../services/actions/constructor';
+import { getAnswer } from '../../services/actions/actions'
 
 function BurgerConstructor(props) {
   const { className, setModalState } = props;

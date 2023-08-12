@@ -4,13 +4,13 @@ import styles from './profile-info.module.css'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { editUser } from '../../components/api/api'
-import { SET_USER } from '../../services/actions/user'
+import { setVisitor } from '../../services/reducers/userSlice'
 
 function ProfileInfo() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userName = useSelector((state) => state.userReducer.user.name);
-  const userEmail = useSelector((state) => state.userReducer.user.email);
+  const userName = useSelector((state) => state.user.user.name);
+  const userEmail = useSelector((state) => state.user.user.email);
 
   const goToEdit = () => {
     navigate('/profile/edit');
@@ -35,7 +35,7 @@ function ProfileInfo() {
     return editUser(email, password, name).then(res => {
         if (res && res.success) {
             navigate('/profile');
-            dispatch({ type: SET_USER });
+            dispatch(setVisitor());
         } else {
             return Promise.reject("Ошибка данных с сервера");
         }

@@ -17,9 +17,8 @@ import Modal from "../modal/modal";
 import IngredientDitails from "../modal/ingredient-delails/ingredient-delails";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
-import { checkUserAuth } from "../../services/actions/user";
 import ForgotPassword from "../../pages/forgot-password/forgot-password";
-import { getItems } from "../../services/actions";
+import { checkUserAuth, getItems } from "../../services/actions/actions";
 
 function App() {
   const dispatch = useDispatch();

@@ -20,7 +20,8 @@ function Middle() {
     });
 
     const moveItems = useCallback((itemId, targetItemId) => {
-        dispatch(sortIngreds(itemId, targetItemId))
+        const index = {itemId, targetItemId}
+        dispatch(sortIngreds(index))
         // , itemId, targetItemId })
     }, []);
 
@@ -39,4 +40,4 @@ function Middle() {
     )
 }
 
-export default Middle
+export default Middle 

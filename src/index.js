@@ -4,13 +4,13 @@ import "./index.css";
 import App from "./components/app/app";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore, compose, configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from './services/reducers';
-import thunk from 'redux-thunk';
+import { configureStore } from "@reduxjs/toolkit";
 import { BrowserRouter } from "react-router-dom";
 import ingredReducer from './services/reducers/ingredientSlice';
 import ingredsReducer from './services/reducers/ingredientsSlice';
 import constReducer from './services/reducers/constructorSlice';
+import userReducer from './services/reducers/userSlice';
+import orderReducer from './services/reducers/orderSlice';
 
 // const composeEnhancers =
 //   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -26,8 +26,10 @@ export const store = configureStore({
     ingredient: ingredReducer,
     ingredients: ingredsReducer,
     constructorBurger: constReducer,
+    user: userReducer,
+    order: orderReducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })
 
 ReactDOM.render(

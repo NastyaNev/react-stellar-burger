@@ -1,4 +1,4 @@
-import { SET_USER } from "../../services/actions/user";
+import { setVisitor } from "../../services/reducers/userSlice";
 
 const config = {
     url: 'https://norma.nomoreparties.space/api',
@@ -76,7 +76,7 @@ const fetchWithRefresh = async (url, options) => {
     }
 };
 
-export const getUser = () => {
+export const getUser = (user) => {
     return (dispatch) => {
         return fetchWithRefresh(`${config.url}/auth/user`, {
             method: "GET",
@@ -86,7 +86,7 @@ export const getUser = () => {
             }
         }).then((res) => {
             if (res.success) {
-                dispatch({ type: SET_USER, user: res.user });
+                dispatch(setVisitor(user = res.user));
             } else {
                 return Promise.reject("Ошибка данных с сервера");
             }

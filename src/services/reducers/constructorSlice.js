@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
     bun: null,
     mooved: []
@@ -19,8 +20,8 @@ export const constructorSlice = createSlice({
         },
         sortIngreds: (state, action) => {
             const itemIds = state.mooved.map(i => i.id);
-            const itemIndex = itemIds.indexOf(action.itemId)
-            const targetItemIndex = itemIds.indexOf(action.targetItemId)
+            const itemIndex = itemIds.indexOf(action.payload.itemId);
+            const targetItemIndex = itemIds.indexOf(action.payload.targetItemId);
 
             const clonedItems = state.mooved;
             const removedItem = clonedItems.splice(itemIndex, 1)[0];

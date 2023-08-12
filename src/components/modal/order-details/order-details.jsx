@@ -4,7 +4,7 @@ import done from '../../../images/graphics.svg'
 import { useSelector } from 'react-redux';
 
 function OrderDetails() {
-    const answer = useSelector((state) => state.orderReducer.answer);
+    const answer = useSelector((state) => state.order.answer);
 
     const orderNum = answer.order.number;
 

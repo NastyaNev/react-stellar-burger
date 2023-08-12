@@ -1,19 +1,20 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
-import { SET_AUTH_CHECKED, checkUserAuth } from "../../services/actions/user";
 import PropTypes from 'prop-types';
+import { setAuthChecked } from "../../services/reducers/userSlice";
+import { checkUserAuth } from "../../services/actions/actions";
 
 function Protected ({ onlyUnAuth = false, component }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({type: SET_AUTH_CHECKED, isAuthChecked: false});
+    dispatch(setAuthChecked(isAuthChecked === false));
     dispatch(checkUserAuth());
   }, [dispatch]);
 
-  const isAuthChecked = useSelector((store) => store.userReducer.isAuthChecked);
-  const user = useSelector((store) => store.userReducer.user);
+  const isAuthChecked = useSelector((store) => store.user.isAuthChecked);
+  const user = useSelector((store) => store.user.user);
   const location = useLocation();
 
   if (!isAuthChecked) {

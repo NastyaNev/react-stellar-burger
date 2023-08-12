@@ -3,13 +3,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile-edit.module.css'
 import { useDispatch } from 'react-redux'
-import { SET_USER } from '../../../services/actions/user'
+import { setVisitor } from '../../../services/reducers/userSlice'
 
 function ProfileEdit() {
     const dispatch = useDispatch();
 
     const cancelEdit = () => {
-        dispatch({ type: SET_USER });
+        dispatch(setVisitor());
     }
 
     return (

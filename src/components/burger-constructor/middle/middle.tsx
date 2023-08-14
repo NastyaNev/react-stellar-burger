@@ -6,23 +6,28 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from 'uuid';
 import { getMoovedItems, sortIngreds } from '../../../services/reducers/constructorSlice';
+import { TIngredient, TIngredientConstructor } from '../../../types/types';
+
+type TDragItem = {
+    ingredient: TIngredientConstructor,
+    id: string,
+}
 
 function Middle() {
-    const bun = useSelector((state) => state.constructorBurger.bun);
-    const mooved = useSelector((state) => state.constructorBurger.mooved);
+    const bun: TIngredient | unknown = useSelector<any>((state) => state.constructorBurger.bun);
+    const mooved: TIngredient | unknown = useSelector<any>((state) => state.constructorBurger.mooved);
     const dispatch = useDispatch();
 
-    const [, dropTarget] = useDrop({
+    const [, dropTarget] = useDrop<TDragItem, unknown, unknown>({
         accept: ['sauce', 'main', 'bun'],
         drop(ingredient) {
             dispatch(getMoovedItems(ingredient = { ...ingredient, id: uuidv4() }))
         }
     });
 
-    const moveItems = useCallback((itemId, targetItemId) => {
-        const index = {itemId, targetItemId}
+    const moveItems = useCallback((itemId: string, targetItemId: string) => {
+        const index = { itemId, targetItemId };
         dispatch(sortIngreds(index))
-        // , itemId, targetItemId })
     }, []);
 
     return (
@@ -30,7 +35,7 @@ function Middle() {
             <Bun found={bun} className='ml-8' part="top" note="(верх)" />
             <div>
                 <ul className={[styles.middle, 'custom-scroll'].join(" ")}  >
-                    {mooved.map((item, index) => (
+                    {mooved.map((item: TIngredientConstructor, index: number) => (
                         <ItemContainer key={item.id} id={item.id} ingredient={item} index={index} moveItems={moveItems} />
                     ))}
                 </ul>

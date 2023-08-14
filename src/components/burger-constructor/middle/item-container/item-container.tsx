@@ -6,8 +6,25 @@ import { useDrag, useDrop } from 'react-dnd';
 import PropTypes from 'prop-types';
 import { ingredientPropType } from '../../../../utils/prop-types';
 import { delConstItem } from '../../../../services/reducers/constructorSlice';
+import { TIngredientConstructor } from '../../../../types/types';
 
-function ItemContainer(props) {
+type TItemContainerProps = {
+  ingredient: TIngredientConstructor,
+  index: number,
+  moveItems: (itemId: string, targetItemId: string) => void,
+  id: string,
+}
+
+type TDragItem = {
+  index: number,
+  id: string,
+}
+
+type TCollectedProps = {
+  isDragging: boolean,
+}
+
+function ItemContainer(props: TItemContainerProps) {
   const { ingredient, index, moveItems, id } = props;
   const dispatch = useDispatch();
 
@@ -15,9 +32,9 @@ function ItemContainer(props) {
     dispatch(delConstItem(ingredient));
   }
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLLIElement>(null);
 
-  const [, drop] = useDrop({
+  const [, drop] = useDrop<TDragItem, unknown, unknown>({
     accept: "item",
     hover: (item, monitor) => {
       if (!ref.current) {
@@ -28,11 +45,11 @@ function ItemContainer(props) {
       if (dragIndex === hoverIndex) {
         return;
       }
-      const hoverBoundingRect = ref.current?.getBoundingClientRect();
+      const hoverBoundingRect: DOMRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClientY = clientOffset !== null ? clientOffset.y - hoverBoundingRect.top : 0;
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return;
       }
@@ -44,7 +61,7 @@ function ItemContainer(props) {
     }
   });
 
-  const [{ isDragging }, drag, preview] = useDrag({
+  const [{ isDragging }, drag, preview] = useDrag<TDragItem, unknown, TCollectedProps>({
     type: "item",
     item: () => {
       return { id, index };

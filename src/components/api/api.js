@@ -16,7 +16,7 @@ const checkResponse = (res) => {
 
 export function getArray() {
     return fetch(`${config.url}/ingredients`, {
-        heagers: config.headers
+        headers: config.headers
     })
         .then(checkResponse);
 }

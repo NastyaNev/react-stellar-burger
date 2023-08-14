@@ -1,9 +1,20 @@
 import React from 'react'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types'
 import styles from './bun.module.css'
 
-function Bun(props) {
+export type TBunProps = {
+    className: string,
+    part: 'top' | 'bottom' | undefined,
+    note: string,
+    found: {
+        name: string,
+        price: number,
+        image_mobile: string,
+        id: string,
+    },
+};
+
+function Bun(props: TBunProps) {
     const { className, part, note, found } = props;
 
     return (
@@ -16,18 +27,10 @@ function Bun(props) {
                     price={found.price}
                     thumbnail={found.image_mobile}
                     key={found.id}
-                    id={found.id}
                 />
             }
         </li>
     )
 }
-
-Bun.propTypes = {
-    className: PropTypes.string,
-    part: PropTypes.string,
-    note: PropTypes.string,
-    found: PropTypes.object
-};
 
 export default Bun

@@ -13,3 +13,10 @@ export type TIngredient = {
 };
 
 export type TIngredientConstructor = TIngredient & {id: string};
+
+export type TSetModalState = 
+    React.Dispatch<React.SetStateAction<{
+        isOpen: boolean;
+        chooseModal: null | JSX.Element;
+        onClose: (() => void) | null
+    }>>

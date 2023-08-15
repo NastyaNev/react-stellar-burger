@@ -4,27 +4,32 @@ import Middle from './middle/middle';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderDetails from '../modal/order-details/order-details';
-import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux';
 import { totalPriceSelector } from '../../services/selectors/total-price-selector';
 import { getAnswer } from '../../services/actions/actions'
+import { TIngredientConstructor, TSetModalState } from '../../types/types';
 
-function BurgerConstructor(props) {
+type TBurgerConstructorProps = {
+  className: string,
+  setModalState: TSetModalState,
+}
+
+function BurgerConstructor(props: TBurgerConstructorProps) {
   const { className, setModalState } = props;
   const dispatch = useDispatch();
-  const mooved = useSelector((state) => state.constructorBurger.mooved);
-  const bun = useSelector((state) => state.constructorBurger.bun);
+  const mooved = useSelector((state: any) => state.constructorBurger.mooved);
+  const bun = useSelector((state: any) => state.constructorBurger.bun);
 
-  let ingredients = mooved.map((item) => item._id);
+  let ingredients: TIngredientConstructor[] = mooved.map((item: TIngredientConstructor) => item._id);
   if (bun) {
     ingredients = [bun._id, ...ingredients, bun._id]
   }
 
   const handleOpen = () => {
     dispatch(getAnswer(ingredients)).then(() => {
-      setModalState({isOpen: true, chooseModal: <OrderDetails />, onClose: null})
+      setModalState({ isOpen: true, chooseModal: <OrderDetails />, onClose: null })
     })
-      .catch(err => {
+      .catch((err: any) => {
         console.log(err)
       });
   };
@@ -46,10 +51,5 @@ function BurgerConstructor(props) {
     </li>
   )
 }
-
-BurgerConstructor.propTypes = {
-  className: PropTypes.string,
-  setModalState: PropTypes.func
-};
 
 export default BurgerConstructor

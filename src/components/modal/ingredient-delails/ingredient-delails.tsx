@@ -3,17 +3,18 @@ import styles from './ingredient-delails.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation, useParams } from 'react-router-dom';
 import { delIngred, getIngred } from '../../../services/reducers/ingredientSlice';
+import { TIngredient } from '../../../types/types';
 
 function IngredientDitails() {   
     const dispatch = useDispatch();
     const { id } = useParams();
     const { state } = useLocation();
-    const ings = useSelector(state => state.ingredients.array)
-    const ing = useSelector(state => state.ingredient.ing);
+    const ings = useSelector((state: any) => state.ingredients.array)
+    const ing = useSelector((state: any) => state.ingredient.ing);
 
     useEffect(() => {
         if (ings) {
-            const ingredient = ings ? ings.find((item) => item._id === id) : null;
+            const ingredient = ings ? ings.find((item: TIngredient) => item._id === id) : null;
             dispatch(getIngred(ingredient));
         }
     }, [ings])

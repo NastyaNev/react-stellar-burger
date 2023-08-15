@@ -4,11 +4,14 @@ import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
 import { useSelector } from 'react-redux'
 import { useDrag } from "react-dnd"
-import { ingredientPropType } from '../../../../utils/prop-types'
-import PropTypes from 'prop-types'
 import { Link, useLocation } from 'react-router-dom'
+import { TIngredient } from '../../../../types/types'
 
-function Ingredient(props) {
+type TIngredientProps = {
+    item: TIngredient,
+};
+
+function Ingredient(props: TIngredientProps) {
     const { item } = props;
     const ingredient = item;
     const location = useLocation();
@@ -18,14 +21,14 @@ function Ingredient(props) {
         item: item
     });
 
-    const countSelector = (state) => {
+    const countSelector = (state: any) => {
         if (item.type === 'bun') {
             const bun = state.constructorBurger.bun;
 
             return bun && bun._id === item._id ? 1 : 0;
         }
         else if (['sauce', 'main'].includes(item.type)) {
-            const elemsWithCounter = state.constructorBurger.mooved.filter((i) => i._id === ingredient._id);
+            const elemsWithCounter = state.constructorBurger.mooved.filter((i: TIngredient) => i._id === ingredient._id);
             return elemsWithCounter.length;
         }
 
@@ -50,9 +53,5 @@ function Ingredient(props) {
         </li>
     )
 }
-
-Ingredient.propTypes = {
-    item: ingredientPropType
-};
 
 export default Ingredient

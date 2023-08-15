@@ -3,9 +3,10 @@ import { getIngreds, getIngredsFailed, getIngredsSuccess } from "../reducers/ing
 import { getOrderNum, getOrderNumFailed, getOrderNumSuccess } from "../reducers/orderSlice";
 import { setAuthChecked, setVisitor } from "../reducers/userSlice";
 import { setOrder } from '../../components/api/api'
+import { TIngredientConstructor } from "../../types/types";
 
 export function getItems() {
-    return function (dispatch) {
+    return function (dispatch: any) {
         dispatch(getIngreds());
         return getArray().then(res => {
             if (res && res.success) {
@@ -20,8 +21,8 @@ export function getItems() {
     };
 }
 
-export function login(email, password, user, isAuthChecked) {
-    return function (dispatch) {
+export function login(email: string, password: string, user: any, isAuthChecked: boolean) {
+    return function (dispatch: any) {
         return setUser(email, password).then(res => {
             if (res && res.success) {
                 localStorage.setItem("accessToken", res.accessToken);
@@ -40,11 +41,11 @@ export function login(email, password, user, isAuthChecked) {
     };
 }
 
-export const checkUserAuth = (user, isAuthChecked) => {
-    return (dispatch) => {
+export const checkUserAuth: any = (user: any, isAuthChecked: any) => {
+    return (dispatch:  any) => {
         if (localStorage.getItem("accessToken")) {
             dispatch(getUser())
-                .catch((error) => {
+                .catch((error: any) => {
                     localStorage.removeItem("accessToken");
                     localStorage.removeItem("refreshToken");
                     dispatch(setVisitor(user = null));
@@ -57,8 +58,14 @@ export const checkUserAuth = (user, isAuthChecked) => {
     };
 };
 
-export function getAnswer(ingredients, answer) {
-    return function (dispatch) {
+export function getAnswer(ingredients: TIngredientConstructor[], answer?: {
+    name: string,
+    order: {
+        number: number
+    },
+    success: boolean
+  } ): any {
+    return (dispatch: any) => {
         dispatch(getOrderNum());
         return setOrder(ingredients).then(res => {
             if (res && res.success) {

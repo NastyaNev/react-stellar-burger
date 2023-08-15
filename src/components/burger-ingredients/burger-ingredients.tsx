@@ -1,17 +1,21 @@
 import React, { useState, useRef } from 'react'
 import styles from './burger-ingredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import IngredientSection from './ingredient-section/ingredient-section';
-import PropTypes from 'prop-types'
+import IngredientSection from './ingredient-section/indredient-section'
 
-function BurgerIngredients(props) {
-    const { title, className, setModalState } = props;
+type TBurgerIngredientsProps = {
+    title: string,
+    className: string,
+}
+
+function BurgerIngredients(props: TBurgerIngredientsProps) {
+    const { title, className } = props;
     const [current, setCurrent] = useState('one');
 
-    const containerRef = useRef(null);
-    const bunRef = useRef(null);
-    const sauceRef = useRef(null);
-    const mainRef = useRef(null);
+    const containerRef = useRef<HTMLUListElement>(null);
+    const bunRef = useRef<HTMLLIElement>(null);
+    const sauceRef = useRef<HTMLLIElement>(null);
+    const mainRef = useRef<HTMLLIElement>(null);
 
     const handleScroll = () => {
         const sections = [
@@ -32,7 +36,7 @@ function BurgerIngredients(props) {
         let activeSectionId = 'one';
 
         for (const section of sections) {
-            if (section.element.offsetTop - containerRef.current.scrollTop < 40) {
+            if (section.element!.offsetTop - containerRef.current!.scrollTop < 40) {
                 activeSectionId = section.id
             }
         }
@@ -43,30 +47,24 @@ function BurgerIngredients(props) {
     return (
         <li className={['mt-10', styles.burger_ingredients, className].join(" ")}>
             <h2 className='text text_type_main-large'>{title}</h2>
-            <div className={["mt-5 mb-10", styles.tabs, className].join(" ")}  >
-                <Tab value="one" active={current === 'one'} >
+            <div className={["mt-5 mb-10", styles.tabs, className].join(" ")} >
+                <Tab value="one" active={current === 'one'} onClick={setCurrent} >
                     Булки
                 </Tab>
-                <Tab value="two" active={current === 'two'} >
+                <Tab value="two" active={current === 'two'} onClick={setCurrent} >
                     Соусы
                 </Tab>
-                <Tab value="three" active={current === 'three'} >
+                <Tab value="three" active={current === 'three'} onClick={setCurrent} >
                     Начинки
                 </Tab>
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")} onScroll={handleScroll} ref={containerRef} >
-                <IngredientSection ingredName='Булки' type='bun' customRef={bunRef} setModalState={setModalState} />
-                <IngredientSection ingredName='Соусы' type='sauce' customRef={sauceRef} setModalState={setModalState} />
-                <IngredientSection ingredName='Начинки' type='main' data-section id="section3" customRef={mainRef} setModalState={setModalState} />
+                <IngredientSection ingredName='Булки' type='bun' customRef={bunRef} />
+                <IngredientSection ingredName='Соусы' type='sauce' customRef={sauceRef} />
+                <IngredientSection ingredName='Начинки' type='main' customRef={mainRef} />
             </ul>
         </li>
     )
 }
-
-BurgerIngredients.propTypes = {
-    title: PropTypes.string,
-    className: PropTypes.string,
-    setModalState: PropTypes.func
-};
 
 export default BurgerIngredients

@@ -6,8 +6,12 @@ import ModalOverlay from './overlay/overlay'
 import PropTypes from 'prop-types'
 
 const modalRoot = document.getElementById('react_modal');
+type TModalViewPropos = {
+    onClose: () => void,
+    children: JSX.Element
+}
 
-function ModalView(props) {
+function ModalView(props: TModalViewPropos) {
     const { onClose, children } = props;
 
     const handleClose = () => {
@@ -15,7 +19,7 @@ function ModalView(props) {
     };
 
     useEffect(() => {
-        function onEsc(e) {
+        function onEsc(e: KeyboardEvent): void {
             if (e.code === "Escape") {
                 handleClose()
             }
@@ -29,18 +33,13 @@ function ModalView(props) {
     return ReactDOM.createPortal(
         <>
             <div className={styles.modal} >
-                <button className={['mt-15 mr-10', styles.button_close].join(' ')}><CloseIcon alt='закрыть' onClick={handleClose} /></button>
+                <button className={['mt-15 mr-10', styles.button_close].join(' ')}><CloseIcon onClick={handleClose} type='primary' /></button>
                 {children}
             </div>
             <ModalOverlay onClick={handleClose} />
         </>
-        , modalRoot
+        , modalRoot!
     )
 }
-
-ModalView.propTypes = {
-    onClose: PropTypes.func,
-    children: PropTypes.object
-};
 
 export default ModalView

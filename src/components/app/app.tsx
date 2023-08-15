@@ -24,7 +24,11 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const background = location.state && location.state.background;
-  const [modalState, setModalState] = useState({ isOpen: false, chooseModal: null, onClose: null });
+  const [modalState, setModalState] = useState<{
+    isOpen: boolean;
+    chooseModal: null | JSX.Element;
+    onClose: (() => void) | null
+  }>({ isOpen: false, chooseModal: null, onClose: null });
   const navigate = useNavigate();
 
   useEffect(() => {

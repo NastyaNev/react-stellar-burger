@@ -1,8 +1,14 @@
 import React from 'react'
 import DndContainer from '../../components/dnd-container/dnd-container'
 import { Outlet } from 'react-router-dom'
+import { TSetModalState } from '../../types/types'
 
-function Main({setModalState}) {
+type TMainProps = {
+  setModalState: TSetModalState
+}
+
+function Main(props: TMainProps) {
+  const { setModalState } = props;
   return (
     <>
       <main>

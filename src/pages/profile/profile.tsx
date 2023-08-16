@@ -1,12 +1,12 @@
 import React from 'react'
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, To, useLocation, useNavigate } from 'react-router-dom'
 import styles from './profile.module.css'
 import { logout } from '../../components/api/api';
 import { useDispatch } from 'react-redux';
 import { setVisitor } from '../../services/reducers/userSlice';
 
 function Profile() {
-  const setActiveLinkStyle = ({ isActive }) => {
+  const setActiveLinkStyle = ({isActive}: {isActive: Boolean;}): string => {
     return isActive ? `mt-20 text text_type_main-medium ${styles.profile_link} text_color_primary`
       : `mt-20 text text_type_main-medium ${styles.profile_link} text_color_inactive`;
   }
@@ -29,14 +29,14 @@ function Profile() {
     })
       .catch(err => {
         console.log(err)
-      })
+      }) 
   }
 
   return (
     <div className={['ml-9 mt-30', styles.profile].join(" ")}>
       <div className={styles.profile_menu_section}>
         <div className={styles.profile_menu}>
-          <NavLink to={pathname === '/profile/edit' || '/profile'} className={setActiveLinkStyle} end>Профиль</NavLink>
+          <NavLink to={pathname === '/profile/edit' || '/profile' as To} className={setActiveLinkStyle} end>Профиль</NavLink>
           <NavLink to='/profile/orders' className={setActiveLinkStyle}>История заказов</NavLink>
           <button onClick={signOut} className={['mt-20 text text_type_main-medium text_color_inactive', styles.profile_button].join(" ")}>Выход</button>
         </div>

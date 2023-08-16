@@ -3,7 +3,6 @@ import styles from './modal.module.css'
 import ReactDOM from 'react-dom'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import ModalOverlay from './overlay/overlay'
-import PropTypes from 'prop-types'
 
 const modalRoot = document.getElementById('react_modal');
 type TModalViewPropos = {

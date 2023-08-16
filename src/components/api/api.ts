@@ -1,4 +1,5 @@
 import { setVisitor } from "../../services/reducers/userSlice";
+import { TIngredient } from "../../types/types";
 
 const config = {
     url: 'https://norma.nomoreparties.space/api',
@@ -7,11 +8,11 @@ const config = {
     }
 }
 
-const checkResponse = (res) => {
+const checkResponse = (res: Response) => {
     if (res.ok) {
         return res.json();
     }
-    return res.json().then((err) => Promise.reject(err));
+    return res.json().then((err: Error) => Promise.reject(err));
 };
 
 export function getArray() {
@@ -21,7 +22,7 @@ export function getArray() {
         .then(checkResponse);
 }
 
-export function setOrder(ingredients) {
+export function setOrder(ingredients: TIngredient[]) {
     return fetch(`${config.url}/orders`, {
         headers: config.headers,
         method: 'POST',
@@ -32,7 +33,7 @@ export function setOrder(ingredients) {
         .then(checkResponse)
 }
 
-export function setUser(email, password) {
+export function setUser(email: string, password: string) {
     return fetch(`${config.url}/auth/login`, {
         headers: config.headers,
         method: 'POST',
@@ -55,12 +56,13 @@ export function refreshToken() {
         .then(checkResponse);
 };
 
-const fetchWithRefresh = async (url, options) => {
+const fetchWithRefresh = async (url: string, options: any) => {
     try {
         const res = await fetch(url, options);
         return await checkResponse(res);
     } catch (err) {
-        if (err.message === "jwt expired") {
+        let e = (err as Error);
+        if (e.message === "jwt expired") {
             const refreshData = await refreshToken();
             if (!refreshData.success) {
                 return Promise.reject(refreshData);
@@ -76,8 +78,8 @@ const fetchWithRefresh = async (url, options) => {
     }
 };
 
-export const getUser = (user) => {
-    return (dispatch) => {
+export const getUser = (user: { email: string, name: string } | null) => {
+    return (dispatch: any) => {
         return fetchWithRefresh(`${config.url}/auth/user`, {
             method: "GET",
             headers: {
@@ -105,7 +107,7 @@ export function logout() {
         .then(checkResponse)
 }
 
-export function register(email, password, name) {
+export function register(email: string, password: string, name: string) {
     return fetch(`${config.url}/auth/register`, {
         headers: config.headers,
         method: 'POST',
@@ -118,12 +120,16 @@ export function register(email, password, name) {
         .then(checkResponse)
 }
 
-export function editUser(email, password, name) {
+export function editUser(email: string, password: string, name: string) {
     return fetch(`${config.url}/auth/user`, {
-        headers: {
-            "Content-Type": "application/json",
-            authorization: localStorage.getItem("accessToken")
-        },
+        headers:
+            {
+                "Content-Type": "application/json",
+                authorization: localStorage.getItem("accessToken")
+            } as {
+                'Content-Type': string;
+                authorization?: string | undefined,
+            },
         method: 'PATCH',
         body: JSON.stringify({
             email: email,
@@ -134,7 +140,7 @@ export function editUser(email, password, name) {
         .then(checkResponse)
 }
 
-export function recoverPassword(email) {
+export function recoverPassword(email: string) {
     return fetch(`${config.url}/password-reset`, {
         headers: config.headers,
         method: 'POST',
@@ -145,7 +151,7 @@ export function recoverPassword(email) {
         .then(checkResponse)
 }
 
-export function setNewPass(password, token) {
+export function setNewPass(password: string, token: string) {
     return fetch(`${config.url}/password-reset/reset`, {
         headers: config.headers,
         method: 'POST',

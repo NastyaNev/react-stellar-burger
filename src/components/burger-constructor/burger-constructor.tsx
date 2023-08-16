@@ -29,7 +29,7 @@ function BurgerConstructor(props: TBurgerConstructorProps) {
     dispatch(getAnswer(ingredients)).then(() => {
       setModalState({ isOpen: true, chooseModal: <OrderDetails />, onClose: null })
     })
-      .catch((err: any) => {
+      .catch((err: Error) => {
         console.log(err)
       });
   };

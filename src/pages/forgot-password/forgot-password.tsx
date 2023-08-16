@@ -8,11 +8,11 @@ function ForgotPassword() {
     const [email, setEmail] = useState("");
     const navigate = useNavigate();
 
-    const onChangeEmail = (evt) => {
+    const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setEmail(evt.target.value);
     };
 
-    const resetPass = (e) => {
+    const resetPass = (e: React.SyntheticEvent) => {
         e.preventDefault();
         return recoverPassword(email).then(res => {
             if (res && res.success) {
@@ -30,7 +30,7 @@ function ForgotPassword() {
         <form className={['mt-20', styles.forgot_password].join(" ")} onSubmit={resetPass}>
             <fieldset className={styles.forgot_password_form_container}>
                 <h2 className={'text text_type_main-medium'}>Восстановление пароля</h2>
-                <EmailInput placeholder='Укажите e-mail' type='email' value={email} onChange={onChangeEmail} />
+                <EmailInput placeholder='Укажите e-mail' name='email' value={email} onChange={onChangeEmail} />
                 <Button htmlType="submit" disabled={email === ''}>Восстановить</Button>
             </fieldset>
             <div className={['mt-20', styles.forgot_password_paragraph_container].join(" ")}>

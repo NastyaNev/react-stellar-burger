@@ -11,18 +11,18 @@ function ResetPassword() {
     const [token, setToken] = useState("");
     const navigate = useNavigate();
 
-    const onChangePassword = (evt) => {
+    const onChangePassword: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setPassword(evt.target.value);
     };
-    const onChangeToken = (evt) => {
+    const onChangeToken: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setToken(evt.target.value);
     };
 
-    const refreshPass = (e) => {
+    const refreshPass = (e: React.SyntheticEvent) => {
         e.preventDefault();
         return setNewPass(password, token).then(res => {
             if (res && res.success) {
-                navigate(-2, { replace: true })
+                navigate(-2)
             } else {
                 return Promise.reject("Ошибка данных с сервера");
             }
@@ -31,8 +31,6 @@ function ResetPassword() {
                 console.log(err)
             })
     }
-
-    console.log('reset', state)
 
     return (
         state === null ? <NotFound /> :

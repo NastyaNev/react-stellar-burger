@@ -10,14 +10,14 @@ function Login() {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
 
-    const onChangeEmail = (evt) => {
+    const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setEmail(evt.target.value);
     };
-    const onChangePassword = (evt) => {
+    const onChangePassword: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setPassword(evt.target.value);
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
         dispatch(login(email, password));
     };
@@ -26,7 +26,7 @@ function Login() {
         <form className={['mt-20', styles.login].join(" ")} onSubmit={onSubmit}>
             <fieldset className={styles.login_form_container}>
                 <h2 className={'text text_type_main-medium'}>Вход</h2>
-                <EmailInput type='email' value={email} onChange={onChangeEmail} />
+                <EmailInput name='email' value={email} onChange={onChangeEmail} />
                 <PasswordInput value={password} onChange={onChangePassword} />
                 <Button htmlType="submit" type="primary" size="large">Войти</Button>
             </fieldset>

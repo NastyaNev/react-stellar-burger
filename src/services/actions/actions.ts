@@ -21,7 +21,7 @@ export function getItems() {
     };
 }
 
-export function login(email: string, password: string, user: any, isAuthChecked: boolean) {
+export function login(email: string, password: string, user?: { email: string, name: string } | null, isAuthChecked?: boolean) {
     return function (dispatch: any) {
         return setUser(email, password).then(res => {
             if (res && res.success) {
@@ -41,11 +41,11 @@ export function login(email: string, password: string, user: any, isAuthChecked:
     };
 }
 
-export const checkUserAuth: any = (user: any, isAuthChecked: any) => {
+export const checkUserAuth: any = (user: { email: string, name: string } | null, isAuthChecked: boolean) => {
     return (dispatch:  any) => {
         if (localStorage.getItem("accessToken")) {
-            dispatch(getUser())
-                .catch((error: any) => {
+            dispatch(getUser(user))
+                .catch((error: Error) => {
                     localStorage.removeItem("accessToken");
                     localStorage.removeItem("refreshToken");
                     dispatch(setVisitor(user = null));

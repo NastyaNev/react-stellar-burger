@@ -9,8 +9,8 @@ import { setVisitor } from '../../services/reducers/userSlice'
 function ProfileInfo() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userName = useSelector((state) => state.user.user.name);
-  const userEmail = useSelector((state) => state.user.user.email);
+  const userName = useSelector((state: any) => state.user.user.name);
+  const userEmail = useSelector((state: any) => state.user.user.email);
 
   const goToEdit = () => {
     navigate('/profile/edit');
@@ -20,17 +20,20 @@ function ProfileInfo() {
   const [email, setEmail] = useState(userEmail);
   const [password, setPassword] = useState("");
 
-  const onChangeName = (evt) => {
+  const onChangeName: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     setName(evt.target.value);
+    goToEdit();
   };
-  const onChangeEmail = (evt) => {
+  const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     setEmail(evt.target.value);
+    goToEdit();
   };
-  const onChangePassword = (evt) => {
+  const onChangePassword: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     setPassword(evt.target.value);
+    goToEdit();
   };
 
-  const updateInfo = (e) => {
+  const updateInfo = (e: React.SyntheticEvent) => {
     e.preventDefault();
     return editUser(email, password, name).then(res => {
         if (res && res.success) {
@@ -48,9 +51,9 @@ function ProfileInfo() {
   return (
     <form onSubmit={updateInfo}>
       <fieldset className={styles.profile_info}>
-        <Input type='text' placeholder={'Имя'} value={name} icon='EditIcon' onChange={onChangeName} onIconClick={goToEdit} onClick={goToEdit} />
-        <EmailInput type='email' placeholder={'Логин'} value={email} icon='EditIcon' onChange={onChangeEmail} onIconClick={goToEdit} onClick={goToEdit} />
-        <PasswordInput placeholder={'Пароль'} value={password} onChange={onChangePassword} onClick={goToEdit} />
+        <Input type='text' placeholder={'Имя'} value={name} icon='EditIcon' onChange={onChangeName} />
+        <EmailInput name='email' placeholder={'Логин'} value={email} isIcon={true} onChange={onChangeEmail} />
+        <PasswordInput placeholder={'Пароль'} value={password} onChange={onChangePassword} />
       </fieldset>
       <Outlet />
     </form>

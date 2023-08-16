@@ -10,21 +10,21 @@ function Register() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const onChangeName = (evt) => {
+    const onChangeName: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setName(evt.target.value);
     };
-    const onChangeEmail = (evt) => {
+    const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setEmail(evt.target.value);
     };
-    const onChangePassword = (evt) => {
+    const onChangePassword: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
         setPassword(evt.target.value);
     };
 
-    const registerUser = (e) => {
+    const registerUser = (e: React.SyntheticEvent) => {
         e.preventDefault();
         return register(email, password, name).then(res => {
             if (res && res.success) {
-                navigate(-1, {replace: true});
+                navigate(-1);
             } else {
                 return Promise.reject("Ошибка данных с сервера");
             }
@@ -39,7 +39,7 @@ function Register() {
             <fieldset className={styles.register_form_container}>
                 <h2 className={'text text_type_main-medium'}>Регистрация</h2>
                 <Input placeholder={'Имя'} type='text' value={name} onChange={onChangeName} />
-                <EmailInput type='email' value={email} onChange={onChangeEmail} />
+                <EmailInput name='email' value={email} onChange={onChangeEmail} />
                 <PasswordInput placeholder={'Пароль'} value={password} onChange={onChangePassword} />
                 <Button htmlType="submit" >Зарегистрироваться</Button>
             </fieldset>

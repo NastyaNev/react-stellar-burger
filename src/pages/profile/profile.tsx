@@ -15,7 +15,7 @@ function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const signOut = (user) => {
+  const signOut = (user: {name: string, email: string} | null) => {
     return logout().then(res => {
       if (res && res.success) {
         localStorage.removeItem("accessToken");
@@ -38,7 +38,7 @@ function Profile() {
         <div className={styles.profile_menu}>
           <NavLink to={pathname === '/profile/edit' || '/profile' as To} className={setActiveLinkStyle} end>Профиль</NavLink>
           <NavLink to='/profile/orders' className={setActiveLinkStyle}>История заказов</NavLink>
-          <button onClick={signOut} className={['mt-20 text text_type_main-medium text_color_inactive', styles.profile_button].join(" ")}>Выход</button>
+          <button onClick={() => signOut(null)} className={['mt-20 text text_type_main-medium text_color_inactive', styles.profile_button].join(" ")}>Выход</button>
         </div>
         <p className={['mt-20 text text_type_main-small text_color_inactive', styles.profile_paragraph].join(" ")}>В этом разделе  вы можете изменить свои персональные данные</p>
       </div>

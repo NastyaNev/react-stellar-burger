@@ -8,13 +8,13 @@ import { setVisitor } from '../../../services/reducers/userSlice'
 function ProfileEdit() {
     const dispatch = useDispatch();
 
-    const cancelEdit = () => {
-        dispatch(setVisitor());
+    const cancelEdit = (user: {name: string, email: string} | null) => {
+        dispatch(setVisitor(user = null));
     }
 
     return (
         <div className={['mt-6', styles.profile_edit].join(' ')}>
-            <Link to="/profile" onClick={cancelEdit} className={['text text_type_main-small text_color_accent mr-5', styles.profile_edit_link].join(' ')}>Отмена</Link>
+            <Link to="/profile" onClick={() => cancelEdit(null)} className={['text text_type_main-small text_color_accent mr-5', styles.profile_edit_link].join(' ')}>Отмена</Link>
             <Button htmlType="submit" type="primary" size="large" >Сохранить</Button>
         </div>
     )

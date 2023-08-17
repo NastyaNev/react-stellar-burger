@@ -1,4 +1,4 @@
-import { TIngredientConstructor } from "../../types/types";
+import { TIngredientConstructor } from "../../utils/types";
 
 export const totalPriceSelector = (state: any) => {
     const mooved = state.constructorBurger.mooved;

@@ -7,7 +7,7 @@ import OrderDetails from '../modal/order-details/order-details';
 import { useDispatch, useSelector } from 'react-redux';
 import { totalPriceSelector } from '../../services/selectors/total-price-selector';
 import { getAnswer } from '../../services/actions/actions'
-import { TIngredientConstructor, TSetModalState } from '../../types/types';
+import { TIngredientConstructor, TSetModalState } from '../../utils/types';
 
 type TBurgerConstructorProps = {
   className: string,

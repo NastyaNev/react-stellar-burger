@@ -3,7 +3,7 @@ import styles from './ingredient-delails.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation, useParams } from 'react-router-dom';
 import { delIngred, getIngred } from '../../../services/reducers/ingredientSlice';
-import { TIngredient } from '../../../types/types';
+import { TIngredient } from '../../../utils/types';
 
 function IngredientDitails() {   
     const dispatch = useDispatch();

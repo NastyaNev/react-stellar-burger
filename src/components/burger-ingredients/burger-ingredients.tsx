@@ -10,7 +10,7 @@ type TBurgerIngredientsProps = {
 
 function BurgerIngredients(props: TBurgerIngredientsProps) {
     const { title, className } = props;
-    const [current, setCurrent] = useState('one');
+    const [current, setCurrent] = useState<string>('one');
 
     const containerRef = useRef<HTMLUListElement>(null);
     const bunRef = useRef<HTMLLIElement>(null);

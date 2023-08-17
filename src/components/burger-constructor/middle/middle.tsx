@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from 'uuid';
 import { getMoovedItems, sortIngreds } from '../../../services/reducers/constructorSlice';
-import { TIngredientConstructor } from '../../../types/types';
+import { TIngredientConstructor } from '../../../utils/types';
 
 type TDragItem = {
     ingredient: TIngredientConstructor,

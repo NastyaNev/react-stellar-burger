@@ -1,6 +1,6 @@
 import React from 'react'
 import ModalView from './modal-view'
-import { TSetModalState } from '../../types/types'
+import { TSetModalState } from '../../utils/types'
 
 type TModalProps = {
     setModalState:TSetModalState,

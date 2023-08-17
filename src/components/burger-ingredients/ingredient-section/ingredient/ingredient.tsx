@@ -5,18 +5,22 @@ import styles from './ingredient.module.css'
 import { useSelector } from 'react-redux'
 import { useDrag } from "react-dnd"
 import { Link, useLocation } from 'react-router-dom'
-import { TIngredient } from '../../../../types/types'
+import { TIngredient } from '../../../../utils/types'
 
 type TIngredientProps = {
     item: TIngredient,
 };
+
+type TCollectedProps = {
+    isDragging: boolean,
+}
 
 function Ingredient(props: TIngredientProps) {
     const { item } = props;
     const ingredient = item;
     const location = useLocation();
 
-    const [, dragRef] = useDrag({
+    const [, dragRef] = useDrag<unknown, unknown, TCollectedProps>({
         type: item.type,
         item: item
     });

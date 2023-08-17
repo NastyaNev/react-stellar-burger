@@ -1,41 +1,41 @@
 import { EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import React, { useState, FormEvent } from 'react'
 import styles from './profile-info.module.css'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { editUser } from '../../components/api/api'
+import { editUser } from '../../utils/api'
 import { setVisitor } from '../../services/reducers/userSlice'
 import { CustomNameInput } from './custom-name-input/custom-name-input'
+import { TinputHandler, Tuser } from '../../utils/types'
 
 function ProfileInfo() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userName = useSelector((state: any) => state.user.user.name);
   const userEmail = useSelector((state: any) => state.user.user.email);
-  const { pathname } = useLocation();
 
   const goToEdit = () => {
     navigate('/profile/edit');
   }
 
-  const [name, setName] = useState(userName);
-  const [email, setEmail] = useState(userEmail);
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState<string>(userName);
+  const [email, setEmail] = useState<string>(userEmail);
+  const [password, setPassword] = useState<string>("");
 
-  const onChangeName: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeName: TinputHandler = (evt) => {
     setName(evt.target.value);
     goToEdit();
   };
-  const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangeEmail: TinputHandler = (evt) => {
     setEmail(evt.target.value);
     goToEdit();
   };
-  const onChangePassword: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const onChangePassword: TinputHandler = (evt) => {
     setPassword(evt.target.value);
     goToEdit();
   };
 
-  const updateInfo = (e: FormEvent<HTMLFormElement>, user: {name: string, email: string} | null) => {
+  const updateInfo = (e: FormEvent<HTMLFormElement>, user: Tuser) => {
     e.preventDefault();
     return editUser(email, password, name).then(res => {
         if (res && res.success) {

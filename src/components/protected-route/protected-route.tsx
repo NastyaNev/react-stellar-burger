@@ -15,7 +15,7 @@ function Protected (props: TProtectedProps) {
 
   useEffect(() => {
     dispatch(setAuthChecked(isAuthChecked === false));
-    dispatch(checkUserAuth());
+    dispatch(checkUserAuth(null, false));
   }, [dispatch]);
 
   const isAuthChecked = useSelector((store: any) => store.user.isAuthChecked);

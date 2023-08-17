@@ -2,21 +2,22 @@ import React, { useState } from 'react'
 import styles from './register.module.css'
 import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
-import { register } from '../../components/api/api';
+import { register } from '../../utils/api';
+import { TinputHandler } from '../../utils/types';
  
 function Register() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [name, setName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
     const navigate = useNavigate();
 
-    const onChangeName: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const onChangeName: TinputHandler = (evt) => {
         setName(evt.target.value);
     };
-    const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const onChangeEmail: TinputHandler = (evt) => {
         setEmail(evt.target.value);
     };
-    const onChangePassword: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const onChangePassword: TinputHandler = (evt) => {
         setPassword(evt.target.value);
     };
 

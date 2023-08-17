@@ -5,7 +5,7 @@ import styles from './dnd-container.module.css'
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import PropTypes from 'prop-types';
-import { TSetModalState } from '../../types/types';
+import { TSetModalState } from '../../utils/types';
 
 type TDndContainerProps = {
     setModalState: TSetModalState

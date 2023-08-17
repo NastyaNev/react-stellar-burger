@@ -4,11 +4,12 @@ import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile-edit.module.css'
 import { useDispatch } from 'react-redux'
 import { setVisitor } from '../../../services/reducers/userSlice'
+import { Tuser } from '../../../utils/types'
 
 function ProfileEdit() {
     const dispatch = useDispatch();
 
-    const cancelEdit = (user: {name: string, email: string} | null) => {
+    const cancelEdit = (user: Tuser) => {
         dispatch(setVisitor(user = null));
     }
 

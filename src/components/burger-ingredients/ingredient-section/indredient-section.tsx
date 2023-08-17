@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "./ingredient-section.module.css"
 import Ingredient from './ingredient/ingredient'
 import { useSelector } from 'react-redux';
-import { TIngredient } from '../../../types/types';
+import { TIngredient } from '../../../utils/types';
 
 type TIngredientSectionProps = {
   ingredName: string,
@@ -12,7 +12,7 @@ type TIngredientSectionProps = {
 
 function IngredientSection(props: TIngredientSectionProps) {
   const { ingredName, type, customRef } = props;
-  const array: TIngredient[] = useSelector((state: any) => state.ingredients.array);
+  const array = useSelector((state: any) => state.ingredients.array);
 
   const filtered = array.filter((item: TIngredient) => {
     return item.type === type;

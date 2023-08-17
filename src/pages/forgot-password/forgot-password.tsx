@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import styles from './forgot-password.module.css'
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
-import { recoverPassword } from '../../components/api/api';
+import { recoverPassword } from '../../utils/api';
+import { TinputHandler } from '../../utils/types';
 
 function ForgotPassword() {
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState<string>("");
     const navigate = useNavigate();
 
-    const onChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const onChangeEmail: TinputHandler = (evt) => {
         setEmail(evt.target.value);
     };
 

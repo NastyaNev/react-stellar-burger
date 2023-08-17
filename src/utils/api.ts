@@ -1,5 +1,5 @@
-import { setVisitor } from "../../services/reducers/userSlice";
-import { TIngredient } from "../../types/types";
+import { setVisitor } from "../services/reducers/userSlice";
+import { TIngredientConstructor } from "./types";
 
 const config = {
     url: 'https://norma.nomoreparties.space/api',
@@ -22,7 +22,7 @@ export function getArray() {
         .then(checkResponse);
 }
 
-export function setOrder(ingredients: TIngredient[]) {
+export function setOrder(ingredients: TIngredientConstructor[]) {
     return fetch(`${config.url}/orders`, {
         headers: config.headers,
         method: 'POST',

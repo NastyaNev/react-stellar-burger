@@ -3,10 +3,8 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import styles from './item-container.module.css'
 import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
-import PropTypes from 'prop-types';
-import { ingredientPropType } from '../../../../utils/prop-types';
 import { delConstItem } from '../../../../services/reducers/constructorSlice';
-import { TIngredientConstructor } from '../../../../types/types';
+import { TIngredientConstructor } from '../../../../utils/types';
 
 type TItemContainerProps = {
   ingredient: TIngredientConstructor,
@@ -90,12 +88,5 @@ function ItemContainer(props: TItemContainerProps) {
     </li>
   )
 }
-
-ItemContainer.propTypes = {
-  ingredient: ingredientPropType,
-  index: PropTypes.number,
-  moveItems: PropTypes.func,
-  id: PropTypes.string
-};
 
 export default ItemContainer

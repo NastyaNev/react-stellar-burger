@@ -1,9 +1,9 @@
-import { getArray, getUser, setUser } from "../../components/api/api";
+import { getArray, getUser, setUser } from "../../utils/api";
 import { getIngreds, getIngredsFailed, getIngredsSuccess } from "../reducers/ingredientsSlice";
 import { getOrderNum, getOrderNumFailed, getOrderNumSuccess } from "../reducers/orderSlice";
 import { setAuthChecked, setVisitor } from "../reducers/userSlice";
-import { setOrder } from '../../components/api/api'
-import { TIngredientConstructor } from "../../types/types";
+import { setOrder } from '../../utils/api'
+import { TIngredientConstructor, Tuser } from "../../utils/types";
 
 export function getItems() {
     return function (dispatch: any) {
@@ -21,7 +21,7 @@ export function getItems() {
     };
 }
 
-export function login(email: string, password: string, user?: { email: string, name: string } | null, isAuthChecked?: boolean) {
+export function login(email: string, password: string, user?: Tuser, isAuthChecked?: boolean) {
     return function (dispatch: any) {
         return setUser(email, password).then(res => {
             if (res && res.success) {
@@ -41,7 +41,7 @@ export function login(email: string, password: string, user?: { email: string, n
     };
 }
 
-export const checkUserAuth: any = (user: { email: string, name: string } | null, isAuthChecked: boolean) => {
+export const checkUserAuth = (user: Tuser, isAuthChecked: boolean) => {
     return (dispatch:  any) => {
         if (localStorage.getItem("accessToken")) {
             dispatch(getUser(user))

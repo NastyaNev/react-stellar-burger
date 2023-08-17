@@ -20,3 +20,7 @@ export type TSetModalState =
         chooseModal: null | JSX.Element;
         onClose: (() => void) | null
     }>>
+
+export type TinputHandler = React.ChangeEventHandler<HTMLInputElement>;
+
+export type Tuser = {name: string, email: string} | null;

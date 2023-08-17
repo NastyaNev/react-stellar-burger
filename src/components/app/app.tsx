@@ -33,7 +33,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getItems());
-    dispatch(checkUserAuth());
+    dispatch(checkUserAuth(null, false));
   }, [])
 
   return (

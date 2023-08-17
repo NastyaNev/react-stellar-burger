@@ -20,9 +20,9 @@ export const CustomNameInput: React.FC<TCustomNameInputInterface> = ({
     extraClass = '',
     ...rest
 }) => {
-    const [fieldDisabled, setDisabled] = useState(isIcon);
+    const [fieldDisabled, setDisabled] = useState<boolean>(isIcon);
 
-    const [error, setError] = useState(false);
+    const [error, setError] = useState<boolean>(false);
 
     const inputRef = useRef<HTMLInputElement>(null);
 

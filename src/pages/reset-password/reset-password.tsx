@@ -3,18 +3,19 @@ import styles from './reset-password.module.css'
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import NotFound from '../not-found/not-found';
-import { setNewPass } from '../../components/api/api';
+import { setNewPass } from '../../utils/api';
+import { TinputHandler } from '../../utils/types';
 
 function ResetPassword() {
     const { state } = useLocation();
-    const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
+    const [password, setPassword] = useState<string>("");
+    const [token, setToken] = useState<string>("");
     const navigate = useNavigate();
 
-    const onChangePassword: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const onChangePassword: TinputHandler = (evt) => {
         setPassword(evt.target.value);
     };
-    const onChangeToken: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const onChangeToken: TinputHandler = (evt) => {
         setToken(evt.target.value);
     };
 

@@ -1,12 +1,12 @@
-import { EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import React, { useState, FormEvent } from 'react'
+import { EmailInput, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
+import React, { useState } from 'react'
 import styles from './profile-info.module.css'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { editUser } from '../../utils/api'
 import { setVisitor } from '../../services/reducers/userSlice'
 import { CustomNameInput } from './custom-name-input/custom-name-input'
-import { TinputHandler, Tuser } from '../../utils/types'
+import { TformEvent, TinputEvent, Tuser } from '../../utils/types'
 
 function ProfileInfo() {
   const navigate = useNavigate();
@@ -22,20 +22,20 @@ function ProfileInfo() {
   const [email, setEmail] = useState<string>(userEmail);
   const [password, setPassword] = useState<string>("");
 
-  const onChangeName: TinputHandler = (evt) => {
+  const onChangeName = (evt: TinputEvent) => {
     setName(evt.target.value);
     goToEdit();
   };
-  const onChangeEmail: TinputHandler = (evt) => {
+  const onChangeEmail = (evt: TinputEvent) => {
     setEmail(evt.target.value);
     goToEdit();
   };
-  const onChangePassword: TinputHandler = (evt) => {
+  const onChangePassword = (evt: TinputEvent) => {
     setPassword(evt.target.value);
     goToEdit();
   };
 
-  const updateInfo = (e: FormEvent<HTMLFormElement>, user: Tuser) => {
+  const updateInfo = (e: TformEvent, user: Tuser) => {
     e.preventDefault();
     return editUser(email, password, name).then(res => {
         if (res && res.success) {

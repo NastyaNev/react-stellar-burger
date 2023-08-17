@@ -3,17 +3,17 @@ import styles from './forgot-password.module.css'
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { recoverPassword } from '../../utils/api';
-import { TinputHandler } from '../../utils/types';
+import { TformEvent, TinputEvent } from '../../utils/types';
 
 function ForgotPassword() {
     const [email, setEmail] = useState<string>("");
     const navigate = useNavigate();
 
-    const onChangeEmail: TinputHandler = (evt) => {
+    const onChangeEmail = (evt: TinputEvent) => {
         setEmail(evt.target.value);
     };
 
-    const resetPass = (e: React.SyntheticEvent) => {
+    const resetPass = (e: TformEvent) => {
         e.preventDefault();
         return recoverPassword(email).then(res => {
             if (res && res.success) {

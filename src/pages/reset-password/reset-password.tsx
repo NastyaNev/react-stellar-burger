@@ -4,7 +4,7 @@ import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burg
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import NotFound from '../not-found/not-found';
 import { setNewPass } from '../../utils/api';
-import { TinputHandler } from '../../utils/types';
+import { TformEvent, TinputEvent } from '../../utils/types';
 
 function ResetPassword() {
     const { state } = useLocation();
@@ -12,14 +12,14 @@ function ResetPassword() {
     const [token, setToken] = useState<string>("");
     const navigate = useNavigate();
 
-    const onChangePassword: TinputHandler = (evt) => {
+    const onChangePassword = (evt: TinputEvent) => {
         setPassword(evt.target.value);
     };
-    const onChangeToken: TinputHandler = (evt) => {
+    const onChangeToken = (evt: TinputEvent) => {
         setToken(evt.target.value);
     };
 
-    const refreshPass = (e: React.SyntheticEvent) => {
+    const refreshPass = (e: TformEvent) => {
         e.preventDefault();
         return setNewPass(password, token).then(res => {
             if (res && res.success) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Outlet, To, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import styles from './profile.module.css'
 import { logout } from '../../utils/api';
 import { useDispatch } from 'react-redux';
@@ -37,7 +37,7 @@ function Profile() {
     <div className={['ml-9 mt-30', styles.profile].join(" ")}>
       <div className={styles.profile_menu_section}>
         <div className={styles.profile_menu}>
-          <NavLink to={pathname === '/profile/edit' || '/profile' as To} className={setActiveLinkStyle} end>Профиль</NavLink>
+          <NavLink to='/profile' className={setActiveLinkStyle({isActive: ['/profile', '/profile/edit'].includes(pathname)})} end>Профиль</NavLink>
           <NavLink to='/profile/orders' className={setActiveLinkStyle}>История заказов</NavLink>
           <button onClick={() => signOut(null)} className={['mt-20 text text_type_main-medium text_color_inactive', styles.profile_button].join(" ")}>Выход</button>
         </div>

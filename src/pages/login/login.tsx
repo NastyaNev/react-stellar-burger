@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom'
 import styles from './login.module.css'
 import { useDispatch } from 'react-redux'
 import { login } from '../../services/actions/actions'
-import { TinputHandler } from '../../utils/types'
+import { TformEvent, TinputEvent } from '../../utils/types'
 
 function Login() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const dispatch = useDispatch();
 
-    const onChangeEmail: TinputHandler = (evt) => {
+    const onChangeEmail = (evt: TinputEvent) => {
         setEmail(evt.target.value);
     };
-    const onChangePassword: TinputHandler = (evt) => {
+    const onChangePassword = (evt: TinputEvent) => {
         setPassword(evt.target.value);
     };
 
-    const onSubmit = (e: React.SyntheticEvent) => {
+    const onSubmit = (e: TformEvent) => {
         e.preventDefault();
         dispatch(login(email, password));
     };

@@ -21,6 +21,8 @@ export type TSetModalState =
         onClose: (() => void) | null
     }>>
 
-export type TinputHandler = React.ChangeEventHandler<HTMLInputElement>;
+export type TinputEvent = React.ChangeEvent<HTMLInputElement>;
+
+export type TformEvent = React.FormEvent<HTMLFormElement>;
 
 export type Tuser = {name: string, email: string} | null;

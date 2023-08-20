@@ -8,10 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getMoovedItems, sortIngreds } from '../../../services/reducers/constructorSlice';
 import { TIngredientConstructor } from '../../../utils/types';
 
-type TDragItem = {
-    ingredient: TIngredientConstructor,
-    id: string,
-}
+type TDragItem = TIngredientConstructor;
 
 function Middle() {
     const bun: TIngredientConstructor = useSelector((state: any) => state.constructorBurger.bun);

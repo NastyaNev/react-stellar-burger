@@ -1,5 +1,5 @@
 import { setVisitor } from "../services/reducers/userSlice";
-import { TIngredientConstructor } from "./types";
+import { AppDispatch } from "../store";
 
 const config = {
     url: 'https://norma.nomoreparties.space/api',
@@ -22,7 +22,7 @@ export function getArray() {
         .then(checkResponse);
 }
 
-export function setOrder(ingredients: TIngredientConstructor[]) {
+export function setOrder(ingredients: string[]) {
     return fetch(`${config.url}/orders`, {
         headers: config.headers,
         method: 'POST',
@@ -56,7 +56,15 @@ export function refreshToken() {
         .then(checkResponse);
 };
 
-const fetchWithRefresh = async (url: string, options: any) => {
+const fetchWithRefresh = async (url: string, options: any
+//     {
+//     method: string,
+//     headers: {
+//         "Content-Type": string,
+//         authorization: string 
+//     }
+// }
+) => {
     try {
         const res = await fetch(url, options);
         return await checkResponse(res);
@@ -79,7 +87,7 @@ const fetchWithRefresh = async (url: string, options: any) => {
 };
 
 export const getUser = (user: { email: string, name: string } | null) => {
-    return (dispatch: any) => {
+    return (dispatch: AppDispatch) => {
         return fetchWithRefresh(`${config.url}/auth/user`, {
             method: "GET",
             headers: {

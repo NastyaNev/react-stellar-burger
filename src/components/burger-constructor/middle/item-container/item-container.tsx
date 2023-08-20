@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './item-container.module.css'
-import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import { delConstItem } from '../../../../services/reducers/constructorSlice';
 import { TIngredientConstructor } from '../../../../utils/types';
+import { useAppDispatch } from '../../../../hooks';
 
 type TItemContainerProps = {
   ingredient: TIngredientConstructor,
@@ -24,7 +24,7 @@ type TCollectedProps = {
 
 function ItemContainer(props: TItemContainerProps) {
   const { ingredient, index, moveItems, id } = props;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleDelete = () => {
     dispatch(delConstItem(ingredient));

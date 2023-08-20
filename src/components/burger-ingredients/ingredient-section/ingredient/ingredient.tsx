@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import { useDrag } from "react-dnd"
 import { Link, useLocation } from 'react-router-dom'
 import { TIngredient } from '../../../../utils/types'
+import { RootState } from '../../../../store'
+import { useAppSelector } from '../../../../hooks'
 
 type TIngredientProps = {
     item: TIngredient,
@@ -25,7 +27,7 @@ function Ingredient(props: TIngredientProps) {
         item: item
     });
 
-    const countSelector = (state: any) => {
+    const countSelector = (state: RootState) => {
         if (item.type === 'bun') {
             const bun = state.constructorBurger.bun;
 
@@ -39,7 +41,7 @@ function Ingredient(props: TIngredientProps) {
         return 0;
     };
 
-    const counter = useSelector(countSelector);
+    const counter = useAppSelector(countSelector);
 
     return (
         <li>

@@ -26,3 +26,10 @@ export type TinputEvent = React.ChangeEvent<HTMLInputElement>;
 export type TformEvent = React.FormEvent<HTMLFormElement>;
 
 export type Tuser = {name: string, email: string} | null;
+
+export type TAnswer = {
+    name: string,
+    order: {
+        number: number
+    },
+    success: boolean}

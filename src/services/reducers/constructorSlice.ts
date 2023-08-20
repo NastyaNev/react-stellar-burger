@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
-import { TIngredient, TIngredientConstructor } from "../../utils/types";
+import { TIngredientConstructor } from "../../utils/types";
 
 type TConstructorState = {
     bun: TIngredientConstructor | null,
     mooved: TIngredientConstructor[]
-  }
+}
 
 const initialState: TConstructorState = {
     bun: null,
@@ -24,7 +23,7 @@ export const constructorSlice = createSlice({
                 state.mooved = [...state.mooved, action.payload!];
             }
         },
-        sortIngreds: (state, action) => {
+        sortIngreds: (state, action: PayloadAction<{ itemId: string, targetItemId: string }>) => {
             const itemIds = state.mooved.map(i => i.id);
             const itemIndex = itemIds.indexOf(action.payload!.itemId);
             const targetItemIndex = itemIds.indexOf(action.payload!.targetItemId);

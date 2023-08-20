@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./app.module.css";
-import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router";
 import Main from "../../pages/main/main";
 import Orders from "../../pages/orders/orders";
@@ -19,9 +18,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
 import ForgotPassword from "../../pages/forgot-password/forgot-password";
 import { checkUserAuth, getItems } from "../../services/actions/actions";
+import { useAppDispatch } from '../../hooks';
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const background = location.state && location.state.background;
   const [modalState, setModalState] = useState<{

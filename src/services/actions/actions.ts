@@ -3,10 +3,11 @@ import { getIngreds, getIngredsFailed, getIngredsSuccess } from "../reducers/ing
 import { getOrderNum, getOrderNumFailed, getOrderNumSuccess } from "../reducers/orderSlice";
 import { setAuthChecked, setVisitor } from "../reducers/userSlice";
 import { setOrder } from '../../utils/api'
-import { TIngredientConstructor, Tuser } from "../../utils/types";
+import { TAnswer, Tuser } from "../../utils/types";
+import { AppDispatch } from "../../store";
 
 export function getItems() {
-    return function (dispatch: any) {
+    return function (dispatch: AppDispatch) {
         dispatch(getIngreds());
         return getArray().then(res => {
             if (res && res.success) {
@@ -22,7 +23,7 @@ export function getItems() {
 }
 
 export function login(email: string, password: string, user?: Tuser, isAuthChecked?: boolean) {
-    return function (dispatch: any) {
+    return function (dispatch: AppDispatch) {
         return setUser(email, password).then(res => {
             if (res && res.success) {
                 localStorage.setItem("accessToken", res.accessToken);
@@ -42,7 +43,7 @@ export function login(email: string, password: string, user?: Tuser, isAuthCheck
 }
 
 export const checkUserAuth = (user: Tuser, isAuthChecked: boolean) => {
-    return (dispatch:  any) => {
+    return (dispatch: AppDispatch) => {
         if (localStorage.getItem("accessToken")) {
             dispatch(getUser(user))
                 .catch((error: Error) => {
@@ -58,14 +59,8 @@ export const checkUserAuth = (user: Tuser, isAuthChecked: boolean) => {
     };
 };
 
-export function getAnswer(ingredients: TIngredientConstructor[], answer?: {
-    name: string,
-    order: {
-        number: number
-    },
-    success: boolean
-  } ): any {
-    return (dispatch: any) => {
+export function getAnswer(ingredients: string[], answer?: TAnswer) {
+    return (dispatch: AppDispatch) => {
         dispatch(getOrderNum());
         return setOrder(ingredients).then(res => {
             if (res && res.success) {

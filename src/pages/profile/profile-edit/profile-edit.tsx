@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile-edit.module.css'
-import { useDispatch } from 'react-redux'
 import { setVisitor } from '../../../services/reducers/userSlice'
 import { Tuser } from '../../../utils/types'
+import { useAppDispatch } from '../../../hooks'
 
 function ProfileEdit() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const cancelEdit = (user: Tuser) => {
         dispatch(setVisitor(user = null));

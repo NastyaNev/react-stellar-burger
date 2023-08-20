@@ -2,9 +2,9 @@ import React from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import styles from './profile.module.css'
 import { logout } from '../../utils/api';
-import { useDispatch } from 'react-redux';
 import { setVisitor } from '../../services/reducers/userSlice';
 import { Tuser } from '../../utils/types';
+import { useAppDispatch } from '../../hooks';
 
 function Profile() {
   const setActiveLinkStyle = ({isActive}: {isActive: Boolean;}): string => {
@@ -14,7 +14,7 @@ function Profile() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const signOut = (user: Tuser) => {
     return logout().then(res => {

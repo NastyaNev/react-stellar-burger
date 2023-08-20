@@ -2,17 +2,18 @@ import { EmailInput, PasswordInput } from '@ya.praktikum/react-developer-burger-
 import React, { useState } from 'react'
 import styles from './profile-info.module.css'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { editUser } from '../../utils/api'
 import { setVisitor } from '../../services/reducers/userSlice'
 import { CustomNameInput } from './custom-name-input/custom-name-input'
 import { TformEvent, TinputEvent, Tuser } from '../../utils/types'
+import { useAppDispatch, useAppSelector } from '../../hooks';
+
 
 function ProfileInfo() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const userName = useSelector((state: any) => state.user.user.name);
-  const userEmail = useSelector((state: any) => state.user.user.email);
+  const dispatch = useAppDispatch();
+  const userName = useAppSelector((state) => state.user.user!.name);
+  const userEmail = useAppSelector((state) => state.user.user!.email);
 
   const goToEdit = () => {
     navigate('/profile/edit');

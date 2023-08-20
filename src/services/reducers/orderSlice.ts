@@ -1,9 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { TAnswer } from "../../utils/types";
 
-const initialState = {
+type TOrderSlice = {
+    apiRequest: boolean,
+    apiFailed: boolean,
+    answer: TAnswer | null
+}
+
+const initialState: TOrderSlice = {
     apiRequest: false,
     apiFailed: false,
-    answer: ''
+    answer: null
 }
 
 export const orderSlice = createSlice({
@@ -13,7 +20,7 @@ export const orderSlice = createSlice({
         getOrderNum: (state) => {
             state.apiRequest = true;
         },
-        getOrderNumSuccess: (state, action) => {
+        getOrderNumSuccess: (state, action: PayloadAction<TAnswer | null>) => {
             state.answer = action.payload;
             state.apiRequest = false;
         },

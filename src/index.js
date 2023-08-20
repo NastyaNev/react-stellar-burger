@@ -4,19 +4,23 @@ import "./index.css";
 import App from "./components/app/app";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore, compose } from "@reduxjs/toolkit";
-import { rootReducer } from './services/reducers';
-import thunk from 'redux-thunk';
+import { configureStore } from "@reduxjs/toolkit";
 import { BrowserRouter } from "react-router-dom";
+import ingredReducer from './services/reducers/ingredientSlice';
+import ingredsReducer from './services/reducers/ingredientsSlice';
+import constReducer from './services/reducers/constructorSlice';
+import userReducer from './services/reducers/userSlice';
+import orderReducer from './services/reducers/orderSlice';
 
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
-
-const enhancer = composeEnhancers(applyMiddleware(thunk));
-
-export const store = createStore(rootReducer, enhancer);
+export const store = configureStore({
+  reducer: {
+    ingredient: ingredReducer,
+    ingredients: ingredsReducer,
+    constructorBurger: constReducer,
+    user: userReducer,
+    order: orderReducer
+  }
+})
 
 ReactDOM.render(
   <Provider store={store} >

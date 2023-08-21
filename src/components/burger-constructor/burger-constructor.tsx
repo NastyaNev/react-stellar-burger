@@ -4,7 +4,6 @@ import Middle from './middle/middle';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderDetails from '../modal/order-details/order-details';
-import { useSelector } from 'react-redux';
 import { totalPriceSelector } from '../../services/selectors/total-price-selector';
 import { getAnswer } from '../../services/actions/actions'
 import { TSetModalState } from '../../utils/types';

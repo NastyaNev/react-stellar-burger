@@ -4,7 +4,6 @@ import BurgerConstructor from '../burger-constructor/burger-constructor'
 import styles from './dnd-container.module.css'
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import PropTypes from 'prop-types';
 import { TSetModalState } from '../../utils/types';
 
 type TDndContainerProps = {
@@ -22,9 +21,5 @@ function DndContainer(props: TDndContainerProps) {
         </DndProvider>
     )
 }
-
-DndContainer.propTypes = {
-    setModalState: PropTypes.func
-};
 
 export default DndContainer

@@ -28,8 +28,25 @@ export type TformEvent = React.FormEvent<HTMLFormElement>;
 export type Tuser = {name: string, email: string} | null;
 
 export type TAnswer = {
-    name: string,
-    order: {
+    name?: string | null
+    order?: {
         number: number
-    },
-    success: boolean}
+    } | undefined
+}
+
+export type TPromise = {
+    success?: boolean,
+
+    user?: Tuser,
+    data?: TIngredient[] | undefined,
+    token?: string,
+    ingredients?: string[],
+    email?: string,
+    password?: string,
+    name?: string,
+    res?: Response,
+    accessToken: string,
+    refreshToken: string,
+    order?: {number: number} | undefined,
+    answer?: TAnswer | undefined
+}

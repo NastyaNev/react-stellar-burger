@@ -11,7 +11,7 @@ export function getItems() {
         dispatch(getIngreds());
         return getArray().then(res => {
             if (res && res.success) {
-                dispatch(getIngredsSuccess(res.data));
+                dispatch(getIngredsSuccess(res.data!));
             } else {
                 dispatch(getIngredsFailed());
             }
@@ -28,7 +28,7 @@ export function login(email: string, password: string, user?: Tuser, isAuthCheck
             if (res && res.success) {
                 localStorage.setItem("accessToken", res.accessToken);
                 localStorage.setItem("refreshToken", res.refreshToken);
-                dispatch(setVisitor(user = res.user));
+                dispatch(setVisitor(user = res.user!));
             } else {
                 return Promise.reject("Ошибка данных с сервера");
             }
@@ -59,7 +59,7 @@ export const checkUserAuth = (user: Tuser, isAuthChecked: boolean) => {
     };
 };
 
-export function getAnswer(ingredients: string[], answer?: TAnswer) {
+export function getAnswer(ingredients: string[], answer?: TAnswer)  {
     return (dispatch: AppDispatch) => {
         dispatch(getOrderNum());
         return setOrder(ingredients).then(res => {

@@ -19,6 +19,7 @@ import { OnlyAuth, OnlyUnAuth } from "../protected-route/protected-route";
 import ForgotPassword from "../../pages/forgot-password/forgot-password";
 import { checkUserAuth, getItems } from "../../services/actions/actions";
 import { useAppDispatch } from '../../hooks';
+import Feed from "../../pages/feed/feed";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -46,12 +47,14 @@ function App() {
             )}
           </Route>
           <Route path='ingredients/:id' element={!background && <IngredientDitails />} />
-          <Route path='orders' element={<OnlyAuth component={<Orders />} />} />
+          <Route path='feed' element={<Feed />} />
+          <Route path='feed/:id' element={<Feed />} />
           <Route path='profile' element={<Profile />} >
             <Route path='/profile' element={<OnlyAuth component={<ProfileInfo />} />}>
               <Route path='/profile/edit' element={<ProfileEdit />} />
             </Route>
             <Route path='/profile/orders' element={<OnlyAuth component={<Orders />} />} />
+            <Route path='/profile/orders/:id' element={<OnlyAuth component={<Orders />} />} />
           </Route>
           <Route path='login' element={<OnlyUnAuth component={<Login />} />} />
           <Route path='register' element={<OnlyUnAuth component={<Register />} />} />

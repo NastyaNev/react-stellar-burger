@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../hooks';
 function OrderDetails() {
     const answer = useAppSelector((state) => state.order.answer);
 
-    const orderNum = answer!.order.number;
+    const orderNum = answer!.order!.number;
 
     return (
         <div className={styles.order_ditails}>

@@ -12,10 +12,11 @@ function FeedOrders(props: TFeedOrders) {
   return (
     <li className={['mt-10', styles.orders_container, className].join(" ")}>
             <h2 className='text text_type_main-large'>{title}</h2>
-            <ul className={['mt-5', 'custom-scroll', styles.orders_list].join(" ")} >
-                <Order ></Order>
-                <Order ></Order>
-                <Order ></Order>
+            <ul className={['mt-5 custom-scroll', styles.orders_list].join(" ")} >
+                <Order className={'mr-2'}></Order>
+                <Order className={'mr-2'}></Order>
+                <Order className={'mr-2'}></Order>
+                <Order className={'mr-2'}></Order>
             </ul>
         </li>
   )

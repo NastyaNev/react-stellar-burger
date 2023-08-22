@@ -20,6 +20,7 @@ import ForgotPassword from "../../pages/forgot-password/forgot-password";
 import { checkUserAuth, getItems } from "../../services/actions/actions";
 import { useAppDispatch } from '../../hooks';
 import Feed from "../../pages/feed/feed";
+import FeedId from "../modal/feed-id/feed-id";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -48,7 +49,7 @@ function App() {
           </Route>
           <Route path='ingredients/:id' element={!background && <IngredientDitails />} />
           <Route path='feed' element={<Feed />} />
-          <Route path='feed/:id' element={<Feed />} />
+          <Route path='feed/:id' element={!background && <FeedId />} />
           <Route path='profile' element={<Profile />} >
             <Route path='/profile' element={<OnlyAuth component={<ProfileInfo />} />}>
               <Route path='/profile/edit' element={<ProfileEdit />} />
@@ -66,6 +67,7 @@ function App() {
       {background && (
         <Routes>
           <Route path="/ingredients/:id" element={<ModalView onClose={() => { navigate("/") }} ><IngredientDitails /></ModalView>} />
+          <Route path="/feed/:id" element={<ModalView onClose={() => { navigate("/feed") }} ><FeedId /></ModalView>} />
         </Routes>
       )}
     </div >

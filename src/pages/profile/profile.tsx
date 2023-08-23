@@ -34,8 +34,8 @@ function Profile() {
   }
 
   return (
-    <div className={['ml-9 mt-30', styles.profile].join(" ")}>
-      <div className={styles.profile_menu_section}>
+    <div className={['ml-9', styles.profile].join(" ")}>
+      <div className={['mt-30',styles.profile_menu_section].join(' ')}>
         <div className={styles.profile_menu}>
           <NavLink to='/profile' className={setActiveLinkStyle({isActive: ['/profile', '/profile/edit'].includes(pathname)})} end>Профиль</NavLink>
           <NavLink to='/profile/orders' className={setActiveLinkStyle}>История заказов</NavLink>

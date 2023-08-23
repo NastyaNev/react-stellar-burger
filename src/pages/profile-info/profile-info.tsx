@@ -52,7 +52,7 @@ function ProfileInfo() {
 }
 
   return (
-    <form onSubmit={(e) => updateInfo(e, null)}>
+    <form className='mt-30' onSubmit={(e) => updateInfo(e, null)}>
       <fieldset className={styles.profile_info}>
         <CustomNameInput name='name' placeholder={'Имя'} value={name} isIcon={true} onChange={onChangeName} />
         <EmailInput name='email' placeholder={'Логин'} value={email} isIcon={true} onChange={onChangeEmail} />

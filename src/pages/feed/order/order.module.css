@@ -55,6 +55,23 @@
 
 .order_image:first-child {
     margin-left: 0px;
+    z-index: 10
+}
+
+.order_image:nth-child(2) {
+    z-index: 9;
+}
+
+.order_image:nth-child(3) {
+    z-index: 8;
+}
+
+.order_image:nth-child(4) {
+    z-index: 7;
+}
+
+.order_image:nth-child(5) {
+    z-index: 6;
 }
 
 .order_image_span::after {

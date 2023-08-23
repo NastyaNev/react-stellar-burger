@@ -68,6 +68,7 @@ function App() {
         <Routes>
           <Route path="/ingredients/:id" element={<ModalView onClose={() => { navigate("/") }} ><IngredientDitails /></ModalView>} />
           <Route path="/feed/:id" element={<ModalView onClose={() => { navigate("/feed") }} ><FeedId /></ModalView>} />
+          <Route path='/profile/orders/:id' element={<ModalView onClose={() => { navigate("/profile/orders/") }} ><FeedId /></ModalView>} />
         </Routes>
       )}
     </div >

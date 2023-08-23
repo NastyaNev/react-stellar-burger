@@ -1,21 +1,19 @@
 import React from 'react'
 import styles from './orders.module.css'
-import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useNavigate } from 'react-router-dom'
+import Order from '../feed/order/order';
 
-function Orders() {
-  const navigate = useNavigate();
 
-  const goBack = () => {
-    navigate('/');
-  }
-
+function FeedOrders() {
   return (
-    <div className={styles.orders}>
-      <p className='text text_type_main-medium mb-8'>Страница в разработке</p>
-      <Button htmlType="button" type="primary" size="large" onClick={goBack}>На главную</Button>
+    <div className={['mt-10', styles.orders_container].join(" ")}>
+      <ul className={['mt-5 custom-scroll', styles.orders_list].join(" ")} >
+        <Order className={'mr-2'}></Order>
+        <Order className={'mr-2'}></Order>
+        <Order className={'mr-2'}></Order>
+        <Order className={'mr-2'}></Order>
+      </ul>
     </div>
   )
 }
 
-export default Orders
+export default FeedOrders

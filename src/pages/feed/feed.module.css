@@ -5,8 +5,9 @@
     padding: 0;
     height: 824px;
     list-style: none;
+    gap: 60px;
 }
 
 .feed_column {
-    width: 600px;
+    width: 580px;
 }

@@ -26,9 +26,9 @@ function Order(props: TOrgerProps) {
         const orderNum = answer!.order!.number;
         const images = [bun!.image_mobile, ...mooved.map(i => i.image_mobile)];
 
-        const visables = images.slice(0, 6);
-        const invisables = images.slice(6);
-        const numLeft = invisables.length;
+        const visibles = images.slice(0, 6);
+        const invisibles = images.slice(6);
+        const numLeft = invisibles.length;
 
         const styleSpan = () => {
             return images.length > 6 ? `mt-6 mr-6 ml-6 text text_type_main-small ${styles.order_image_span} ${styles.order_image_span_visible}` :
@@ -52,7 +52,7 @@ function Order(props: TOrgerProps) {
                     <h4 className={['mt-6 mr-6 ml-6 text text_type_main-medium', styles.order_burger_name].join(" ")}>{burgerName}</h4>
                     <div className={['mt-6 mr-6 ml-6 mb-6', styles.order_bottom_container].join(" ")}>
                         <div className={styles.order_images_container}>
-                            {visables.map((item) => (
+                            {visibles.map((item) => (
                                 <img className={styles.order_image} key={uuidv4()} src={item} />
                             ))}
                             <span className={styleSpan()}>+{numLeft}</span>

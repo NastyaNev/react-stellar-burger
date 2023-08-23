@@ -13,14 +13,14 @@
     margin-left: 0;
 }
 
-.feed_id_name {
-    /* text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden; */
-}
-
 .feed_id_status {
     line-height: 40px;
+}
+
+.feed_id_bottom_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .feed_id_images_container {
@@ -31,4 +31,9 @@
     height: 312px;
     overflow-y: scroll;
     position: relative;
+    gap: 16px;
+}
+
+.order_price_container {
+    display: flex;
 }

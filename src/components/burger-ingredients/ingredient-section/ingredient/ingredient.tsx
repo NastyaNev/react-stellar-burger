@@ -7,7 +7,6 @@ import { Link, useLocation } from 'react-router-dom'
 import { TIngredient } from '../../../../utils/types'
 import { useAppSelector } from '../../../../hooks'
 import { RootState } from '../../../../store'
-import { countSelector } from '../../../../services/selectors/count-selector'
 
 type TIngredientProps = {
     item: TIngredient,
@@ -27,18 +26,17 @@ function Ingredient(props: TIngredientProps) {
     });
 
     const countSelector = (state: RootState) => {
-            if (item.type === 'bun') {
-                const bun = state.constructorBurger.bun;
+        if (item.type === 'bun') {
+            const bun = state.constructorBurger.bun;
 
-                return bun && bun._id === item._id ? 1 : 0;
-            }
-            else if (['sauce', 'main'].includes(item.type)) {
-                const elemsWithCounter = state.constructorBurger.mooved.filter((i: TIngredient) => i._id === item._id);
-                return elemsWithCounter.length;
-            }
+            return bun && bun._id === item._id ? 1 : 0;
+        }
+        else if (['sauce', 'main'].includes(item.type)) {
+            const elemsWithCounter = state.constructorBurger.mooved.filter((i: TIngredient) => i._id === item._id);
+            return elemsWithCounter.length;
+        }
 
-            return 0;
-        
+        return 0;
     };
 
     const counter = useAppSelector(countSelector);

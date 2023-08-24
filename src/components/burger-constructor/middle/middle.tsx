@@ -5,7 +5,7 @@ import ItemContainer from './item-container/item-container'
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from 'uuid';
 import { getMoovedItems, sortIngreds } from '../../../services/reducers/constructorSlice';
-import { TIngredientConstructor } from '../../../utils/types';
+import { TIngredientConstructor } from '../../../utils/types/types';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 type TDragItem = TIngredientConstructor;

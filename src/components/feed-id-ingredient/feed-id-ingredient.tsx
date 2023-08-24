@@ -1,5 +1,5 @@
 import React from 'react'
-import { TIngredientConstructor } from '../../utils/types'
+import { TIngredientConstructor } from '../../utils/types/types'
 import styles from './feed-id-ingredient.module.css'
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useAppSelector } from '../../hooks'

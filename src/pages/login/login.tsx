@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './login.module.css'
 import { login } from '../../services/actions/actions'
-import { TformEvent, TinputEvent } from '../../utils/types'
+import { TformEvent, TinputEvent } from '../../utils/types/types'
 import { useAppDispatch } from '../../hooks';
 
 function Login() {

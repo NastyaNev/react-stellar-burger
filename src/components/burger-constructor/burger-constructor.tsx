@@ -6,7 +6,7 @@ import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components
 import OrderDetails from '../modal/order-details/order-details';
 import { totalPriceSelector } from '../../services/selectors/total-price-selector';
 import { getAnswer } from '../../services/actions/actions'
-import { TSetModalState } from '../../utils/types';
+import { TSetModalState } from '../../utils/types/types';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 type TBurgerConstructorProps = {
@@ -44,7 +44,7 @@ function BurgerConstructor(props: TBurgerConstructorProps) {
           <span className='mr-2 text text_type_digits-medium'>{totalPrice}</span>
           <CurrencyIcon type="primary" />
         </div>
-        <Button htmlType="button" type="primary" size="large" onClick={handleOpen} disabled={mooved.length === 0 && !bun ? true : false} >
+        <Button htmlType="button" type="primary" size="large" onClick={handleOpen} disabled={!bun ? true : false} >
           Оформить заказ
         </Button>
       </section>

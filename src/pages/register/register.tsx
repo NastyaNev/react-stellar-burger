@@ -3,7 +3,7 @@ import styles from './register.module.css'
 import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { register } from '../../utils/api';
-import { TformEvent, TinputEvent } from '../../utils/types';
+import { TformEvent, TinputEvent } from '../../utils/types/types';
  
 function Register() {
     const [name, setName] = useState<string>("");

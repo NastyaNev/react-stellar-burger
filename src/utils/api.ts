@@ -1,6 +1,6 @@
 import { setVisitor } from "../services/reducers/userSlice";
 import { AppDispatch } from "../store";
-import { TPromise, Tuser } from "./types";
+import { TPromise, Tuser } from "./types/types";
 
 const config = {
     url: 'https://norma.nomoreparties.space/api',

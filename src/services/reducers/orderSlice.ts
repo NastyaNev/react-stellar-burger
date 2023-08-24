@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TAnswer } from "../../utils/types";
+import { TAnswer } from "../../utils/types/types";
 
 type TOrderSlice = {
     apiRequest: boolean,

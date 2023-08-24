@@ -4,7 +4,7 @@ import { Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient.module.css'
 import { useDrag } from "react-dnd"
 import { Link, useLocation } from 'react-router-dom'
-import { TIngredient } from '../../../../utils/types'
+import { TIngredient } from '../../../../utils/types/types'
 import { useAppSelector } from '../../../../hooks'
 import { RootState } from '../../../../store'
 

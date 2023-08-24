@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./app.module.css";
 import { Route, Routes } from "react-router";
 import Main from "../../pages/main/main";
-import Orders from "../../pages/orders/orders";
 import Profile from "../../pages/profile/profile";
 import NotFound from "../../pages/not-found/not-found";
 import Layout from "../layout/layout";
@@ -54,8 +53,8 @@ function App() {
             <Route path='/profile' element={<OnlyAuth component={<ProfileInfo />} />}>
               <Route path='/profile/edit' element={<ProfileEdit />} />
             </Route>
-            <Route path='/profile/orders' element={<OnlyAuth component={<Orders />} />} />
-            <Route path='/profile/orders/:id' element={<OnlyAuth component={<Orders />} />} />
+            <Route path='/profile/orders' element={<OnlyAuth component={<Feed />} />} />
+            <Route path='/profile/orders/:id' element={<OnlyAuth component={<Feed />} />} />
           </Route>
           <Route path='login' element={<OnlyUnAuth component={<Login />} />} />
           <Route path='register' element={<OnlyUnAuth component={<Register />} />} />

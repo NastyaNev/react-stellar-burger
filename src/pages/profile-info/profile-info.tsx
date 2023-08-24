@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import { editUser } from '../../utils/api'
 import { setVisitor } from '../../services/reducers/userSlice'
 import { CustomNameInput } from './custom-name-input/custom-name-input'
-import { TformEvent, TinputEvent, Tuser } from '../../utils/types'
+import { TformEvent, TinputEvent, Tuser } from '../../utils/types/types'
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 

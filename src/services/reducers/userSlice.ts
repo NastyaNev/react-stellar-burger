@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Tuser } from "../../utils/types";
+import { Tuser } from "../../utils/types/types";
 
 type TUserSlice = {
     user: Tuser | null,

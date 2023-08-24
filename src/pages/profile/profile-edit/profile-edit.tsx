@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './profile-edit.module.css'
 import { setVisitor } from '../../../services/reducers/userSlice'
-import { Tuser } from '../../../utils/types'
+import { Tuser } from '../../../utils/types/types'
 import { useAppDispatch } from '../../../hooks'
 
 function ProfileEdit() {

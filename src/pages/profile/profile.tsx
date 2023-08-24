@@ -3,7 +3,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import styles from './profile.module.css'
 import { logout } from '../../utils/api';
 import { setVisitor } from '../../services/reducers/userSlice';
-import { Tuser } from '../../utils/types';
+import { Tuser } from '../../utils/types/types';
 import { useAppDispatch } from '../../hooks';
 
 function Profile() {

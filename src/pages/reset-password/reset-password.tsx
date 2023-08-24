@@ -4,7 +4,7 @@ import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burg
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import NotFound from '../not-found/not-found';
 import { setNewPass } from '../../utils/api';
-import { TformEvent, TinputEvent } from '../../utils/types';
+import { TformEvent, TinputEvent } from '../../utils/types/types';
 
 function ResetPassword() {
     const { state } = useLocation();

@@ -3,7 +3,7 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import styles from './item-container.module.css'
 import { useDrag, useDrop } from 'react-dnd';
 import { delConstItem } from '../../../../services/reducers/constructorSlice';
-import { TIngredientConstructor } from '../../../../utils/types';
+import { TIngredientConstructor } from '../../../../utils/types/types';
 import { useAppDispatch } from '../../../../hooks';
 
 type TItemContainerProps = {

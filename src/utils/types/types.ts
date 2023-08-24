@@ -12,9 +12,9 @@ export type TIngredient = {
     image_large: string
 };
 
-export type TIngredientConstructor = TIngredient & {id: string};
+export type TIngredientConstructor = TIngredient & { id: string };
 
-export type TSetModalState = 
+export type TSetModalState =
     React.Dispatch<React.SetStateAction<{
         isOpen: boolean;
         chooseModal: null | JSX.Element;
@@ -25,7 +25,7 @@ export type TinputEvent = React.ChangeEvent<HTMLInputElement>;
 
 export type TformEvent = React.FormEvent<HTMLFormElement>;
 
-export type Tuser = {name: string, email: string} | null;
+export type Tuser = { name: string, email: string } | null;
 
 export type TAnswer = {
     name?: string | null
@@ -47,6 +47,16 @@ export type TPromise = {
     res?: Response,
     accessToken: string,
     refreshToken: string,
-    order?: {number: number} | undefined,
+    order?: { number: number } | undefined,
     answer?: TAnswer | undefined
+}
+
+export type TOrder = {
+    _id: string,
+    ingredients: string[],
+    status: string,
+    name: string,
+    createdAt: string,
+    updatedAt: string,
+    number: number
 }

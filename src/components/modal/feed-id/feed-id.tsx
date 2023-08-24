@@ -5,11 +5,10 @@ import { totalPriceSelector } from '../../../services/selectors/total-price-sele
 import styles from './feed-id.module.css'
 import { useLocation, useParams } from 'react-router-dom';
 import FeedIdIngredient from '../../feed-id-ingredient/feed-id-ingredient';
-import { TIngredientConstructor } from '../../../utils/types';
+import { TIngredientConstructor } from '../../../utils/types/types';
 
 function FeedId() {
   const today = new Date();
-  const dispatch = useAppDispatch();
   const { state } = useLocation();
 
   const totalPrice = useAppSelector(totalPriceSelector);

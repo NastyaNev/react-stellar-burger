@@ -2,33 +2,42 @@ import React from 'react'
 import styles from './order.module.css'
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useAppSelector } from '../../../hooks';
-import { totalPriceSelector } from '../../../services/selectors/total-price-selector';
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useLocation } from 'react-router-dom';
+import { TIngredient, TOrder } from '../../../utils/types/types';
 
 type TOrgerProps = {
     className: string,
+    order: TOrder
 }
 
 function Order(props: TOrgerProps) {
-    const { className } = props;
-    const today = new Date();
+    const { className, order } = props;
     const location = useLocation();
 
-    const totalPrice = useAppSelector(totalPriceSelector);
+    const array = useAppSelector(state => state.ingredients.array);
 
-    const answer = useAppSelector((state) => state.order.answer);
-    const mooved = useAppSelector(state => state.constructorBurger.mooved);
-    const bun = useAppSelector(state => state.constructorBurger.bun);
+    if (order) {
+        let ingreds: TIngredient[] = [];
 
-    if (answer) {
-        const burgerName = answer!.name;
-        const orderNum = answer!.order!.number;
-        const images = [bun!.image_mobile, ...mooved.map(i => i.image_mobile)];
+        array.forEach(item => {
+            if (order.ingredients.includes(item._id)) { ingreds.push(item) }
+        });
+
+        const images = ingreds.map(i => i.image_mobile);
+        const bun = ingreds.find(i => i.type === "bun");
+        const rest = ingreds.filter(i => i.type !== "bun");
+        const bunPrice = bun!.price * 2;
+        const restPrices = rest.map(i => i.price);
+        const totalPrice = restPrices.reduce(function (previousValue, item) {
+            return previousValue + item;
+        }, 0) + bunPrice;
+
 
         const visibles = images.slice(0, 6);
         const invisibles = images.slice(6);
         const numLeft = invisibles.length;
+        const date = order.createdAt;
 
         const styleSpan = () => {
             return images.length > 6 ? `mt-6 mr-6 ml-6 text text_type_main-small ${styles.order_image_span} ${styles.order_image_span_visible}` :
@@ -37,19 +46,12 @@ function Order(props: TOrgerProps) {
 
         return (
             <li className={[styles.order, className].join(" ")}>
-                <Link to={`/feed/${orderNum}`} className={styles.order_link} state={{ background: location }}>
+                <Link to={`/feed/${order.number}`} className={styles.order_link} state={{ background: location }}>
                     <div className={['mt-6 mr-6 ml-6', styles.order_title_container].join(" ")}>
-                        <p className={['text text_type_digits-default', styles.order_num].join(" ")}>#{orderNum}</p>
-                        <FormattedDate className="text text_type_main-small text_color_inactive" date={new Date(
-                            today.getFullYear(),
-                            today.getMonth(),
-                            today.getDate(),
-                            today.getHours(),
-                            today.getMinutes() - 1,
-                            0,
-                        )} />
+                        <p className={['text text_type_digits-default', styles.order_num].join(" ")}>#{order.number}</p>
+                        <FormattedDate className="text text_type_main-small text_color_inactive" date={new Date(date)} />
                     </div>
-                    <h4 className={['mt-6 mr-6 ml-6 text text_type_main-medium', styles.order_burger_name].join(" ")}>{burgerName}</h4>
+                    <h4 className={['mt-6 mr-6 ml-6 text text_type_main-medium', styles.order_burger_name].join(" ")}>{order.name}</h4>
                     <div className={['mt-6 mr-6 ml-6 mb-6', styles.order_bottom_container].join(" ")}>
                         <div className={styles.order_images_container}>
                             {visibles.map((item) => (
@@ -66,31 +68,7 @@ function Order(props: TOrgerProps) {
             </li>
         )
     } else {
-        return (
-            <li className={[styles.order].join(" ")}>
-                <div className={['mt-6 mr-6 ml-6', styles.order_title_container].join(" ")}>
-                    <p className={['text text_type_digits-default', styles.order_num].join(" ")}>#9809692</p>
-                    <FormattedDate className="text text_type_main-small text_color_inactive" date={new Date(
-                        today.getFullYear(),
-                        today.getMonth(),
-                        today.getDate(),
-                        today.getHours(),
-                        today.getMinutes() - 1,
-                        0,
-                    )} />
-                </div>
-                <h4 className={'mt-6 mr-6 ml-6 text text_type_main-medium'}>Козюля сраный бургер</h4>
-                <div className={['mt-6 mr-6 ml-6 mb-6', styles.order_bottom_container].join(" ")}>
-                    <div>
-
-                    </div>
-                    <div className={'ml-6'}>
-                        <span className='mr-2 text text_type_digits-medium'>{totalPrice}</span>
-                        <CurrencyIcon type="primary" />
-                    </div>
-                </div>
-            </li>
-        )
+        return null
     }
 }
 

@@ -3,7 +3,7 @@ import { getIngreds, getIngredsFailed, getIngredsSuccess } from "../reducers/ing
 import { getOrderNum, getOrderNumFailed, getOrderNumSuccess } from "../reducers/orderSlice";
 import { setAuthChecked, setVisitor } from "../reducers/userSlice";
 import { setOrder } from '../../utils/api'
-import { TAnswer, Tuser } from "../../utils/types";
+import { TAnswer, Tuser } from "../../utils/types/types";
 import { AppDispatch } from "../../store";
 
 export function getItems() {

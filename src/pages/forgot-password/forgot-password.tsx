@@ -3,7 +3,7 @@ import styles from './forgot-password.module.css'
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { recoverPassword } from '../../utils/api';
-import { TformEvent, TinputEvent } from '../../utils/types';
+import { TformEvent, TinputEvent } from '../../utils/types/types';
 
 function ForgotPassword() {
     const [email, setEmail] = useState<string>("");

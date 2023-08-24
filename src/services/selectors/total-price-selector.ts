@@ -1,5 +1,5 @@
 import { RootState } from "../../store";
-import { TIngredientConstructor } from "../../utils/types";
+import { TIngredientConstructor } from "../../utils/types/types";
 
 export const totalPriceSelector = (state: RootState) => {
     const mooved = state.constructorBurger.mooved;

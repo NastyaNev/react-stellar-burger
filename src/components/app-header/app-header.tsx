@@ -10,7 +10,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 function AppHeader() {
   const { pathname } = useLocation();
 
-   return (
+  return (
     <>
       <header className={styles.header}>
         <div className={styles.two_links_container}>

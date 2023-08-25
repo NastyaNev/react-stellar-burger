@@ -58,5 +58,5 @@ export type TOrder = {
     name: string,
     createdAt: string,
     updatedAt: string,
-    number: number
+    number: number | string
 }

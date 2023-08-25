@@ -20,6 +20,8 @@ import { checkUserAuth, getItems } from "../../services/actions/actions";
 import { useAppDispatch } from '../../hooks';
 import Feed from "../../pages/feed/feed";
 import FeedId from "../modal/feed-id/feed-id";
+import MyOrders from "../../pages/my-orders/my-orders";
+import MyOrdersId from "../modal/my-orders-id/my-orders-id";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -53,8 +55,8 @@ function App() {
             <Route path='/profile' element={<OnlyAuth component={<ProfileInfo />} />}>
               <Route path='/profile/edit' element={<ProfileEdit />} />
             </Route>
-            <Route path='/profile/orders' element={<OnlyAuth component={<Feed />} />} />
-            <Route path='/profile/orders/:id' element={<OnlyAuth component={<Feed />} />} />
+            <Route path='/profile/orders' element={<OnlyAuth component={<MyOrders />} />} />
+            <Route path='/profile/orders/:id' element={<OnlyAuth component={<MyOrdersId />} />} />
           </Route>
           <Route path='login' element={<OnlyUnAuth component={<Login />} />} />
           <Route path='register' element={<OnlyUnAuth component={<Register />} />} />

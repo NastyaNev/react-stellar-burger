@@ -1,7 +1,7 @@
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import styles from './feed-id.module.css'
+import styles from './my-order-id.module.css'
 import { useLocation, useParams } from 'react-router-dom';
 import FeedIdIngredient from '../../feed-id-ingredient/feed-id-ingredient';
 import { TIngredient } from '../../../utils/types/types';
@@ -10,7 +10,7 @@ import { connect as connection, disconnect as disconnection } from '../../../ser
 
 export const ALL_ORDERS_SERVER_URL = 'wss://norma.nomoreparties.space/orders/all';
 
-function FeedId() {
+function MyOrdersId() {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const { state } = useLocation();
@@ -110,4 +110,4 @@ function FeedId() {
   )
 }
 
-export default FeedId
+export default MyOrdersId

@@ -17,7 +17,7 @@ function HeaderLink(props: THeaderLinkProps) {
   }
 
   return (
-    <NavLink className={setActiveLinkStyle} to={link} >
+    <NavLink className={setActiveLinkStyle} to={link}>
       <div className={['ml-5 mr-5', styles.link_content].join(" ")}>
         {icon}
         <span className={['text text_type_main-default ml-2', styles.span].join(" ")}>{linkText}</span>

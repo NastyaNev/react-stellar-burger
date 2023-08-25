@@ -25,7 +25,13 @@ export function getArray(): Promise<TPromise> {
 
 export function setOrder(ingredients: string[]): Promise<TPromise> {
     return fetch(`${config.url}/orders`, {
-        headers: config.headers,
+        headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("accessToken")
+        } as {
+            'Content-Type': string;
+            authorization?: string | undefined,
+        },
         method: 'POST',
         body: JSON.stringify({
             ingredients
@@ -57,15 +63,7 @@ export function refreshToken(): Promise<TPromise> {
         .then(checkResponse);
 };
 
-const fetchWithRefresh = async (url: string, options: any
-    //     {
-    //     method: string,
-    //     headers: {
-    //         "Content-Type": string,
-    //         authorization: string
-    //     }
-    // }
-): Promise<TPromise> => {
+const fetchWithRefresh = async (url: string, options: any): Promise<TPromise> => {
     try {
         const res = await fetch(url, options);
         return await checkResponse(res);

@@ -13,7 +13,7 @@ function IngredientDitails() {
 
     useEffect(() => {
         if (ings) {
-            const ingredient = ings ? ings.find((item) => item._id === id) : null;
+            const ingredient = ings.find((item) => item._id === id);
             dispatch(getIngred(ingredient!));
         }
     }, [ings])

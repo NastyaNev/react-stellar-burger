@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './order.module.css'
+import styles from './my-order.module.css'
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useAppSelector } from '../../../hooks';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,7 +11,7 @@ type TOrgerProps = {
     order: TOrder
 }
 
-function Order(props: TOrgerProps) {
+function MyOrder(props: TOrgerProps) {
     const { className, order } = props;
     const location = useLocation();
 
@@ -40,26 +40,26 @@ function Order(props: TOrgerProps) {
         const date = order.createdAt;
 
         const styleSpan = () => {
-            return images.length > 6 ? `mt-6 mr-6 ml-6 text text_type_main-small ${styles.order_image_span} ${styles.order_image_span_visible}` :
-                `mt-6 mr-6 ml-6 text text_type_main-small ${styles.order_image_span}`
+            return images.length > 6 ? `mt-6 mr-6 ml-6 text text_type_main-small ${styles.my_order_image_span} ${styles.my_order_image_span_visible}` :
+                `mt-6 mr-6 ml-6 text text_type_main-small ${styles.my_order_image_span}`
         }
 
         return (
-            <li className={[styles.order, className].join(" ")}>
-                <Link to={`/feed/${order.number}`} className={styles.order_link} state={{ background: location }}>
-                    <div className={['mt-6 mr-6 ml-6', styles.order_title_container].join(" ")}>
-                        <p className={['text text_type_digits-default', styles.order_num].join(" ")}>#{order.number}</p>
+            <li className={[styles.my_order, className].join(" ")}>
+                <Link to={`/orders/${order.number}`} className={styles.my_order_link} state={{ background: location }}>
+                    <div className={['mt-6 mr-6 ml-6', styles.my_order_title_container].join(" ")}>
+                        <p className={['text text_type_digits-default', styles.my_order_num].join(" ")}>#{order.number}</p>
                         <FormattedDate className="text text_type_main-small text_color_inactive" date={new Date(date)} />
                     </div>
-                    <h4 className={['mt-6 mr-6 ml-6 text text_type_main-medium', styles.order_burger_name].join(" ")}>{order.name}</h4>
-                    <div className={['mt-6 mr-6 ml-6 mb-6', styles.order_bottom_container].join(" ")}>
-                        <div className={styles.order_images_container}>
+                    <h4 className={['mt-6 mr-6 ml-6 text text_type_main-medium', styles.my_order_burger_name].join(" ")}>{order.name}</h4>
+                    <div className={['mt-6 mr-6 ml-6 mb-6', styles.my_order_bottom_container].join(" ")}>
+                        <div className={styles.my_order_images_container}>
                             {visibles.map((item) => (
-                                <img className={styles.order_image} key={uuidv4()} src={item} />
+                                <img className={styles.my_order_image} key={uuidv4()} src={item} />
                             ))}
                             <span className={styleSpan()}>+{numLeft}</span>
                         </div>
-                        <div className={['ml-6', styles.order_price_container].join(" ")}>
+                        <div className={['ml-6', styles.my_order_price_container].join(" ")}>
                             <span className='mr-2 text text_type_digits-medium'>{totalPrice}</span>
                             <CurrencyIcon type="primary" />
                         </div>
@@ -72,4 +72,4 @@ function Order(props: TOrgerProps) {
     }
 }
 
-export default Order
+export default MyOrder

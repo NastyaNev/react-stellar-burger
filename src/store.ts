@@ -4,29 +4,30 @@ import ingredsReducer from './services/reducers/ingredientsSlice';
 import constReducer from './services/reducers/constructorSlice';
 import userReducer from './services/reducers/userSlice';
 import orderReducer from './services/reducers/orderSlice';
-import { socketMiddleware } from "./services/middleware/socket-middleware";
+import feedIdReducer from "./services/reducers/feedIdSlice";
+import { socketAllOrdersMiddleware } from "./services/middleware/socket-all-orders-middleware";
 import { reducerWs } from './services/reducers/reducerAllOrdersWs';
 import { 
-  connect as LiveTableWsConnect, 
-  disconnect as LiveTableWsDisconnect,
-  wsConnecting as LiveTableWsConnecting,
-  wsOpen as LiveTableWsOpen,
-  wsClose as LiveTableWsClose,
-  wsMessage as LiveTableWsNessage,
-  wsError as LiveTableWsError 
+  connect as AllOrdersWsConnect, 
+  disconnect as AllOrdersWsDisconnect,
+  wsConnecting as AllOrdersWsConnecting,
+  wsOpen as AllOrdersWsOpen,
+  wsClose as AllOrdersWsClose,
+  wsMessage as AllOrdersWsNessage,
+  wsError as AllOrdersWsError 
 } from "./services/actions/actions-ws";
 
 const wsActions = {
-  wsConnect: LiveTableWsConnect,
-  wsDisconnect: LiveTableWsDisconnect,
-  wsConnecting: LiveTableWsConnecting,
-  onOpen: LiveTableWsOpen,
-  onClose: LiveTableWsClose,
-  onError: LiveTableWsError,
-  onMessage: LiveTableWsNessage,
+  wsConnect: AllOrdersWsConnect,
+  wsDisconnect: AllOrdersWsDisconnect,
+  wsConnecting: AllOrdersWsConnecting,
+  onOpen: AllOrdersWsOpen,
+  onClose: AllOrdersWsClose,
+  onError: AllOrdersWsError,
+  onMessage: AllOrdersWsNessage,
 };
 
-const WsMiddleware = socketMiddleware(wsActions);
+const WsAllOrdersMiddleware = socketAllOrdersMiddleware(wsActions);
 
 export const rootReducer = combineReducers({
   ingredient: ingredReducer,
@@ -34,13 +35,14 @@ export const rootReducer = combineReducers({
   constructorBurger: constReducer,
   user: userReducer,
   order: orderReducer,
-  orders: reducerWs
+  orders: reducerWs,
+  feedOrder: feedIdReducer
 })
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(WsMiddleware)
+    return getDefaultMiddleware().concat(WsAllOrdersMiddleware)
   }
 });
 

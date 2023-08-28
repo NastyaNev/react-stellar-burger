@@ -7,8 +7,7 @@ import FeedIdIngredient from '../../feed-id-ingredient/feed-id-ingredient';
 import { TIngredient } from '../../../utils/types/types';
 import { delFeedOrder, getFeedOrder } from '../../../services/reducers/feedIdSlice';
 import { connect as connection, disconnect as disconnection } from '../../../services/actions/actions-ws';
-
-export const ALL_ORDERS_SERVER_URL = 'wss://norma.nomoreparties.space/orders/all';
+import { getMyOrdersServerUrl } from '../../../pages/my-orders/my-orders';
 
 function MyOrdersId() {
   const dispatch = useAppDispatch();
@@ -20,7 +19,7 @@ function MyOrdersId() {
   const array = useAppSelector(state => state.ingredients.array);
 
   useEffect(() => {
-    dispatch(connection(ALL_ORDERS_SERVER_URL));
+    dispatch(connection(getMyOrdersServerUrl()));
     return () => {
       dispatch(disconnection());
     };

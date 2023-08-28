@@ -4,29 +4,32 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { connect as connection, disconnect as disconnection } from '../../services/actions/actions-ws'
 import MyOrder from './my-order/my-order';
 
-const token = localStorage.getItem("accessToken");
-const accessToken = token?.split(" ").pop();
-
-export const MY_ORDERS_SERVER_URL = `wss://norma.nomoreparties.space/orders?token=${accessToken}`;
+export const getMyOrdersServerUrl = () => {
+    const token = localStorage.getItem("accessToken");
+    const accessToken = token?.split(" ").pop();
+    return `wss://norma.nomoreparties.space/orders?token=${accessToken}`;
+}
 
 function MyOrders() {
     const dispatch = useAppDispatch();
+    const orders = useAppSelector(state => state.orders.table?.orders);
+
 
     useEffect(() => {
-        dispatch(connection(MY_ORDERS_SERVER_URL));
+        dispatch(connection(getMyOrdersServerUrl()));
         return () => {
             dispatch(disconnection());
         };
     }, []);
 
-    const orders = useAppSelector(state => state.orders.table?.orders); 
-
     if (orders) {
+        const newOrders = orders.concat().reverse();
+
         return (
             <div className={['mt-10', styles.my_orders_container].join(" ")}>
                 <h2 className='text text_type_main-large'>Лента заказов</h2>
                 <ul className={['mt-5 custom-scroll', styles.my_orders_list].join(" ")} >
-                    {orders.map(i => (
+                    {newOrders.map(i => (
                         <MyOrder className={'mr-2'} order={i} key={i._id} />
                     ))}
                 </ul>
@@ -34,6 +37,5 @@ function MyOrders() {
         )
     } else { return null }
 }
-
 
 export default MyOrders

@@ -39,6 +39,18 @@ function MyOrder(props: TOrgerProps) {
         const numLeft = invisibles.length;
         const date = order.createdAt;
 
+        const status = () => {
+            if (order.status === "done") { return 'Выполнен' }
+            else if (order.status === 'pending') { return 'Готовится' }
+            else if (order.status === 'created') { return 'Создан' }
+        };
+
+        const setClassStatus = () => {
+            if (order.status === "done") { return `mt-2 ml-6 text text_type_main-small text_color_success ${styles.feed_id_status}` }
+            else if (order.status === 'pending' || 'created') { return `mt-2 ml-6 text text_type_main-small ${styles.feed_id_status}` }
+            else if (order.status === 'created') { return 'Создан' }
+        };
+
         const styleSpan = () => {
             return images.length > 6 ? `mt-6 mr-6 ml-6 text text_type_main-small ${styles.my_order_image_span} ${styles.my_order_image_span_visible}` :
                 `mt-6 mr-6 ml-6 text text_type_main-small ${styles.my_order_image_span}`
@@ -46,12 +58,13 @@ function MyOrder(props: TOrgerProps) {
 
         return (
             <li className={[styles.my_order, className].join(" ")}>
-                <Link to={`/orders/${order.number}`} className={styles.my_order_link} state={{ background: location }}>
+                <Link to={`${order.number}`} className={styles.my_order_link} state={{ background: location }}>
                     <div className={['mt-6 mr-6 ml-6', styles.my_order_title_container].join(" ")}>
                         <p className={['text text_type_digits-default', styles.my_order_num].join(" ")}>#{order.number}</p>
                         <FormattedDate className="text text_type_main-small text_color_inactive" date={new Date(date)} />
                     </div>
                     <h4 className={['mt-6 mr-6 ml-6 text text_type_main-medium', styles.my_order_burger_name].join(" ")}>{order.name}</h4>
+                    <span className={setClassStatus()}>{status()}</span>
                     <div className={['mt-6 mr-6 ml-6 mb-6', styles.my_order_bottom_container].join(" ")}>
                         <div className={styles.my_order_images_container}>
                             {visibles.map((item) => (

@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './my-order.module.css'
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useAppSelector } from '../../../hooks';
-import { v4 as uuidv4 } from 'uuid';
 import { Link, useLocation } from 'react-router-dom';
 import { TIngredient, TOrder } from '../../../utils/types/types';
 
@@ -58,7 +57,7 @@ function MyOrder(props: TOrgerProps) {
 
         return (
             <li className={[styles.my_order, className].join(" ")}>
-                <Link to={`${order.number}`} className={styles.my_order_link} state={{ background: location }}>
+                <Link to={`/profile/orders/${order.number}`} className={styles.my_order_link} state={{ background: location }}>
                     <div className={['mt-6 mr-6 ml-6', styles.my_order_title_container].join(" ")}>
                         <p className={['text text_type_digits-default', styles.my_order_num].join(" ")}>#{order.number}</p>
                         <FormattedDate className="text text_type_main-small text_color_inactive" date={new Date(date)} />
@@ -68,7 +67,7 @@ function MyOrder(props: TOrgerProps) {
                     <div className={['mt-6 mr-6 ml-6 mb-6', styles.my_order_bottom_container].join(" ")}>
                         <div className={styles.my_order_images_container}>
                             {visibles.map((item) => (
-                                <img className={styles.my_order_image} key={uuidv4()} src={item} />
+                                <img className={styles.my_order_image} key={item} src={item} />
                             ))}
                             <span className={styleSpan()}>+{numLeft}</span>
                         </div>

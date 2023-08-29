@@ -57,7 +57,7 @@ function App() {
             </Route>
             <Route path='/profile/orders' element={<OnlyAuth component={<MyOrders />} />} />
           </Route>
-          <Route path='/profile/orders/:id' element={<OnlyAuth component={<MyOrdersId />} />} />
+          <Route path='/profile/orders/:id' element={!background && <OnlyAuth component={<MyOrdersId />} />} />
           <Route path='login' element={<OnlyUnAuth component={<Login />} />} />
           <Route path='register' element={<OnlyUnAuth component={<Register />} />} />
           <Route path='forgot-password' element={<OnlyUnAuth component={<ForgotPassword />} />} />
@@ -69,7 +69,7 @@ function App() {
         <Routes>
           <Route path="/ingredients/:id" element={<ModalView onClose={() => { navigate("/") }} ><IngredientDitails /></ModalView>} />
           <Route path="/feed/:id" element={<ModalView onClose={() => { navigate("/feed") }} ><FeedId /></ModalView>} />
-          <Route path='/profile/orders/:id' element={<ModalView onClose={() => { navigate("/profile/orders") }} ><MyOrdersId /></ModalView>} />
+          <Route path='/profile/orders/:id' element={<OnlyAuth component={<ModalView onClose={() => { navigate("/profile/orders") }} ><MyOrdersId /></ModalView>} />} />
         </Routes>
       )}
     </div >

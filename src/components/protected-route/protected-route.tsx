@@ -34,6 +34,7 @@ function Protected (props: TProtectedProps) {
   if (!onlyUnAuth && !user) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
+
   return component;
 };
 

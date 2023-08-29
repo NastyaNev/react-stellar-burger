@@ -5,7 +5,7 @@ import constReducer from './services/reducers/constructorSlice';
 import userReducer from './services/reducers/userSlice';
 import orderReducer from './services/reducers/orderSlice';
 import feedIdReducer from "./services/reducers/feedIdSlice";
-import { socketAllOrdersMiddleware } from "./services/middleware/socket-all-orders-middleware";
+import { socketMiddleware } from "./services/middleware/socket-middleware";
 import { reducerWs } from './services/reducers/reducerAllOrdersWs';
 import { 
   connect as AllOrdersWsConnect, 
@@ -27,7 +27,7 @@ const wsActions = {
   onMessage: AllOrdersWsNessage,
 };
 
-const WsAllOrdersMiddleware = socketAllOrdersMiddleware(wsActions);
+const WsMiddleware = socketMiddleware(wsActions);
 
 export const rootReducer = combineReducers({
   ingredient: ingredReducer,
@@ -42,7 +42,7 @@ export const rootReducer = combineReducers({
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(WsAllOrdersMiddleware)
+    return getDefaultMiddleware().concat(WsMiddleware)
   }
 });
 

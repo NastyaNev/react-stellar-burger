@@ -3,13 +3,15 @@ import styles from './register.module.css'
 import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
 import { register } from '../../utils/api';
-import { TformEvent, TinputEvent } from '../../utils/types';
+import { TformEvent, TinputEvent } from '../../utils/types/types';
+import { useAppDispatch } from '../../hooks';
  
 function Register() {
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const onChangeName = (evt: TinputEvent) => {
         setName(evt.target.value);
@@ -23,7 +25,8 @@ function Register() {
 
     const registerUser = (e: TformEvent) => {
         e.preventDefault();
-        return register(email, password, name).then(res => {
+        return register(email, password, name)
+        .then(res => {
             if (res && res.success) {
                 navigate(-1);
             } else {

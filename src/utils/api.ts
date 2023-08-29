@@ -1,5 +1,6 @@
 import { setVisitor } from "../services/reducers/userSlice";
-import { TIngredientConstructor } from "./types";
+import { AppDispatch } from "../store";
+import { TPromise, Tuser } from "./types/types";
 
 const config = {
     url: 'https://norma.nomoreparties.space/api',
@@ -8,23 +9,29 @@ const config = {
     }
 }
 
-const checkResponse = (res: Response) => {
+const checkResponse = (res: Response): Promise<TPromise> => {
     if (res.ok) {
         return res.json();
     }
     return res.json().then((err: Error) => Promise.reject(err));
 };
 
-export function getArray() {
+export function getArray(): Promise<TPromise> {
     return fetch(`${config.url}/ingredients`, {
         headers: config.headers
     })
         .then(checkResponse);
 }
 
-export function setOrder(ingredients: TIngredientConstructor[]) {
+export function setOrder(ingredients: string[]): Promise<TPromise> {
     return fetch(`${config.url}/orders`, {
-        headers: config.headers,
+        headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("accessToken")
+        } as {
+            'Content-Type': string;
+            authorization?: string | undefined,
+        },
         method: 'POST',
         body: JSON.stringify({
             ingredients
@@ -33,7 +40,7 @@ export function setOrder(ingredients: TIngredientConstructor[]) {
         .then(checkResponse)
 }
 
-export function setUser(email: string, password: string) {
+export function setUser(email: string, password: string): Promise<TPromise> {
     return fetch(`${config.url}/auth/login`, {
         headers: config.headers,
         method: 'POST',
@@ -45,7 +52,7 @@ export function setUser(email: string, password: string) {
         .then(checkResponse)
 }
 
-export function refreshToken() {
+export function refreshToken(): Promise<TPromise> {
     return fetch(`${config.url}/auth/token`, {
         method: "POST",
         headers: config.headers,
@@ -56,7 +63,7 @@ export function refreshToken() {
         .then(checkResponse);
 };
 
-const fetchWithRefresh = async (url: string, options: any) => {
+const fetchWithRefresh = async (url: string, options: any): Promise<TPromise> => {
     try {
         const res = await fetch(url, options);
         return await checkResponse(res);
@@ -78,8 +85,8 @@ const fetchWithRefresh = async (url: string, options: any) => {
     }
 };
 
-export const getUser = (user: { email: string, name: string } | null) => {
-    return (dispatch: any) => {
+export const getUser = (user: Tuser) => {
+    return (dispatch: AppDispatch) => {
         return fetchWithRefresh(`${config.url}/auth/user`, {
             method: "GET",
             headers: {
@@ -88,7 +95,7 @@ export const getUser = (user: { email: string, name: string } | null) => {
             }
         }).then((res) => {
             if (res.success) {
-                dispatch(setVisitor(user = res.user));
+                dispatch(setVisitor(user = res.user!));
             } else {
                 return Promise.reject("Ошибка данных с сервера");
             }
@@ -96,7 +103,7 @@ export const getUser = (user: { email: string, name: string } | null) => {
     };
 };
 
-export function logout() {
+export function logout(): Promise<TPromise> {
     return fetch(`${config.url}/auth/logout`, {
         headers: config.headers,
         method: 'POST',
@@ -107,7 +114,7 @@ export function logout() {
         .then(checkResponse)
 }
 
-export function register(email: string, password: string, name: string) {
+export function register(email: string, password: string, name: string): Promise<TPromise> {
     return fetch(`${config.url}/auth/register`, {
         headers: config.headers,
         method: 'POST',
@@ -120,7 +127,7 @@ export function register(email: string, password: string, name: string) {
         .then(checkResponse)
 }
 
-export function editUser(email: string, password: string, name: string) {
+export function editUser(email: string, password: string, name: string): Promise<TPromise> {
     return fetch(`${config.url}/auth/user`, {
         headers:
             {
@@ -140,7 +147,7 @@ export function editUser(email: string, password: string, name: string) {
         .then(checkResponse)
 }
 
-export function recoverPassword(email: string) {
+export function recoverPassword(email: string): Promise<TPromise> {
     return fetch(`${config.url}/password-reset`, {
         headers: config.headers,
         method: 'POST',
@@ -151,7 +158,7 @@ export function recoverPassword(email: string) {
         .then(checkResponse)
 }
 
-export function setNewPass(password: string, token: string) {
+export function setNewPass(password: string, token: string): Promise<TPromise> {
     return fetch(`${config.url}/password-reset/reset`, {
         headers: config.headers,
         method: 'POST',

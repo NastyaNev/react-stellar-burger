@@ -4,10 +4,10 @@ import Middle from './middle/middle';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderDetails from '../modal/order-details/order-details';
-import { useDispatch, useSelector } from 'react-redux';
 import { totalPriceSelector } from '../../services/selectors/total-price-selector';
 import { getAnswer } from '../../services/actions/actions'
-import { TIngredientConstructor, TSetModalState } from '../../utils/types';
+import { TSetModalState } from '../../utils/types/types';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 type TBurgerConstructorProps = {
   className: string,
@@ -16,11 +16,11 @@ type TBurgerConstructorProps = {
 
 function BurgerConstructor(props: TBurgerConstructorProps) {
   const { className, setModalState } = props;
-  const dispatch = useDispatch();
-  const mooved = useSelector((state: any) => state.constructorBurger.mooved);
-  const bun = useSelector((state: any) => state.constructorBurger.bun);
+  const dispatch = useAppDispatch();
+  const mooved = useAppSelector((state) => state.constructorBurger.mooved);
+  const bun = useAppSelector((state) => state.constructorBurger.bun);
 
-  let ingredients: TIngredientConstructor[] = mooved.map((item: TIngredientConstructor) => item._id);
+  let ingredients = mooved.map((item) => item._id);
   if (bun) {
     ingredients = [bun._id, ...ingredients, bun._id]
   }
@@ -34,7 +34,7 @@ function BurgerConstructor(props: TBurgerConstructorProps) {
       });
   };
 
-  const totalPrice = useSelector(totalPriceSelector);
+  const totalPrice = useAppSelector(totalPriceSelector);
 
   return (
     <li className={['ml-10', styles.burger_constructor, className].join(" ")} >
@@ -44,7 +44,7 @@ function BurgerConstructor(props: TBurgerConstructorProps) {
           <span className='mr-2 text text_type_digits-medium'>{totalPrice}</span>
           <CurrencyIcon type="primary" />
         </div>
-        <Button htmlType="button" type="primary" size="large" onClick={handleOpen} disabled={mooved.length === 0 && !bun ? true : false} >
+        <Button htmlType="button" type="primary" size="large" onClick={handleOpen} disabled={!bun ? true : false} >
           Оформить заказ
         </Button>
       </section>

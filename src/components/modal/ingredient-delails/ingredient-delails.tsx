@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react'
 import styles from './ingredient-delails.module.css'
-import { useSelector, useDispatch } from 'react-redux'
 import { useLocation, useParams } from 'react-router-dom';
 import { delIngred, getIngred } from '../../../services/reducers/ingredientSlice';
-import { TIngredient } from '../../../utils/types';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 function IngredientDitails() {   
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const { id } = useParams();
     const { state } = useLocation();
-    const ings = useSelector((state: any) => state.ingredients.array)
-    const ing = useSelector((state: any) => state.ingredient.ing);
+    const ings = useAppSelector((state) => state.ingredients.array)
+    const ing = useAppSelector((state) => state.ingredient.ing);
 
     useEffect(() => {
         if (ings) {
-            const ingredient = ings ? ings.find((item: TIngredient) => item._id === id) : null;
-            dispatch(getIngred(ingredient));
+            const ingredient = ings.find((item) => item._id === id);
+            dispatch(getIngred(ingredient!));
         }
     }, [ings])
 

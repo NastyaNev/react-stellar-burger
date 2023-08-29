@@ -2,9 +2,9 @@ import React from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import styles from './profile.module.css'
 import { logout } from '../../utils/api';
-import { useDispatch } from 'react-redux';
 import { setVisitor } from '../../services/reducers/userSlice';
-import { Tuser } from '../../utils/types';
+import { Tuser } from '../../utils/types/types';
+import { useAppDispatch } from '../../hooks';
 
 function Profile() {
   const setActiveLinkStyle = ({isActive}: {isActive: Boolean;}): string => {
@@ -14,7 +14,7 @@ function Profile() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const signOut = (user: Tuser) => {
     return logout().then(res => {
@@ -34,8 +34,8 @@ function Profile() {
   }
 
   return (
-    <div className={['ml-9 mt-30', styles.profile].join(" ")}>
-      <div className={styles.profile_menu_section}>
+    <div className={['ml-9', styles.profile].join(" ")}>
+      <div className={['mt-30',styles.profile_menu_section].join(' ')}>
         <div className={styles.profile_menu}>
           <NavLink to='/profile' className={setActiveLinkStyle({isActive: ['/profile', '/profile/edit'].includes(pathname)})} end>Профиль</NavLink>
           <NavLink to='/profile/orders' className={setActiveLinkStyle}>История заказов</NavLink>

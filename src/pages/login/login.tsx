@@ -2,14 +2,14 @@ import { Button, EmailInput, PasswordInput } from '@ya.praktikum/react-developer
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './login.module.css'
-import { useDispatch } from 'react-redux'
 import { login } from '../../services/actions/actions'
-import { TformEvent, TinputEvent } from '../../utils/types'
+import { TformEvent, TinputEvent } from '../../utils/types/types'
+import { useAppDispatch } from '../../hooks';
 
 function Login() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const onChangeEmail = (evt: TinputEvent) => {
         setEmail(evt.target.value);

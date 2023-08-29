@@ -10,12 +10,12 @@ import { NavLink, useLocation } from 'react-router-dom'
 function AppHeader() {
   const { pathname } = useLocation();
 
-   return (
+  return (
     <>
       <header className={styles.header}>
         <div className={styles.two_links_container}>
           <HeaderLink icon={<BurgerIcon type={pathname === "/" ? "primary" : "secondary"} />} linkText="Конструктор" link="/" />
-          <HeaderLink className='ml-2' icon={<ListIcon type={pathname === "/orders" ? "primary" : "secondary"} />} linkText="Лента заказов" link="/orders" />
+          <HeaderLink className='ml-2' icon={<ListIcon type={pathname === "/feed" ? "primary" : "secondary"} />} linkText="Лента заказов" link="/feed" />
         </div>
         <NavLink className={styles.logo} to="/" >
           <Logo />

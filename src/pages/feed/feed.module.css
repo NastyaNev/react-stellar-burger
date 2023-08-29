@@ -1,0 +1,13 @@
+.feed {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 824px;
+    list-style: none;
+    gap: 60px;
+}
+
+.feed_column {
+    width: 580px;
+}

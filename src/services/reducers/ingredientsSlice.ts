@@ -1,6 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { TIngredient } from "../../utils/types/types";
 
-const initialState = {
+type TIngredientsSlice = {
+    apiRequest: boolean,
+    apiFailed: boolean,
+    array: TIngredient[],
+}
+
+const initialState: TIngredientsSlice = {
     apiRequest: false,
     apiFailed: false,
     array: []
@@ -13,7 +20,7 @@ export const ingredientsSlice = createSlice({
         getIngreds: (state) => {
             state.apiRequest = true;
         },
-        getIngredsSuccess: (state, action) => {
+        getIngredsSuccess: (state, action: PayloadAction<TIngredient[]>) => {
             state.array = action.payload;
             state.apiRequest = false;
         },

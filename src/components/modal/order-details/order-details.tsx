@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './order-details.module.css'
 import done from '../../../images/graphics.svg'
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../../hooks';
 
 function OrderDetails() {
-    const answer = useSelector((state: any) => state.order.answer);
+    const answer = useAppSelector((state) => state.order.answer);
 
-    const orderNum = answer.order.number;
+    const orderNum = answer!.order!.number;
 
     return (
         <div className={styles.order_ditails}>

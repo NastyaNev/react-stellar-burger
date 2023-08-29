@@ -1,6 +1,7 @@
-import { TIngredientConstructor } from "../../utils/types";
+import { RootState } from "../../store";
+import { TIngredientConstructor } from "../../utils/types/types";
 
-export const totalPriceSelector = (state: any) => {
+export const totalPriceSelector = (state: RootState) => {
     const mooved = state.constructorBurger.mooved;
     const bun = state.constructorBurger.bun;
     const prices = mooved.map((item: TIngredientConstructor) => item.price);

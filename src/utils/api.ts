@@ -18,7 +18,8 @@ const checkResponse = (res: Response): Promise<TPromise> => {
 
 export function getArray(): Promise<TPromise> {
     return fetch(`${config.url}/ingredients`, {
-        headers: config.headers
+        headers: config.headers,
+        method: 'GET'
     })
         .then(checkResponse);
 }

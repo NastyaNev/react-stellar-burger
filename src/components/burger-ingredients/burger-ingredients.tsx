@@ -59,9 +59,9 @@ function BurgerIngredients(props: TBurgerIngredientsProps) {
                 </Tab>
             </div>
             <ul className={['custom-scroll', styles.ingredients_list].join(" ")} onScroll={handleScroll} ref={containerRef} >
-                <IngredientSection ingredName='Булки' type='bun' customRef={bunRef} />
-                <IngredientSection ingredName='Соусы' type='sauce' customRef={sauceRef} />
-                <IngredientSection ingredName='Начинки' type='main' customRef={mainRef} />
+                <IngredientSection ingredName='Булки' type='bun' customRef={bunRef} id='buns_section' />
+                <IngredientSection ingredName='Соусы' type='sauce' customRef={sauceRef} id='sauces_section' />
+                <IngredientSection ingredName='Начинки' type='main' customRef={mainRef} id='mains_section' />
             </ul>
         </li>
     )

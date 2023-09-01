@@ -32,8 +32,10 @@ describe('Тестирование работы главной страницы'
         cy.get('[id=buns_section]').scrollIntoView();
         cy.get('[id=tabs_section]').contains('Булки').parent().should('have.class', 'tab_type_current');
         cy.get('[id=sauces_section]').scrollIntoView();
+        cy.wait(200);
         cy.get('[id=tabs_section]').contains('Соусы').parent().should('have.class', 'tab_type_current');
         cy.get('[id=mains_section]').scrollIntoView();
+        cy.wait(200);
         cy.get('[id=tabs_section]').contains('Начинки').parent().should('have.class', 'tab_type_current');
 
     })
@@ -93,9 +95,9 @@ describe('Тестирование работы главной страницы'
         cy.get('[id=constructor_list]').contains('Соус фирменный Space Sauce');
     })
     it('Модальные окна', () => {
+        cy.intercept('POST', '/api/orders', { fixture: 'orders.json' });
         cy.intercept('GET', '/api/ingredients', { fixture: 'ingredients.json' });
         cy.intercept('POST', '/api/auth/login', { fixture: 'login.json' });
-        cy.intercept('POST', '/api/orders', { fixture: 'orders.json' });
         cy.intercept('GET', '/api/auth/user', { fixture: 'user.json' });
 
         cy.get('#buns_section > .mt-6 > :nth-child(1) > .ingredient_card__ajTps').click();

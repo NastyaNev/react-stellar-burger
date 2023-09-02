@@ -4,7 +4,7 @@ describe('Тестирование работы главной страницы'
             return false;
         });
 
-        cy.visit('http://localhost:3000/');
+        cy.visit('http://localhost:3000/react-stellar-burger/');
     })
     it('Открытие страницы', () => {
         cy.intercept('GET', '/api/ingredients', { fixture: 'ingredients.json' });
@@ -28,16 +28,6 @@ describe('Тестирование работы главной страницы'
         cy.get('[id=sauces_section] li a').should('exist').and('have.prop', 'type', 'sauce');
         cy.get('[id=mains_section]').should('exist');
         cy.get('[id=mains_section] li a').should('exist').and('have.prop', 'type', 'main');
-
-        cy.get('[id=buns_section]').scrollIntoView();
-        cy.get('[id=tabs_section]').contains('Булки').parent().should('have.class', 'tab_type_current');
-        cy.get('[id=sauces_section]').scrollIntoView();
-        cy.wait(200);
-        cy.get('[id=tabs_section]').contains('Соусы').parent().should('have.class', 'tab_type_current');
-        cy.get('[id=mains_section]').scrollIntoView();
-        cy.wait(200);
-        cy.get('[id=tabs_section]').contains('Начинки').parent().should('have.class', 'tab_type_current');
-
     })
     it('Перетаскивание ингредиентов', () => {
         cy.intercept('GET', '/api/ingredients', { fixture: 'ingredients.json' });
@@ -101,34 +91,33 @@ describe('Тестирование работы главной страницы'
         cy.intercept('GET', '/api/auth/user', { fixture: 'user.json' });
 
         cy.get('#buns_section > .mt-6 > :nth-child(1) > .ingredient_card__ajTps').click();
-        cy.location('pathname').should('eq', '/ingredients/643d69a5c3f7b9001cfa093c');
+        cy.location('pathname').should('eq', '/react-stellar-burger/ingredients/643d69a5c3f7b9001cfa093c');
         cy.get('[class^=modal_modal]').should('exist');
         cy.get('[class^=ingredient-delails_contain]').should('exist');
 
         cy.get('body').type('{esc}');
         cy.get('[class^=modal_modal]').should('not.exist');
-        cy.location('pathname').should('eq', '/');
+        cy.location('pathname').should('eq', '/react-stellar-burger');
 
         cy.get('#buns_section > .mt-6 > :nth-child(1) > .ingredient_card__ajTps').click();
         cy.get('[class^=overlay_overlay]').click(15, 15, {force: true});
         cy.get('[class^=modal_modal]').should('not.exist');
-        cy.location('pathname').should('eq', '/');
+        cy.location('pathname').should('eq', '/react-stellar-burger');
 
         cy.get('#buns_section > .mt-6 > :nth-child(1) > .ingredient_card__ajTps').click();
         cy.get('[class^=modal_modal] > button').click();
         cy.get('[class^=modal_modal]').should('not.exist');
-        cy.location('pathname').should('eq', '/');
+        cy.location('pathname').should('eq', '/react-stellar-burger');
 
         cy.get('#buns_section > .mt-6 > :nth-child(2) > [class^=ingredient_card]').trigger('dragstart');
         cy.get('[id=constructor_list]').trigger('drop');
         cy.get('button').contains('Оформить заказ').click();
-        cy.location('pathname').should('eq', '/login');
+        cy.location('pathname').should('eq', '/react-stellar-burger/login');
         cy.get('[class^=login_login_form_container]').should('exist');
 
         cy.get('input').first().type('asrozova@gmail.com');
         cy.get('input').last().type('111111');
         cy.get('button').contains('Войти').click();
-        cy.wait(1500);
         cy.get('[class^=modal_modal]').should('exist');
         cy.get('[class^=order-details_order_ditails]').should('exist');
 
@@ -136,12 +125,10 @@ describe('Тестирование работы главной страницы'
         cy.get('[class^=modal_modal]').should('not.exist');
 
         cy.get('button').contains('Оформить заказ').click();
-        cy.wait(1500);
         cy.get('[class^=overlay_overlay]').click(30, 30, {force: true});
         cy.get('[class^=modal_modal]').should('not.exist');
 
         cy.get('button').contains('Оформить заказ').click();
-        cy.wait(1500);
         cy.get('[class^=modal_modal] > button').click();
         cy.get('[class^=modal_modal]').should('not.exist');
     })

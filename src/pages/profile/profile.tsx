@@ -22,7 +22,7 @@ function Profile() {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
 
-        dispatch(setVisitor(user = null));
+        dispatch(setVisitor(null));
         navigate("/login");
       } else {
         return Promise.reject("Ошибка данных с сервера");

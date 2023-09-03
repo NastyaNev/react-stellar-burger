@@ -96,7 +96,7 @@ export const getUser = (user: Tuser) => {
             }
         }).then((res) => {
             if (res.success) {
-                dispatch(setVisitor(user = res.user!));
+                dispatch(setVisitor(res.user!));
             } else {
                 return Promise.reject("Ошибка данных с сервера");
             }

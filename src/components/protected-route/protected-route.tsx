@@ -9,18 +9,21 @@ type TProtectedProps = {
   component: JSX.Element,
 }
 
-function Protected (props: TProtectedProps) {
+function Protected(props: TProtectedProps) {
   const { onlyUnAuth = false, component } = props;
   const dispatch = useAppDispatch();
 
+  const location = useLocation();
+  const user = useAppSelector((store) => store.user.user);
+
   useEffect(() => {
-    dispatch(setAuthChecked(isAuthChecked === false));
-    dispatch(checkUserAuth(null, false));
+    if (!user) {
+      dispatch(setAuthChecked(false));
+      dispatch(checkUserAuth(null, false));
+    }
   }, [dispatch]);
 
   const isAuthChecked = useAppSelector((store) => store.user.isAuthChecked);
-  const user = useAppSelector((store) => store.user.user);
-  const location = useLocation();
 
   if (!isAuthChecked) {
     return null;
@@ -38,5 +41,5 @@ function Protected (props: TProtectedProps) {
   return component;
 };
 
-export const OnlyAuth = (props: {component: JSX.Element}) => <Protected onlyUnAuth={false} {...props} />;
-export const OnlyUnAuth = (props: {component: JSX.Element}) => <Protected onlyUnAuth={true} {...props} />;
+export const OnlyAuth = (props: { component: JSX.Element }) => <Protected onlyUnAuth={false} {...props} />;
+export const OnlyUnAuth = (props: { component: JSX.Element }) => <Protected onlyUnAuth={true} {...props} />;

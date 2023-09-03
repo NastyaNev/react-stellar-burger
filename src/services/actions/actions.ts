@@ -28,7 +28,7 @@ export function login(email: string, password: string, user?: Tuser, isAuthCheck
             if (res && res.success) {
                 localStorage.setItem("accessToken", res.accessToken);
                 localStorage.setItem("refreshToken", res.refreshToken);
-                dispatch(setVisitor(user = res.user!));
+                dispatch(setVisitor(res.user!));
             } else {
                 return Promise.reject("Ошибка данных с сервера");
             }
@@ -37,7 +37,7 @@ export function login(email: string, password: string, user?: Tuser, isAuthCheck
                 console.log(err)
             })
             .finally(() => {
-                dispatch(setAuthChecked(isAuthChecked = true));
+                dispatch(setAuthChecked(true));
             });
     };
 }
@@ -49,12 +49,12 @@ export const checkUserAuth = (user: Tuser, isAuthChecked: boolean) => {
                 .catch((error: Error) => {
                     localStorage.removeItem("accessToken");
                     localStorage.removeItem("refreshToken");
-                    dispatch(setVisitor(user = null));
+                    dispatch(setVisitor(null));
                 })
-                .finally(() => dispatch(setAuthChecked(isAuthChecked = true)))
+                .finally(() => dispatch(setAuthChecked(true)))
         } else {
-            dispatch(setAuthChecked(isAuthChecked = true));
-            dispatch(setVisitor(user = null));
+            dispatch(setAuthChecked(true));
+            dispatch(setVisitor(null));
         }
     };
 };

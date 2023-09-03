@@ -1,5 +1,5 @@
 import ingredsReducer from './ingredientsSlice';
-import { getIngreds, getIngredsSuccess, getIngredsFailed } from './ingredientsSlice';
+import { getIngreds, getIngredsSuccess, getIngredsFailed, initialState } from './ingredientsSlice';
 
 const ingredientsArray = [
     {
@@ -45,47 +45,32 @@ const ingredientsArray = [
     }
 ]
 
-const initState = {
-    apiRequest: false,
-    apiFailed: false,
-    array: []
+const loading = {
+    ...initialState,
+    apiRequest: true,
+}
+
+const loadingSuccess = {
+    ...initialState,
+    array: ingredientsArray
+}
+
+const error = {
+    ...initialState,
+    apiFailed: true
 }
 
 describe('Тестирование редьюсера массива ингредиентов', () => {
     test('Загрузка данных', () => {
-        expect(ingredsReducer(initState, getIngreds({ apiRequest: true }))).toEqual({
-            apiRequest: true,
-            apiFailed: false,
-            array: []
-        })
-        expect(ingredsReducer(undefined, getIngreds({ apiRequest: true }))).toEqual({
-            apiRequest: true,
-            apiFailed: false,
-            array: []
-        })
+        expect(ingredsReducer(initialState, getIngreds({ apiRequest: true }))).toEqual(loading)
+        expect(ingredsReducer(undefined, getIngreds({ apiRequest: true }))).toEqual(loading)
     })
     test('Данные получены', () => {
-        expect(ingredsReducer(initState, getIngredsSuccess(ingredientsArray))).toEqual({
-            apiRequest: false,
-            apiFailed: false,
-            array: ingredientsArray
-        })
-        expect(ingredsReducer(undefined, getIngredsSuccess(ingredientsArray))).toEqual({
-            apiRequest: false,
-            apiFailed: false,
-            array: ingredientsArray
-        })
+        expect(ingredsReducer(initialState, getIngredsSuccess(ingredientsArray))).toEqual(loadingSuccess)
+        expect(ingredsReducer(undefined, getIngredsSuccess(ingredientsArray))).toEqual(loadingSuccess)
     })
     test('Ошибка запроса', () => {
-        expect(ingredsReducer(initState, getIngredsFailed({ apiRequest: false, apiFailed: true }))).toEqual({
-            apiRequest: false,
-            apiFailed: true,
-            array: []
-        })
-        expect(ingredsReducer(undefined, getIngredsFailed({ apiRequest: false, apiFailed: true }))).toEqual({
-            apiRequest: false,
-            apiFailed: true,
-            array: []
-        })
+        expect(ingredsReducer(initialState, getIngredsFailed({ apiRequest: false, apiFailed: true }))).toEqual(error)
+        expect(ingredsReducer(undefined, getIngredsFailed({ apiRequest: false, apiFailed: true }))).toEqual(error)
     })
 })

@@ -1,5 +1,5 @@
 import constReducer from './constructorSlice';
-import { getMoovedItems, sortIngreds, delConstItem } from './constructorSlice';
+import { getMoovedItems, sortIngreds, delConstItem, initialState } from './constructorSlice';
 
 const bunDitails = {
     _id: "643d69a5c3f7b9001cfa093d",
@@ -133,47 +133,38 @@ const middleSorted = [
     }
 ];
 
-const initState = {
-    bun: null,
+const haveOnlyBun = {
+    bun: bunDitails,
     mooved: []
-};
+}
 
 describe('Тестирование редьюсера конструктора бургера', () => {
     test('Проверка на булку', () => {
-        expect(constReducer(initState, getMoovedItems(bunDitails))).toEqual({
-            bun: bunDitails,
-            mooved: []
-        })
-        expect(constReducer(undefined, getMoovedItems(bunDitails))).toEqual({
-            bun: bunDitails,
-            mooved: []
-        })
+        expect(constReducer(initialState, getMoovedItems(bunDitails))).toEqual(haveOnlyBun)
+        expect(constReducer(undefined, getMoovedItems(bunDitails))).toEqual(haveOnlyBun)
     })
     test('Проверка на соус и начинку', () => {
         expect(constReducer({
-            bun: null,
+            ...initialState,
             mooved: middleList
         }, getMoovedItems(middle))).toEqual({
-            bun: null,
+            ...initialState,
             mooved: [...middleList, middle]
         })
     })
     test('Сортировка ингредиентов', () => {
         expect(constReducer({
-            bun: null,
+            ...initialState,
             mooved: middleForSort
-        }, sortIngreds({itemId: "34303c0f-e35b-4d4b-8e2d-8e613b870b27", targetItemId: '36a5d994-b9f7-4ada-9c34-3b6184fb8e19'}))).toEqual({
-            bun: null,
+        }, sortIngreds({ itemId: "34303c0f-e35b-4d4b-8e2d-8e613b870b27", targetItemId: '36a5d994-b9f7-4ada-9c34-3b6184fb8e19' }))).toEqual({
+            ...initialState,
             mooved: middleSorted
         })
     })
     test('Удаление ингредиента из списка', () => {
         expect(constReducer({
-            bun: null,
+            ...initialState,
             mooved: middleList
-        }, delConstItem(middleDel))).toEqual({
-            bun: null,
-            mooved: []
-        })
+        }, delConstItem(middleDel))).toEqual(initialState)
     })
 })

@@ -1,4 +1,4 @@
-import { getIngred, delIngred } from './ingredientSlice';
+import { getIngred, delIngred, initialState } from './ingredientSlice';
 import ingredReducer from './ingredientSlice';
 
 const ingredInfo = {
@@ -19,7 +19,7 @@ const ingredInfo = {
 describe('Тестирование редьюсера модалки с информацией об ингредиенте', () => {
     test('Добавление информации', () => {
         expect(ingredReducer(undefined, getIngred(ingredInfo))).toEqual({ ing: ingredInfo })
-        expect(ingredReducer({ ing: null }, getIngred(ingredInfo))).toEqual({ ing: ingredInfo })
+        expect(ingredReducer(initialState, getIngred(ingredInfo))).toEqual({ ing: ingredInfo })
     })
     test('Удаление информации', () => {
         expect(ingredReducer(undefined, delIngred(null))).toEqual({ ing: null })

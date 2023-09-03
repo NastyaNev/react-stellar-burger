@@ -5,7 +5,7 @@ type TFeedIdSlice = {
     feedOrder: TOrder | null;
 }
 
-const initialState: TFeedIdSlice = {
+export const initialState: TFeedIdSlice = {
     feedOrder: null
 }
 

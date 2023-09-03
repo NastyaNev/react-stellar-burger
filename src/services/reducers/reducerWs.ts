@@ -8,7 +8,7 @@ export type AllOrdersStore = {
     table: OrdersRow | null
 }
 
-const initialState: AllOrdersStore = {
+export const initialState: AllOrdersStore = {
     status: WebsocketStatus.OFFLINE,
     connectionError: '',
     table: null

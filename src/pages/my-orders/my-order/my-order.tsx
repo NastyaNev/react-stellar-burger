@@ -57,7 +57,7 @@ function MyOrder(props: TOrgerProps) {
 
         return (
             <li className={[styles.my_order, className].join(" ")}>
-                <Link to={`/profile/orders/${order.number}`} className={styles.my_order_link} state={{ background: location }}>
+                <Link to={`${order.number}`} className={styles.my_order_link} state={{ background: location }}>
                     <div className={['mt-6 mr-6 ml-6', styles.my_order_title_container].join(" ")}>
                         <p className={['text text_type_digits-default', styles.my_order_num].join(" ")}>#{order.number}</p>
                         <FormattedDate className="text text_type_main-small text_color_inactive" date={new Date(date)} />

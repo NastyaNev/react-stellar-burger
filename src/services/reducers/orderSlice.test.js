@@ -1,5 +1,5 @@
 import orderReducer from './orderSlice';
-import { getOrderNum, getOrderNumSuccess, getOrderNumFailed } from './orderSlice';
+import { getOrderNum, getOrderNumSuccess, getOrderNumFailed, initialState } from './orderSlice';
 
 const orderInfo =
 {
@@ -9,47 +9,32 @@ const orderInfo =
     }
 }
 
-const initState = {
-    apiRequest: false,
-    apiFailed: false,
-    answer: null
+const loading = {
+    ...initialState,
+    apiRequest: true,
+}
+
+const loadingSuccess = {
+    ...initialState,
+    answer: orderInfo
+}
+
+const error = {
+    ...initialState,
+    apiFailed: true
 }
 
 describe('Тестирование редьюсера информации о сделанном заказе', () => {
     test('Загрузка данных', () => {
-        expect(orderReducer(initState, getOrderNum({ apiRequest: true }))).toEqual({
-            apiRequest: true,
-            apiFailed: false,
-            answer: null
-        })
-        expect(orderReducer(undefined, getOrderNum({ apiRequest: true }))).toEqual({
-            apiRequest: true,
-            apiFailed: false,
-            answer: null
-        })
+        expect(orderReducer(initialState, getOrderNum({ apiRequest: true }))).toEqual(loading)
+        expect(orderReducer(undefined, getOrderNum({ apiRequest: true }))).toEqual(loading)
     })
     test('Данные получены', () => {
-        expect(orderReducer(initState, getOrderNumSuccess(orderInfo))).toEqual({
-            apiRequest: false,
-            apiFailed: false,
-            answer: orderInfo
-        })
-        expect(orderReducer(undefined, getOrderNumSuccess(orderInfo))).toEqual({
-            apiRequest: false,
-            apiFailed: false,
-            answer: orderInfo
-        })
+        expect(orderReducer(initialState, getOrderNumSuccess(orderInfo))).toEqual(loadingSuccess)
+        expect(orderReducer(undefined, getOrderNumSuccess(orderInfo))).toEqual(loadingSuccess)
     })
     test('Ошибка запроса', () => {
-        expect(orderReducer(initState, getOrderNumFailed({ apiRequest: false, apiFailed: true }))).toEqual({
-            apiRequest: false,
-            apiFailed: true,
-            answer: null
-        })
-        expect(orderReducer(undefined, getOrderNumFailed({ apiRequest: false, apiFailed: true }))).toEqual({
-            apiRequest: false,
-            apiFailed: true,
-            answer: null
-        })
+        expect(orderReducer(initialState, getOrderNumFailed({ apiRequest: false, apiFailed: true }))).toEqual(error)
+        expect(orderReducer(undefined, getOrderNumFailed({ apiRequest: false, apiFailed: true }))).toEqual(error)
     })
 })

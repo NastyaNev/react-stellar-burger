@@ -1,5 +1,5 @@
 
-import { reducerWs } from "./reducerWs";
+import { reducerWs, initialState } from "./reducerWs";
 import { wsOpen, wsClose, wsMessage, wsError, wsConnecting } from "../actions/actions-ws";
 import { WebsocketStatus } from '../../utils/types/all-orders-types';
 
@@ -42,69 +42,41 @@ const ordersInfo = {
 
 const error = "1006";
 
-const initState = {
-    status: WebsocketStatus.OFFLINE,
-    connectionError: '',
-    table: null
+const connecting = {
+    ...initialState,
+    status: WebsocketStatus.CONNECTING
+}
+
+const connectSuccess = {
+    ...initialState,
+    status: WebsocketStatus.ONLINE
+}
+
+const connectError = {
+    ...initialState,
+    connectionError: error
 }
 
 describe('Тестирование редьюсера вебсокета', () => {
     test('Создание соединения', () => {
-        expect(reducerWs(initState, wsConnecting({ status: WebsocketStatus.CONNECTING }))).toEqual({
-            status: WebsocketStatus.CONNECTING,
-            connectionError: '',
-            table: null
-        })
-        expect(reducerWs(undefined, wsConnecting({ status: WebsocketStatus.CONNECTING }))).toEqual({
-            status: WebsocketStatus.CONNECTING,
-            connectionError: '',
-            table: null
-        })
+        expect(reducerWs(initialState, wsConnecting({ status: WebsocketStatus.CONNECTING }))).toEqual(connecting)
+        expect(reducerWs(undefined, wsConnecting({ status: WebsocketStatus.CONNECTING }))).toEqual(connecting)
     })
     test('Успешное соединение', () => {
-        expect(reducerWs(initState, wsOpen({ status: WebsocketStatus.ONLINE }))).toEqual({
-            status: WebsocketStatus.ONLINE,
-            connectionError: '',
-            table: null
-        })
-        expect(reducerWs(undefined, wsOpen({ status: WebsocketStatus.ONLINE }))).toEqual({
-            status: WebsocketStatus.ONLINE,
-            connectionError: '',
-            table: null
-        })
+        expect(reducerWs(initialState, wsOpen({ status: WebsocketStatus.ONLINE }))).toEqual(connectSuccess)
+        expect(reducerWs(undefined, wsOpen({ status: WebsocketStatus.ONLINE }))).toEqual(connectSuccess)
     })
     test('Соединение закрыто', () => {
-        expect(reducerWs(initState, wsClose())).toEqual({
-            status: WebsocketStatus.OFFLINE,
-            connectionError: '',
-            table: null
-        })
-        expect(reducerWs(undefined, wsClose())).toEqual({
-            status: WebsocketStatus.OFFLINE,
-            connectionError: '',
-            table: null
-        })
+        expect(reducerWs(initialState, wsClose())).toEqual(initialState)
+        expect(reducerWs(undefined, wsClose())).toEqual(initialState)
     })
     test('Ошибка соединения', () => {
-        expect(reducerWs(initState, wsError(error))).toEqual({
-            status: WebsocketStatus.OFFLINE,
-            connectionError: error,
-            table: null
-        })
-        expect(reducerWs(undefined, wsError(error))).toEqual({
-            status: WebsocketStatus.OFFLINE,
-            connectionError: error,
-            table: null
-        })
+        expect(reducerWs(initialState, wsError(error))).toEqual(connectError)
+        expect(reducerWs(undefined, wsError(error))).toEqual(connectError)
     })
     test('Отправка сообщения на сервер', () => {
-        expect(reducerWs({
-            status: WebsocketStatus.ONLINE,
-            connectionError: '',
-            table: null
-        }, wsMessage(ordersInfo))).toEqual({
-            status: WebsocketStatus.ONLINE,
-            connectionError: '',
+        expect(reducerWs(connectSuccess, wsMessage(ordersInfo))).toEqual({
+            ...connectSuccess,
             table: ordersInfo
         })
     })

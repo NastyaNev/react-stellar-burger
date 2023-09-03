@@ -51,11 +51,11 @@ function App() {
           <Route path='ingredients/:id' element={!background && <IngredientDitails />} />
           <Route path='feed' element={<Feed />} />
           <Route path='feed/:id' element={!background && <FeedId />} />
-          <Route path='profile' element={<Profile />} >
-            <Route path='/profile' element={<OnlyAuth component={<ProfileInfo />} />}>
+          <Route path='profile' element={<OnlyAuth component={<Profile />} />}>
+            <Route path='/profile' element={<ProfileInfo />} >
               <Route path='/profile/edit' element={<ProfileEdit />} />
             </Route>
-            <Route path='/profile/orders' element={<OnlyAuth component={<MyOrders />} />} />
+            <Route path='/profile/orders/' element={<MyOrders />} />
           </Route>
           <Route path='/profile/orders/:id' element={!background && <OnlyAuth component={<MyOrdersId />} />} />
           <Route path='login' element={<OnlyUnAuth component={<Login />} />} />

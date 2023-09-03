@@ -1,4 +1,4 @@
-import { getFeedOrder, delFeedOrder } from './feedIdSlice';
+import { getFeedOrder, delFeedOrder, initialState } from './feedIdSlice';
 import feedIdReducer from './feedIdSlice';
 
 const feedIdInfo = {
@@ -15,7 +15,7 @@ const feedIdInfo = {
 describe('Тестирование редьюсера модалки с информацией о заказе', () => {
     test('Добавление информации', () => {
         expect(feedIdReducer(undefined, getFeedOrder(feedIdInfo))).toEqual({ feedOrder: feedIdInfo })
-        expect(feedIdReducer({ feedOrder: null }, getFeedOrder(feedIdInfo))).toEqual({ feedOrder: feedIdInfo })
+        expect(feedIdReducer(initialState, getFeedOrder(feedIdInfo))).toEqual({ feedOrder: feedIdInfo })
     })
     test('Удаление информации', () => {
         expect(feedIdReducer(undefined, delFeedOrder(null))).toEqual({ feedOrder: null })

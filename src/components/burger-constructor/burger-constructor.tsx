@@ -41,7 +41,7 @@ function BurgerConstructor(props: TBurgerConstructorProps) {
       <Middle />
       <section className={["mt-10 mr-4", styles.sum_container].join(" ")}>
         <div className={['mr-10', styles.price_container].join(" ")}>
-          <span className='mr-2 text text_type_digits-medium'>{totalPrice}</span>
+          <span id="total_price" className='mr-2 text text_type_digits-medium'>{totalPrice}</span>
           <CurrencyIcon type="primary" />
         </div>
         <Button htmlType="button" type="primary" size="large" onClick={handleOpen} disabled={!bun ? true : false} >

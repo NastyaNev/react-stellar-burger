@@ -47,7 +47,7 @@ function BurgerIngredients(props: TBurgerIngredientsProps) {
     return (
         <li className={['mt-10', styles.burger_ingredients, className].join(" ")}>
             <h2 className='text text_type_main-large'>{title}</h2>
-            <div className={["mt-5 mb-10", styles.tabs, className].join(" ")} >
+            <div className={["mt-5 mb-10", styles.tabs, className].join(" ")} id='tabs_section' >
                 <Tab value="one" active={current === 'one'} onClick={setCurrent} >
                     Булки
                 </Tab>
@@ -58,10 +58,10 @@ function BurgerIngredients(props: TBurgerIngredientsProps) {
                     Начинки
                 </Tab>
             </div>
-            <ul className={['custom-scroll', styles.ingredients_list].join(" ")} onScroll={handleScroll} ref={containerRef} >
-                <IngredientSection ingredName='Булки' type='bun' customRef={bunRef} />
-                <IngredientSection ingredName='Соусы' type='sauce' customRef={sauceRef} />
-                <IngredientSection ingredName='Начинки' type='main' customRef={mainRef} />
+            <ul className={['custom-scroll', styles.ingredients_list].join(" ")} onScroll={handleScroll} ref={containerRef} id='ingredients_list' >
+                <IngredientSection ingredName='Булки' type='bun' customRef={bunRef} id='buns_section' />
+                <IngredientSection ingredName='Соусы' type='sauce' customRef={sauceRef} id='sauces_section' />
+                <IngredientSection ingredName='Начинки' type='main' customRef={mainRef} id='mains_section' />
             </ul>
         </li>
     )

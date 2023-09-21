@@ -6,7 +6,7 @@ import userReducer from './services/reducers/userSlice';
 import orderReducer from './services/reducers/orderSlice';
 import feedIdReducer from "./services/reducers/feedIdSlice";
 import { socketMiddleware } from "./services/middleware/socket-middleware";
-import { reducerWs } from './services/reducers/reducerAllOrdersWs';
+import { reducerWs } from './services/reducers/reducerWs';
 import { 
   connect as AllOrdersWsConnect, 
   disconnect as AllOrdersWsDisconnect,

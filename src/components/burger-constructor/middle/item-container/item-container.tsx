@@ -77,7 +77,7 @@ function ItemContainer(props: TItemContainerProps) {
 
   return (
     <li className={['mr-1', styles.item_container, className].join(' ')} ref={ref} >
-      <div ref={drag}>
+      <div className='icon_drag' ref={drag}>
         <DragIcon type="primary" />
       </div>
       <ConstructorElement handleClose={handleDelete}

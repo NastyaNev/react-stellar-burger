@@ -5,7 +5,7 @@ type TIngredientSlice = {
     ing: TIngredient | null;
 }
 
-const initialState: TIngredientSlice = {
+export const initialState: TIngredientSlice = {
     ing: null
 }
 

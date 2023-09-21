@@ -28,10 +28,10 @@ function Middle() {
     }, []);
 
     return (
-        <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} ref={dropTarget}>
+        <ul className={["ml-4 mt-25", styles.constructor_list].join(" ")} ref={dropTarget} id='constructor_list'>
             <Bun found={bun!} className='ml-8' part="top" note="(верх)" />
             <div>
-                <ul className={[styles.middle, 'custom-scroll'].join(" ")}  >
+                <ul className={[styles.middle, 'custom-scroll'].join(" ")} >
                     {mooved.map((item, index) => (
                         <ItemContainer key={item.id} id={item.id} ingredient={item} index={index} moveItems={moveItems} />
                     ))}

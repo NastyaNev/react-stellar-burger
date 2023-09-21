@@ -7,7 +7,7 @@ type TIngredientsSlice = {
     array: TIngredient[],
 }
 
-const initialState: TIngredientsSlice = {
+export const initialState: TIngredientsSlice = {
     apiRequest: false,
     apiFailed: false,
     array: []

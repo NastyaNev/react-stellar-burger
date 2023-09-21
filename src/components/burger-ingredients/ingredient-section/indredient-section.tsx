@@ -7,10 +7,11 @@ type TIngredientSectionProps = {
   ingredName: string,
   type: string,
   customRef: React.RefObject<HTMLLIElement>,
+  id: string
 };
 
 function IngredientSection(props: TIngredientSectionProps) {
-  const { ingredName, type, customRef } = props;
+  const { ingredName, type, customRef, id } = props;
   const array = useAppSelector((state) => state.ingredients.array);
 
   const filtered = array!.filter((item) => {
@@ -18,7 +19,7 @@ function IngredientSection(props: TIngredientSectionProps) {
   })
 
   return (
-    <li className={['mt-10', styles.ingredient_section].join(" ")} ref={customRef} >
+    <li className={['mt-10', styles.ingredient_section].join(" ")} ref={customRef} id={id} >
       <h3 className='text text_type_main-medium'>{ingredName}</h3>
       <ul className={['mt-6 ml-4', styles.menu].join(" ")}>
         {filtered.map((item) => (

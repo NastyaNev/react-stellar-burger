@@ -43,7 +43,7 @@ function Ingredient(props: TIngredientProps) {
 
     return (
         <li>
-            <Link to={`/ingredients/${item._id}`} state={{ background: location }} className={styles.card} ref={dragRef}  >
+            <Link to={`/ingredients/${item._id}`} state={{ background: location }} className={styles.card} ref={dragRef} type={item.type} >
                 {counter! > 0 &&
                     <Counter count={counter!} size="default" extraClass="m-1" />
                 }

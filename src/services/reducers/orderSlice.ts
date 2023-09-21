@@ -7,7 +7,7 @@ type TOrderSlice = {
     answer: TAnswer | null
 }
 
-const initialState: TOrderSlice = {
+export const initialState: TOrderSlice = {
     apiRequest: false,
     apiFailed: false,
     answer: null

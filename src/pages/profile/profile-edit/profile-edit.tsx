@@ -10,7 +10,7 @@ function ProfileEdit() {
     const dispatch = useAppDispatch();
 
     const cancelEdit = (user: Tuser) => {
-        dispatch(setVisitor(user = null));
+        dispatch(setVisitor(null));
     }
 
     return (

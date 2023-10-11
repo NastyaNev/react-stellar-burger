@@ -1,6 +1,6 @@
 # **Проект: Stellar Burgers** 
 
-**Demo опубликавано на GitHub-pages** - [**ссылка**](https://nastyanev.github.io/react-stellar-burger/ "Ссылка на GitHub Pages"). <img src="https://github.com/NastyaNev/NastyaNev/assets/129982615/ba5e95e7-e99b-4ac6-891b-54e4e935288d" height="50"/>
+**Demo опубликавано на GitHub-pages** - [**ссылка**](https://nastyanev.github.io/react-stellar-burger/ "Ссылка на GitHub Pages"). <img src="https://github.com/NastyaNev/react-stellar-burger/assets/129982615/6d6a2cf0-46f3-4efc-8a81-deb30f6f396f" height="200px"/>
 
 ## *Космическая бургерная для путешественников во Вселенной*
 

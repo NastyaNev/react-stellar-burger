@@ -2,7 +2,7 @@
 
 **Demo опубликавано на GitHub-pages** - [**ссылка**](https://nastyanev.github.io/react-stellar-burger/ "Ссылка на GitHub Pages"). 
 
-<img src="https://github.com/NastyaNev/NastyaNev/assets/129982615/ba5e95e7-e99b-4ac6-891b-54e4e935288d" height="200"/>
+<img src="https://github.com/NastyaNev/NastyaNev/assets/129982615/ba5e95e7-e99b-4ac6-891b-54e4e935288d" height="100"/>
 
 ## *Космическая бургерная для путешественников во Вселенной*
 

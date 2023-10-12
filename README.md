@@ -12,7 +12,7 @@
 
 P.S.: Не исключено, что в действительности космический бургер выглядит именно так :point_down:
 
-<img src="https://www.disneytouristblog.com/wp-content/uploads/2019/06/guardians-galaxy-awesome-epcot-food-disney-world-2086.jpg" width="40%"/> <img src="https://blogmickey.com/wp-content/uploads/2019/06/org_dsc07935.jpg" width="40%"/>
+<img src="https://www.disneytouristblog.com/wp-content/uploads/2019/06/guardians-galaxy-awesome-epcot-food-disney-world-2086.jpg" width="45%"/> <img src="https://blogmickey.com/wp-content/uploads/2019/06/org_dsc07935.jpg" width="45%"/>
 
 ***Что было сделано:***
   * ~~Создана разметка сайта при помощи jsx.~~

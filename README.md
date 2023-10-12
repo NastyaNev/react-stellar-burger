@@ -3,7 +3,7 @@
   <b align="center" >Demo опубликавано на GitHub-pages - <a href="https://nastyanev.github.io/react-stellar-burger/" title="Ссылка на GitHub Pages">ссылка</a>.</b>
  </p>
  <p align="center">
-  <img src="https://github.com/NastyaNev/react-stellar-burger/assets/129982615/6d6a2cf0-46f3-4efc-8a81-deb30f6f396f" height="250px"/>
+  <img src="https://github.com/NastyaNev/react-stellar-burger/assets/129982615/6d6a2cf0-46f3-4efc-8a81-deb30f6f396f" width="50%"/>
  </p>
 
 ## *Космическая бургерная для путешественников во Вселенной*
@@ -12,7 +12,7 @@
 
 P.S.: Не исключено, что в действительности космический бургер выглядит именно так :point_down:
 
-<img src="https://www.disneytouristblog.com/wp-content/uploads/2019/06/guardians-galaxy-awesome-epcot-food-disney-world-2086.jpg" height="250px"/> <img src="https://blogmickey.com/wp-content/uploads/2019/06/org_dsc07935.jpg" height="250px"/>
+<img src="https://www.disneytouristblog.com/wp-content/uploads/2019/06/guardians-galaxy-awesome-epcot-food-disney-world-2086.jpg" width="50%"/> <img src="https://blogmickey.com/wp-content/uploads/2019/06/org_dsc07935.jpg" width="50%"/>
 
 ***Что было сделано:***
   * ~~Создана разметка сайта при помощи jsx.~~

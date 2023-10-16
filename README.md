@@ -6,9 +6,9 @@
   <img src="https://github.com/NastyaNev/react-stellar-burger/assets/129982615/6d6a2cf0-46f3-4efc-8a81-deb30f6f396f" width="60%"/>
  </p>
 
- `Стек:`
+ ## *Стек*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.w3.org/TR/html5/" title="HTML5"><img src="https://img.shields.io/badge/HTML-%23000000?logo=html5&logoColor=%23FFFFFF%20&color=%23E34F26" alt="HTML5" height="30px"></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.w3.org/TR/html5/" title="HTML5"><img src="https://img.shields.io/badge/HTML-%23000000?logo=html5&logoColor=%23FFFFFF%20&color=%23E34F26" alt="HTML5" height="20px"></a>
 <a href="https://www.w3.org/TR/CSS/" title="CSS3"><img src="https://img.shields.io/badge/CSS-%23000000?logo=css3&logoColor=%23FFFFFF%20&color=%231572B6" alt="CSS3" height="20px"></a>
 <a href="https://www.typescriptlang.org/" title="TypeScript"><img src="https://img.shields.io/badge/TypeScript-8A2BE2?logo=typescript&logoColor=%23FFFFFF%20&color=%233178C6" alt="TypeScript" height="20px"></a>
 <a href="https://reactjs.org/" title="React"><img src="https://img.shields.io/badge/React-%23FFFFFF%20?logo=react&logoColor=%23000000%20&color=%2361DAFB" alt="React" height="20px"></a>

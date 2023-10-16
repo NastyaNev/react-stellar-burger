@@ -10,6 +10,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.w3.org/TR/html5/" title="HTML5"><img src="https://img.shields.io/badge/HTML-%23000000?logo=html5&logoColor=%23FFFFFF%20&color=%23E34F26" alt="HTML5" height="25px"></a>
 <a href="https://www.w3.org/TR/CSS/" title="CSS3"><img src="https://img.shields.io/badge/CSS-%23000000?logo=css3&logoColor=%23FFFFFF%20&color=%231572B6" alt="CSS3" height="25px"></a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" title="JavaScript"><img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-%23000000?logo=javascript&logoColor=%23000000&color=%23F7DF1E" alt="JavaScript" height="25px"></a>
 <a href="https://www.typescriptlang.org/" title="TypeScript"><img src="https://img.shields.io/badge/TypeScript-8A2BE2?logo=typescript&logoColor=%23FFFFFF%20&color=%233178C6" alt="TypeScript" height="25px"></a>
 <a href="https://reactjs.org/" title="React"><img src="https://img.shields.io/badge/React-%23FFFFFF%20?logo=react&logoColor=%23000000%20&color=%2361DAFB" alt="React" height="25px"></a>
 <a href="https://redux.js.org/" title="Redux"><img src="https://img.shields.io/badge/Redux-%23FFFFFF%20?logo=redux&logoColor=%23FFFFFF%20&color=%23764ABC" alt="Redux" height="25px"></a>
